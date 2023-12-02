@@ -1,5 +1,6 @@
 "use client";
 
+import FlightInfo from "./components/FlightInfo";
 import MyButton from "./components/MyButton";
 import MyHeader from "./components/MyHeader";
 
@@ -7,6 +8,7 @@ export default function Home() {
   return (
     <div className="container">
       <MyHeader headText="비행기 낮잠 가이드" />
+      <FlightInfo />
 
       <style jsx>{`
         .container {
