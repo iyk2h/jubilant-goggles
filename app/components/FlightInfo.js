@@ -53,7 +53,7 @@ const FlightInfo = () => {
     try {
       setLoading(true);
 
-      const apiUrl = "http://localhost:3001/mock";
+      const apiUrl = "http://localhost:3000/api/airportInfo";
       const requestData = {
         airline: airlineCode.iata,
         flightNumber,
