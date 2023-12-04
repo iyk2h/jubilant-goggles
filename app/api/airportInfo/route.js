@@ -19,7 +19,7 @@ export async function POST(req) {
 
     try {
       // Use lowercase 'json' here
-      const response = await crawl(parseUrl, date);
+      const response = await crawl(parseUrl);
 
       // Check if response is valid
       if (response) {

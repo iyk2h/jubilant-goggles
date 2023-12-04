@@ -79,16 +79,14 @@ const FlightInfo = () => {
         <div>
           <div className="flex justify-between  mx-5">
             <div className="text-center">
-              <p className="text-5xl">
-                {response.departureAirport.slice(0, 3)}
-              </p>
-              <p className="text-l">{response.departureAirport.slice(5)}</p>
+              <p className="text-5xl">{response.departureAirportCode}</p>
+              <p className="text-l">{response.departureCity}</p>
               <p className="text-l mt-1">{response.departureTime}</p>
             </div>
             <p className="text-4xl"> ✈︎ </p>
             <div className="text-center">
-              <p className="text-5xl"> {response.arrivalAirport.slice(0, 3)}</p>
-              <p className="text-l">{response.arrivalAirport.slice(5)}</p>
+              <p className="text-5xl"> {response.arrivalAirportCode}</p>
+              <p className="text-l">{response.arrivalCity}</p>
               <p className="text-l mt-1">{response.arrivalTime}</p>
             </div>
           </div>
