@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import MyButton from "../components/MyButton";
 
 import airlines from "../data/airlines.json";
 import SelectorAirportCode from "../components/SelectorAirportCode";
+
+const { getAirportInfos } = require("../api/airportInfo/AirportInfo");
 
 const FlightInfo = () => {
   const flightNumRef = useRef();
@@ -18,6 +20,18 @@ const FlightInfo = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [airportInfos, setAirportInfo] = useState(null);
+
+  useEffect(() => {
+    if (response != null) {
+      getAirportInfos(departureDate, response).then((info) =>
+        setAirportInfo(info)
+      );
+    } else {
+      setAirportInfo(null);
+    }
+  }, [response]);
 
   const formatDate = (inputDate) => {
     console.log("format render");
