@@ -19,6 +19,12 @@ const getAirportInfos = async (date, info) => {
 };
 
 const createAirportInfoWithDateTime = async (date, airportCode, timeString) => {
+  const cacheKey = `${airportCode}_${date}_${timeString}`;
+  if (cache[cacheKey]) {
+    console.log("Cache hit!");
+    return cache[cacheKey];
+  }
+
   try {
     const airportInfo = await getAirportInfo(airportCode);
     const infoWithDateTime = {
@@ -32,6 +38,8 @@ const createAirportInfoWithDateTime = async (date, airportCode, timeString) => {
         airportInfo.timezone
       ),
     };
+
+    cache[cacheKey] = infoWithDateTime;
 
     return infoWithDateTime;
   } catch (error) {

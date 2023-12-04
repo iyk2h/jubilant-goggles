@@ -21,21 +21,17 @@ const FlightInfo = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [airportInfos, setAirportInfo] = useState(null);
-
   useEffect(() => {
     if (response != null) {
-      getAirportInfos(departureDate, response).then((info) =>
-        setAirportInfo(info)
-      );
+      getAirportInfos(departureDate, response).then((info) => {
+        localStorage.setItem("airportInfo", JSON.stringify(info));
+      });
     } else {
-      setAirportInfo(null);
+      localStorage.setItem("airportInfo", "");
     }
   }, [response]);
 
   const formatDate = (inputDate) => {
-    console.log("format render");
-
     const dateObject = new Date(inputDate);
     const formattedDate = `${dateObject.getFullYear()}${String(
       dateObject.getMonth() + 1
@@ -53,17 +49,11 @@ const FlightInfo = () => {
   };
 
   const resetResponse = () => {
-    console.log("resetRes render");
-
     setResponse(null);
     setError(null);
   };
 
   const getFlightInfo = async () => {
-    console.log("getFlightInfo render");
-
-    console.log({ airlineCode, flightNumber });
-
     try {
       setLoading(true);
 
