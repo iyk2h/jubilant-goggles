@@ -1,14 +1,17 @@
 "use client";
 
 import FlightInfo from "./components/FlightInfo";
-import MyButton from "./components/MyButton";
 import MyHeader from "./components/MyHeader";
+import RecommendNap from "./components/RecommendNap";
+import SleepTimeForm from "./components/SleepTimeForm";
 
 export default function Home() {
   return (
     <div className="container">
       <MyHeader headText="비행기 낮잠 가이드" />
       <FlightInfo />
+      <SleepTimeForm />
+      <RecommendNap />
 
       <style jsx>{`
         .container {
