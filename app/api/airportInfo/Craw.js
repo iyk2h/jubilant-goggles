@@ -1,9 +1,12 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 
+const airportInfo = require("airport-info");
+const { DateTime } = require("luxon");
+
 const cache = {};
 
-const crawl = async (url) => {
+const crawl = async (url, date) => {
   if (cache[url]) {
     return cache[url];
   }
@@ -13,31 +16,38 @@ const crawl = async (url) => {
 
     const $ = cheerio.load(data);
 
-    const airport1Script = $(
+    const departureScript = $(
       "table#ffDepartureInfo tr.odd.first span.airport script"
     );
-
-    const departureAirport = airport1Script.html().match(/"([^"]+)"/)[1];
-
+    const departureAirportCode = departureScript.html().match(/"([^"]+)"/)[1];
     const departureTime = $("table#ffDepartureInfo tr.even td").text();
 
-    const airport2Script = $(
+    const arrivalScript = $(
       "table#ffArrivalInfo tr.odd.first span.airport script"
     );
-    const arrivalAirport = airport2Script.html().match(/"([^"]+)"/)[1];
+    const arrivalAirportCode = arrivalScript.html().match(/"([^"]+)"/)[1];
+    const arrivalTime = $("table#ffArrivalInfo tr.even td").text();
 
-    const scheduledTime2Raw = $("table#ffArrivalInfo tr.even td").text();
+    const departureAirportInfoWithDateTime =
+      await createAirportInfoWithDateTime(
+        date,
+        departureAirportCode,
+        departureTime
+      );
 
-    const arrivalTime = scheduledTime2Raw;
-
-    const parsedArrivalTime = parseTimeStringToDate(arrivalTime);
-    console.log(parsedArrivalTime);
+    const arrivalAirportInfoWithDateTime = await createAirportInfoWithDateTime(
+      date,
+      arrivalAirportCode,
+      arrivalTime
+    );
 
     const result = {
-      departureAirport,
+      departureAirportCode,
       departureTime,
-      arrivalAirport,
+      arrivalAirportCode,
       arrivalTime,
+      departureAirportInfoWithDateTime,
+      arrivalAirportInfoWithDateTime,
     };
 
     cache[url] = result;
@@ -50,15 +60,39 @@ const crawl = async (url) => {
   }
 };
 
-const parseTimeStringToDate = (timeString) => {
+const createAirportInfoWithDateTime = async (date, airportCode, timeString) => {
+  try {
+    const airportInfo = await getAirportInfo(airportCode);
+    const infoWithDateTime = {
+      name: airportInfo.name,
+      country: airportInfo.country,
+      city: airportInfo.city,
+      timezone: airportInfo.timezone,
+      datetime: parseDateTimeWithTimezone(
+        date,
+        timeString,
+        airportInfo.timezone
+      ),
+    };
+
+    return infoWithDateTime;
+  } catch (error) {
+    console.error("Airport 정보 가져오기 에러", error);
+    throw error;
+  }
+};
+
+const getAirportInfo = (code) => airportInfo.getAirportInfo(code);
+
+const parseDateTimeWithTimezone = (date, timeString, timezone) => {
   const cleanedString = timeString.replace(",", "");
   const [time, ampm, month, day] = cleanedString.split(/\s+/);
-
-  const year = new Date().getFullYear();
+  const year = date.substring(0, 4);
 
   const formattedDateString = `${month} ${day}, ${year} ${time} ${ampm}`;
+  const dateios = new Date(formattedDateString).toISOString();
 
-  return new Date(formattedDateString).toLocaleString();
+  return DateTime.fromISO(dateios).setZone(timezone);
 };
 
 module.exports = {
