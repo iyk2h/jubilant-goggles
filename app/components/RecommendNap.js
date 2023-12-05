@@ -57,7 +57,7 @@ const RecommendNap = () => {
                     <ul
                       aria-label="Activity feed"
                       role="feed"
-                      className="relative flex flex-col gap-12 py-12 mr-12 left-[1rem] before:absolute before:top-0 before:left-[8.7rem] before:h-full before:border before:border-dashed before:border-slate-200 after:absolute after:top-6 after:left-[8.7rem] after:bottom-6 after:border after:border-slate-200"
+                      className="relative flex flex-col gap-12 py-12 pr-2 mr-2 left-[0rem] before:absolute before:top-0 before:left-[8.7rem] before:h-full before:border before:border-dashed before:border-slate-200 after:absolute after:top-6 after:left-[8.7rem] after:bottom-6 after:border after:border-slate-200"
                     >
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
@@ -130,7 +130,10 @@ const RecommendNap = () => {
                             1:20 PM, Dec 18
                           </p>
                           <h4 className="text-base font-medium text-slate-700">
-                            Kuala Lumpur 도착!
+                            Kuala Lumpur
+                          </h4>
+                          <h4 className="text-base font-medium text-slate-700">
+                            도착!
                           </h4>
                         </div>
                       </li>
