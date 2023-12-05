@@ -13,32 +13,36 @@ const crawl = async (url) => {
 
     const $ = cheerio.load(data);
 
-    const getFlightInfo = (selector) => $(selector, "#ffStatus").text();
+    const getAirportInfo = (selector) => ({
+      code: getFlightInfo(`${selector} .airport-header-code`),
+      city: getFlightInfo(`${selector} .airport-header-name`),
+    });
     const getTableData = (tableId) => $(`table#${tableId} tr.even td`).text();
 
-    const departureAirportCode = getFlightInfo(
-      ".airport-header-left .airport-header-code"
-    );
-    const departureCity = getFlightInfo(
-      ".airport-header-left .airport-header-name"
-    );
-    const departureTime = getTableData("ffDepartureInfo");
+    const getFlightInfo = (selector) => $(selector, "#ffStatus").text();
 
-    const arrivalAirportCode = getFlightInfo(
-      ".airport-header-rite .airport-header-code"
-    );
-    const arrivalCity = getFlightInfo(
-      ".airport-header-rite .airport-header-name"
-    );
+    const departureInfo = getAirportInfo(".airport-header-left");
+    const arrivalInfo = getAirportInfo(".airport-header-rite");
+
+    const departureTime = getTableData("ffDepartureInfo");
     const arrivalTime = getTableData("ffArrivalInfo");
 
+    if (
+      departureInfo.code === "" ||
+      departureInfo.city === "" ||
+      arrivalInfo.code === "" ||
+      arrivalInfo.city === ""
+    ) {
+      return null;
+    }
+
     const result = {
-      departureAirportCode,
-      departureCity,
+      departureAirportCode: departureInfo.code,
+      departureCity: departureInfo.city,
       departureTime,
-      arrivalAirportCode,
+      arrivalAirportCode: arrivalInfo.code,
       arrivalTime,
-      arrivalCity,
+      arrivalCity: arrivalInfo.city,
     };
 
     cache[url] = result;
