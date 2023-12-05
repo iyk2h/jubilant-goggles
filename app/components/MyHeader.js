@@ -13,18 +13,22 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         .container {
           border-bottom: 1px solid #e2e2e2;
         }
+
         .head_text {
-          width: 50%;
+          width: 60%;
           color: #004d40;
-          font-size: 23px;
+          font-size: 25px;
           text-align: center;
         }
 
-        .head_btn_left,
+        .head_btn_left {
+          width: 20%;
+          justify-content: start;
+        }
+
         .head_btn_right {
-          width: 25%;
-          display: flex;
-          justify-content: center;
+          width: 20%;
+          justify-content: end;
         }
       `}</style>
     </div>
