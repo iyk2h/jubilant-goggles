@@ -49,7 +49,7 @@ const RecommendNap = () => {
                 <Dialog.Panel className="max-w-xl min-w-xl w-xl rounded-lg bg-white p-5">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg m-3 font-medium leading-6 text-gray-900"
+                    className="text-2xl m-3 font-medium leading-6 text-gray-900"
                   >
                     낮잠 추천
                   </Dialog.Title>
@@ -61,46 +61,46 @@ const RecommendNap = () => {
                     >
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             7:35 AM, Dec 18
                           </p>
-                          <h4 className="text-base font-medium text-slate-700">
+                          <h4 className="text-xl font-medium text-slate-700">
                             ICN, Seoul
                           </h4>
                         </div>
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                          <p className="text-3xl"> ✈︎ </p>
+                          <p className="text-3xl mb-1"> ✈︎ </p>
                         </span>
                         <div className="flex flex-col gap-0 w-28">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             10:35 AM, Dec 18
                           </p>
-                          <h4 className="text-base font-medium text-slate-700">
+                          <h4 className="text-xl font-medium text-slate-700">
                             출발
                           </h4>
                         </div>
                       </li>
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             8:35 AM, Dec 18
                           </p>
                         </div>
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                          <p className="text-2xl mt-1"> ☾ </p>
+                          <p className="text-3xl mt-1"> ☾ </p>
                         </span>
                         <div className="flex flex-col gap-0 w-28">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             11:35 PM, Dec 18
                           </p>
-                          <h4 className="text-base font-medium text-slate-700">
+                          <h4 className="text-xl font-medium text-slate-700">
                             낮잠!
                           </h4>
                         </div>
                       </li>
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             10:10 AM, Dec 18
                           </p>
                         </div>
@@ -108,31 +108,31 @@ const RecommendNap = () => {
                           <p className="text-3xl mt-1"> ☀ </p>
                         </span>
                         <div className="flex flex-col gap-0 w-28">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             1:10 PM, Dec 18
                           </p>
-                          <h4 className="text-base font-medium text-slate-700">
+                          <h4 className="text-xl font-medium text-slate-700">
                             기상!
                           </h4>
                         </div>
                       </li>
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             10:20 AM, Dec 18
                           </p>
                         </div>
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                          <p className="text-3xl"> ✈︎ </p>
+                          <p className="text-3xl mb-1"> ✈︎ </p>
                         </span>
                         <div className="flex flex-col gap-0 w-28">
-                          <p className="text-sm text-slate-500">
+                          <p className="text-base text-slate-500">
                             1:20 PM, Dec 18
                           </p>
-                          <h4 className="text-base font-medium text-slate-700">
+                          <h4 className="text-xl font-medium text-slate-700">
                             Kuala Lumpur
                           </h4>
-                          <h4 className="text-base font-medium text-slate-700">
+                          <h4 className="text-xl font-medium text-slate-700">
                             도착!
                           </h4>
                         </div>
@@ -176,7 +176,7 @@ const RecommendNap = () => {
                   <div className="m-4 p-1">
                     <button
                       type="button"
-                      className="absolute bottom-0 right-0 mr-4 my-4 rounded-md border border-transparent bg-teal-800 px-4 py-2 text-sm font-medium text-white hover:bg-teal-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="absolute bottom-0 right-0 mr-4 my-4 rounded-md border border-transparent bg-teal-800 px-4 py-2 text-base font-medium text-white hover:bg-teal-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       확인

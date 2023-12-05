@@ -83,15 +83,15 @@ const FlightInfo = () => {
         <div>
           <div className="flex justify-between  mx-5">
             <div className="text-center">
-              <p className="text-5xl">{response.departureAirportCode}</p>
-              <p className="text-l">{response.departureCity}</p>
-              <p className="text-l mt-1">{response.departureTime}</p>
+              <p className="text-6xl">{response.departureAirportCode}</p>
+              <p className="text-xl">{response.departureCity}</p>
+              <p className="text-xl mt-1">{response.departureTime}</p>
             </div>
-            <p className="text-4xl"> ✈︎ </p>
+            <p className="text-5xl mt-2"> ✈︎ </p>
             <div className="text-center">
-              <p className="text-5xl"> {response.arrivalAirportCode}</p>
-              <p className="text-l">{response.arrivalCity}</p>
-              <p className="text-l mt-1">{response.arrivalTime}</p>
+              <p className="text-6xl"> {response.arrivalAirportCode}</p>
+              <p className="text-xl">{response.arrivalCity}</p>
+              <p className="text-xl mt-1">{response.arrivalTime}</p>
             </div>
           </div>
           <div className="flex justify-end mt-4">
@@ -106,10 +106,10 @@ const FlightInfo = () => {
         <div>
           <section>
             <div>
-              <h2 className="text-xl font-bold text-teal-900">출발 날짜</h2>
+              <h2 className="text-2xl font-bold text-teal-900">출발 날짜</h2>
               <div>
                 <input
-                  className="text-xl font-bol bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
+                  className="text-2xl font-bol bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
                   type="date"
                   value={departureDate}
                   onChange={(e) => setDepartureDate(e.target.value)}
@@ -120,7 +120,7 @@ const FlightInfo = () => {
 
           <section className="flex justify-between">
             <div>
-              <h2 className="text-xl font-bold text-teal-900 pt-2 mt-1">
+              <h2 className="text-2xl font-bold text-teal-900 pt-2 mt-1">
                 Flight Number
               </h2>
               <div className=" w-fit flex flex-wrap gap-2 bg-gray-200 rounded-lg p-2">
@@ -133,8 +133,8 @@ const FlightInfo = () => {
                     setSelected={setAirlineCode}
                   />
                 </div>
-                <div className="w-12 h-9 mt-1 relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none">
-                  <div className="outline-none border-none p-2 text-sm leading-5 text-gray-900 focus:ring-0">
+                <div className="w-12 h-fit mt-1 relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none">
+                  <div className="outline-none border-none p-2 text-2xl leading-5 text-gray-900 focus:ring-0">
                     <input
                       type="text"
                       value={flightNumber}

@@ -23,16 +23,16 @@ export default function Home() {
           box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
         }
 
-        @media (min-width: 400px) {
+        @media (min-width: 420px) {
           .container {
-            width: 390px;
-            min-width: 390px;
+            width: 410px;
+            min-width: 410px;
           }
         }
 
         @media (max-width: 400px) {
           .container {
-            width: 90vw;
+            width: 95vw;
           }
         }
       `}</style>

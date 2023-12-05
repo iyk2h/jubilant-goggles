@@ -8,7 +8,7 @@ export default function MyButton({ text, type, onClick }) {
   return (
     <div>
       <button
-        className={["MyButton", `MyButton_${btnType}`].join(" ")}
+        className={["MyButton", `MyButton_${btnType}`, "text-xl"].join(" ")}
         onClick={onClick}
       >
         {text} {/* Add this line to display the text inside the button */}
@@ -22,7 +22,6 @@ export default function MyButton({ text, type, onClick }) {
           padding-bottom: 10px;
           padding-left: 20px;
           padding-right: 20px;
-          font-size: 18px;
           white-space: nowrap;
         }
 
