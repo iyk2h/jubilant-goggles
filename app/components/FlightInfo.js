@@ -109,7 +109,7 @@ const FlightInfo = () => {
               <h2 className="text-2xl font-bold text-teal-900">출발 날짜</h2>
               <div>
                 <input
-                  className="text-2xl font-bol bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
+                  className="text-2xl font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
                   type="date"
                   value={departureDate}
                   onChange={(e) => setDepartureDate(e.target.value)}
@@ -134,7 +134,7 @@ const FlightInfo = () => {
                   />
                 </div>
                 <div className="w-12 h-fit mt-1 relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none">
-                  <div className="outline-none border-none p-2 text-2xl leading-5 text-gray-900 focus:ring-0">
+                  <div className="outline-none border-none p-2 text-2xl font-bold leading-5 text-gray-900 focus:ring-0">
                     <input
                       type="text"
                       value={flightNumber}

@@ -20,7 +20,7 @@ const SleepTimeForm = () => {
           </h2>
           <div className="input_box">
             <input
-              className="text-2xl font-bol bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
+              className="text-2xl font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
               type="time"
               value={sleepTime}
               onChange={(e) => setSleepTime(e.target.value)}
@@ -35,7 +35,7 @@ const SleepTimeForm = () => {
           </h2>
           <div className="input_box">
             <input
-              className="text-2xl font-bol bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
+              className="text-2xl font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
               type="time"
               value={wakeUpTime}
               onChange={(e) => setWakeUpTime(e.target.value)}
