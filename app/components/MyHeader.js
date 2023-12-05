@@ -2,7 +2,7 @@
 
 export default function MyHeader({ headText, leftChild, rightChild }) {
   return (
-    <div className="container flex justify-center my-5 py-5">
+    <div className="container flex justify-center my-5 py-5 text-3xl">
       <header className="flex w-full items-center">
         <div className="head_btn_left">{leftChild}</div>
         <div className="head_text">{headText}</div>
@@ -17,7 +17,6 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         .head_text {
           width: 60%;
           color: #004d40;
-          font-size: 25px;
           text-align: center;
         }
 

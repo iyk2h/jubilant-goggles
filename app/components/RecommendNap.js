@@ -17,7 +17,7 @@ const RecommendNap = () => {
     <>
       <section>
         <div className="flex justify-end items-end pt-2 mt-3">
-          <MyButton text={"Submit"} type={"positive"} onClick={openModal} />
+          <MyButton text={"확인"} type={"positive"} onClick={openModal} />
         </div>
       </section>
 
@@ -57,7 +57,7 @@ const RecommendNap = () => {
                     <ul
                       aria-label="Activity feed"
                       role="feed"
-                      className="relative flex flex-col gap-12 py-12 pr-2 mr-2 left-[0rem] before:absolute before:top-0 before:left-[8.7rem] before:h-full before:border before:border-dashed before:border-slate-200 after:absolute after:top-6 after:left-[8.7rem] after:bottom-6 after:border after:border-slate-200"
+                      className="relative flex flex-col gap-12 py-12 left-[0rem] before:absolute before:top-0 before:left-[8.7rem] before:h-full before:border before:border-dashed before:border-slate-200 after:absolute after:top-6 after:left-[8.7rem] after:bottom-6 after:border after:border-slate-200"
                     >
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
@@ -71,7 +71,7 @@ const RecommendNap = () => {
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
                           <p className="text-3xl"> ✈︎ </p>
                         </span>
-                        <div className="flex flex-col gap-0">
+                        <div className="flex flex-col gap-0 w-28">
                           <p className="text-sm text-slate-500">
                             10:35 AM, Dec 18
                           </p>
@@ -89,7 +89,7 @@ const RecommendNap = () => {
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
                           <p className="text-2xl mt-1"> ☾ </p>
                         </span>
-                        <div className="flex flex-col gap-0">
+                        <div className="flex flex-col gap-0 w-28">
                           <p className="text-sm text-slate-500">
                             11:35 PM, Dec 18
                           </p>
@@ -107,7 +107,7 @@ const RecommendNap = () => {
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
                           <p className="text-3xl mt-1"> ☀ </p>
                         </span>
-                        <div className="flex flex-col gap-0">
+                        <div className="flex flex-col gap-0 w-28">
                           <p className="text-sm text-slate-500">
                             1:10 PM, Dec 18
                           </p>
@@ -125,7 +125,7 @@ const RecommendNap = () => {
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
                           <p className="text-3xl"> ✈︎ </p>
                         </span>
-                        <div className="flex flex-col gap-0">
+                        <div className="flex flex-col gap-0 w-28">
                           <p className="text-sm text-slate-500">
                             1:20 PM, Dec 18
                           </p>
@@ -179,7 +179,7 @@ const RecommendNap = () => {
                       className="absolute bottom-0 right-0 mr-4 my-4 rounded-md border border-transparent bg-teal-800 px-4 py-2 text-sm font-medium text-white hover:bg-teal-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Got it!
+                      확인
                     </button>
                   </div>
                 </Dialog.Panel>

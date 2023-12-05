@@ -162,7 +162,7 @@ const FlightInfo = () => {
             ) : (
               <div className="self-end">
                 <MyButton
-                  text={"확인"}
+                  text={"조회"}
                   type={"positive"}
                   onClick={handleSubmit}
                 />

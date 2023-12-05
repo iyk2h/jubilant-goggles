@@ -1,7 +1,12 @@
-import { Yeon_Sung } from "next/font/google";
+import { Yeon_Sung, Nanum_Pen_Script } from "next/font/google";
 import "./globals.css";
 
 const yeonSung = Yeon_Sung({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const nanum_Pen_Script = Nanum_Pen_Script({
   weight: "400",
   subsets: ["latin"],
 });
@@ -14,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={yeonSung.className}>{children}</body>
+      <body className={nanum_Pen_Script.className}>{children}</body>
     </html>
   );
 }
