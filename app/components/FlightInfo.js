@@ -25,6 +25,7 @@ const FlightInfo = () => {
     if (response != null) {
       getAirportInfos(departureDate, response).then((info) => {
         localStorage.setItem("airportInfo", JSON.stringify(info));
+        setLoading(false);
       });
     } else {
       localStorage.setItem("airportInfo", "");
@@ -72,7 +73,6 @@ const FlightInfo = () => {
       setResponse(null);
       setError("정보를 가져오지 못했습니다. 입력값을 확인해주세요.");
       alert("정보를 가져오지 못했습니다. 입력값을 확인해주세요.");
-    } finally {
       setLoading(false);
     }
   };
@@ -94,13 +94,19 @@ const FlightInfo = () => {
               <p className="text-xl mt-1">{response.arrivalTime}</p>
             </div>
           </div>
-          <div className="flex justify-end mt-4">
-            <MyButton
-              text={"다시 입력"}
-              type={"positive"}
-              onClick={resetResponse}
-            />
-          </div>
+          {loading ? (
+            <div className="flex justify-end mt-4">
+              <MyButton text={"로딩중"} type={"loading"} onClick={() => {}} />
+            </div>
+          ) : (
+            <div className="flex justify-end mt-4">
+              <MyButton
+                text={"다시 입력"}
+                type={"positive"}
+                onClick={resetResponse}
+              />
+            </div>
+          )}
         </div>
       ) : (
         <div>

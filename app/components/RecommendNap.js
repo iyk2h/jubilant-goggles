@@ -2,15 +2,81 @@ import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import MyButton from "./MyButton";
 
+const { DateTime } = require("luxon");
+
 const RecommendNap = () => {
   let [isOpen, setIsOpen] = useState(false);
+
+  const [dateInfo, setDateInfo] = useState({
+    departCity: "",
+    departStartDate: "",
+    departNapStart: "",
+    departNapEnd: "",
+    departEndDate: "",
+    arrivalStartDate: "",
+    arrvalNapStart: "",
+    arrvalNapEnd: "",
+    arrivalEndDate: "",
+    arrivalCity: "",
+  });
 
   const closeModal = () => {
     setIsOpen(false);
   };
 
   const openModal = () => {
+    const localInfo = localStorage.getItem("airportInfo");
+    if (!localInfo) {
+      alert("비행 정보를 로딩 중입니다. 다시 시도해 주세요.");
+      return;
+    }
+
+    const airportInfo = JSON.parse(localInfo);
+
+    const departureInfo = airportInfo.departureInfo;
+    const arrivalInfo = airportInfo.arrivalInfo;
+
+    const departDateForm = formatDate(departureInfo);
+
+    const arrivalDateForm = formatDate(arrivalInfo);
+    const flightTime = getDiffTime(arrivalDateForm.diff(departDateForm));
+    const departEndDateForm = departDateForm.plus(flightTime);
+    const arrivalStartDateForm = arrivalDateForm.minus(flightTime);
+
+    setDateInfo({
+      departCity: departureInfo.city,
+      departStartDate: formatDateString(departDateForm),
+      departNapStart: formatDateString(departDateForm.plus({ hour: 1 })),
+      departNapEnd: formatDateString(departEndDateForm.minus({ hour: 1 })),
+      departEndDate: formatDateString(departEndDateForm),
+      arrivalStartDate: formatDateString(arrivalStartDateForm),
+      arrvalNapStart: formatDateString(arrivalStartDateForm.plus({ hour: 1 })),
+      arrvalNapEnd: formatDateString(arrivalDateForm.minus({ hour: 1 })),
+      arrivalEndDate: formatDateString(arrivalDateForm),
+      arrivalCity: arrivalInfo.city,
+    });
+
     setIsOpen(true);
+  };
+
+  const getDiffTime = (diff) => {
+    return {
+      hours: diff.toFormat("hh"),
+      minutes: diff.toFormat("mm"),
+    };
+  };
+
+  const formatDate = (info) => {
+    return DateTime.fromFormat(info.datetime, "MM/d/yyyy, h:mm:ss a").setZone(
+      info.timezone,
+      {
+        keepLocalTime: true,
+      }
+    );
+  };
+
+  const formatDateString = (dateTime) => {
+    return dateTime.toFormat("hh:mm a, LLL dd");
   };
 
   return (
@@ -62,10 +128,10 @@ const RecommendNap = () => {
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
                           <p className="text-base text-slate-500">
-                            7:35 AM, Dec 18
+                            {dateInfo.departStartDate}
                           </p>
                           <h4 className="text-xl font-medium text-slate-700">
-                            ICN, Seoul
+                            {dateInfo.departCity}
                           </h4>
                         </div>
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
@@ -73,7 +139,7 @@ const RecommendNap = () => {
                         </span>
                         <div className="flex flex-col gap-0 w-28">
                           <p className="text-base text-slate-500">
-                            10:35 AM, Dec 18
+                            {dateInfo.arrivalStartDate}
                           </p>
                           <h4 className="text-xl font-medium text-slate-700">
                             출발
@@ -83,7 +149,7 @@ const RecommendNap = () => {
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
                           <p className="text-base text-slate-500">
-                            8:35 AM, Dec 18
+                            {dateInfo.departNapStart}
                           </p>
                         </div>
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
@@ -91,7 +157,7 @@ const RecommendNap = () => {
                         </span>
                         <div className="flex flex-col gap-0 w-28">
                           <p className="text-base text-slate-500">
-                            11:35 PM, Dec 18
+                            {dateInfo.arrvalNapStart}
                           </p>
                           <h4 className="text-xl font-medium text-slate-700">
                             낮잠!
@@ -101,7 +167,7 @@ const RecommendNap = () => {
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
                           <p className="text-base text-slate-500">
-                            10:10 AM, Dec 18
+                            {dateInfo.departNapEnd}
                           </p>
                         </div>
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
@@ -109,7 +175,7 @@ const RecommendNap = () => {
                         </span>
                         <div className="flex flex-col gap-0 w-28">
                           <p className="text-base text-slate-500">
-                            1:10 PM, Dec 18
+                            {dateInfo.arrvalNapEnd}
                           </p>
                           <h4 className="text-xl font-medium text-slate-700">
                             기상!
@@ -119,7 +185,7 @@ const RecommendNap = () => {
                       <li role="article" className="flex gap-2">
                         <div className="flex flex-col w-28 text-right">
                           <p className="text-base text-slate-500">
-                            10:20 AM, Dec 18
+                            {dateInfo.departEndDate}
                           </p>
                         </div>
                         <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
@@ -127,10 +193,10 @@ const RecommendNap = () => {
                         </span>
                         <div className="flex flex-col gap-0 w-28">
                           <p className="text-base text-slate-500">
-                            1:20 PM, Dec 18
+                            {dateInfo.arrivalEndDate}
                           </p>
                           <h4 className="text-xl font-medium text-slate-700">
-                            Kuala Lumpur
+                            {dateInfo.arrivalCity}
                           </h4>
                           <h4 className="text-xl font-medium text-slate-700">
                             도착!
@@ -139,40 +205,6 @@ const RecommendNap = () => {
                       </li>
                     </ul>
                   </>
-                  {/* <div className="mt-2">
-                  <div className="flex justify-between">
-                    <p className="text-5xl">{departureCountry.flag}</p>
-                    <p className="text-4xl"> ✈︎ </p>
-                    <p className="text-5xl"> {destinationCountry.flag}</p>
-                  </div>
-                  <div className="flex justify-between">
-                    <div>
-                      <p>{naptimeInfo.departureDate}</p>
-                    </div>
-                    <div>
-                      <p>{naptimeInfo.arrivaldestinationDate}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-centse">
-                    <div className=" mr-1">
-                      <p className="w-10 justify-start">
-                        {naptimeInfo.departureTime}
-                      </p>
-                    </div>
-                    <Progressbar
-                      startT={naptimeInfo.napSleepTime}
-                      endT={naptimeInfo.napWakeUpTime}
-                      startR={naptimeInfo.napSleepRate}
-                      endR={naptimeInfo.napWakeUpRate}
-                    />
-                    <div className="ml-1">
-                      <p className="w-10 justify-start text-right">
-                        {naptimeInfo.arrivaldestinationTime}
-                      </p>
-                    </div>
-                  </div>
-                </div> */}
-
                   <div className="m-4 p-1">
                     <button
                       type="button"

@@ -4,24 +4,30 @@ const { DateTime } = require("luxon");
 const cache = {};
 
 const getAirportInfos = async (date, info) => {
-  const departureAirportInfoWithDateTime = await createAirportInfoWithDateTime(
+  const departureInfo = await createAirportInfoWithDateTime(
     date,
     info.departureAirportCode,
-    info.departureTime
+    info.departureTime,
+    info.departureCity
   );
 
-  const arrivalAirportInfoWithDateTime = await createAirportInfoWithDateTime(
+  const arrivalInfo = await createAirportInfoWithDateTime(
     date,
     info.arrivalAirportCode,
-    info.arrivalTime
+    info.arrivalTime,
+    info.arrivalCity
   );
-  return { departureAirportInfoWithDateTime, arrivalAirportInfoWithDateTime };
+  return { departureInfo, arrivalInfo };
 };
 
-const createAirportInfoWithDateTime = async (date, airportCode, timeString) => {
+const createAirportInfoWithDateTime = async (
+  date,
+  airportCode,
+  timeString,
+  city
+) => {
   const cacheKey = `${airportCode}_${date}_${timeString}`;
   if (cache[cacheKey]) {
-    console.log("Cache hit!");
     return cache[cacheKey];
   }
 
@@ -30,7 +36,7 @@ const createAirportInfoWithDateTime = async (date, airportCode, timeString) => {
     const infoWithDateTime = {
       name: airportInfo.name,
       country: airportInfo.country,
-      city: airportInfo.city,
+      city,
       timezone: airportInfo.timezone,
       datetime: parseDateTimeWithTimezone(
         date,
@@ -56,9 +62,8 @@ const parseDateTimeWithTimezone = (date, timeString, timezone) => {
   const year = date.substring(0, 4);
 
   const formattedDateString = `${month} ${day}, ${year} ${time} ${ampm}`;
-  const dateios = new Date(formattedDateString).toISOString();
 
-  return DateTime.fromISO(dateios).setZone(timezone);
+  return new Date(formattedDateString).toLocaleString();
 };
 
 module.exports = {

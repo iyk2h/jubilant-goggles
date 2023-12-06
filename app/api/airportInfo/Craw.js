@@ -17,7 +17,8 @@ const crawl = async (url) => {
       code: getFlightInfo(`${selector} .airport-header-code`),
       city: getFlightInfo(`${selector} .airport-header-name`),
     });
-    const getTableData = (tableId) => $(`table#${tableId} tr.even td`).text();
+    const getTableData = (tableId) =>
+      $(`table#${tableId} tr.even:first td`).text();
 
     const getFlightInfo = (selector) => $(selector, "#ffStatus").text();
 
