@@ -5,6 +5,8 @@ import MyButton from "../components/MyButton";
 
 import airlines from "../data/airlines.json";
 import SelectorAirportCode from "../components/SelectorAirportCode";
+import SleepTimeForm from "./SleepTimeForm";
+import RecommendNap from "./RecommendNap";
 
 const { getAirportInfos } = require("../api/airportInfo/AirportInfo");
 
@@ -21,10 +23,13 @@ const FlightInfo = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [airportInfo, setAirportInfo] = useState();
+
   useEffect(() => {
     if (response != null) {
       getAirportInfos(departureDate, response).then((info) => {
         localStorage.setItem("airportInfo", JSON.stringify(info));
+        setAirportInfo(info);
         setLoading(false);
       });
     } else {
@@ -52,6 +57,7 @@ const FlightInfo = () => {
   const resetResponse = () => {
     setResponse(null);
     setError(null);
+    setAirportInfo(null);
   };
 
   const getFlightInfo = async () => {
@@ -83,13 +89,13 @@ const FlightInfo = () => {
         <div>
           <div className="flex justify-between  mx-5">
             <div className="text-center">
-              <p className="text-6xl">{response.departureAirportCode}</p>
+              <p className="text-5xl">{response.departureAirportCode}</p>
               <p className="text-xl">{response.departureCity}</p>
               <p className="text-xl mt-1">{response.departureTime}</p>
             </div>
-            <p className="text-5xl mt-2"> ✈︎ </p>
+            <p className="text-3xl mt-2"> ✈︎ </p>
             <div className="text-center">
-              <p className="text-6xl"> {response.arrivalAirportCode}</p>
+              <p className="text-5xl"> {response.arrivalAirportCode}</p>
               <p className="text-xl">{response.arrivalCity}</p>
               <p className="text-xl mt-1">{response.arrivalTime}</p>
             </div>
@@ -176,6 +182,14 @@ const FlightInfo = () => {
             )}
           </section>
         </div>
+      )}
+      {airportInfo ? (
+        <>
+          <SleepTimeForm />
+          <RecommendNap />
+        </>
+      ) : (
+        <></>
       )}
     </div>
   );
