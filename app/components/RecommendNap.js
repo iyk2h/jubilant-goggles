@@ -83,7 +83,11 @@ const RecommendNap = () => {
     <>
       <section>
         <div className="flex justify-end items-end pt-2 mt-3">
-          <MyButton text={"확인"} type={"positive"} onClick={openModal} />
+          <MyButton
+            text={"낮잠 시간 확인"}
+            type={"positive"}
+            onClick={openModal}
+          />
         </div>
       </section>
 

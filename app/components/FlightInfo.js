@@ -9,6 +9,7 @@ import SleepTimeForm from "./SleepTimeForm";
 import RecommendNap from "./RecommendNap";
 
 const { getAirportInfos } = require("../api/airportInfo/AirportInfo");
+import { SpinnerDiamond } from "spinners-react";
 
 const FlightInfo = () => {
   const flightNumRef = useRef();
@@ -22,8 +23,15 @@ const FlightInfo = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [sleepLoading, setSleepLoading] = useState(false);
 
-  const [airportInfo, setAirportInfo] = useState();
+  const [airportInfo, setAirportInfo] = useState("");
+
+  useEffect(() => {
+    if (airportInfo) {
+      setSleepLoading(false);
+    }
+  }, [airportInfo]);
 
   useEffect(() => {
     if (response != null) {
@@ -63,6 +71,7 @@ const FlightInfo = () => {
   const getFlightInfo = async () => {
     try {
       setLoading(true);
+      setSleepLoading(true);
 
       const apiUrl = "/api/airportInfo";
       const requestData = {
@@ -87,37 +96,41 @@ const FlightInfo = () => {
     <div>
       {response ? (
         <div>
-          <div className="flex justify-between  mx-5">
-            <div className="text-center">
-              <p className="text-5xl">{response.departureAirportCode}</p>
-              <p className="text-xl">{response.departureCity}</p>
-              <p className="text-xl mt-1">{response.departureTime}</p>
-            </div>
-            <p className="text-3xl mt-2"> ✈︎ </p>
-            <div className="text-center">
-              <p className="text-5xl"> {response.arrivalAirportCode}</p>
-              <p className="text-xl">{response.arrivalCity}</p>
-              <p className="text-xl mt-1">{response.arrivalTime}</p>
+          <div
+            className="bg-gray-100 hover:bg-gray-300 rounded-xl cursor-pointer"
+            onClick={resetResponse}
+          >
+            <div className="flex justify-between  mx-5">
+              <div className="text-center">
+                <p className="text-5xl">{response.departureAirportCode}</p>
+                <p className="text-xl">{response.departureCity}</p>
+                <p className="text-xl mt-1">{response.departureTime}</p>
+              </div>
+              <div className="text-center">
+                <p className="text-3xl mt-2"> ✈︎ </p>
+                <p className="text-2xl text-gray-100">다시 입력</p>
+              </div>
+              <div className="text-center">
+                <p className="text-5xl"> {response.arrivalAirportCode}</p>
+                <p className="text-xl">{response.arrivalCity}</p>
+                <p className="text-xl mt-1">{response.arrivalTime}</p>
+              </div>
             </div>
           </div>
-          {loading ? (
-            <div className="flex justify-end mt-4">
-              <MyButton text={"로딩중"} type={"loading"} onClick={() => {}} />
+          {!airportInfo ? (
+            <div className="flex items-center justify-center pt-15">
+              <div className="mt-10">
+                <SpinnerDiamond />
+              </div>
             </div>
           ) : (
-            <div className="flex justify-end mt-4">
-              <MyButton
-                text={"다시 입력"}
-                type={"positive"}
-                onClick={resetResponse}
-              />
-            </div>
+            <></>
           )}
         </div>
       ) : (
         <div>
           <section>
-            <div>
+            <div className="pl-4">
               <h2 className="text-2xl font-bold text-teal-900">출발 날짜</h2>
               <div>
                 <input
@@ -131,7 +144,7 @@ const FlightInfo = () => {
           </section>
 
           <section className="flex justify-between">
-            <div>
+            <div className="pl-4">
               <h2 className="text-2xl font-bold text-teal-900 pt-2 mt-1">
                 Flight Number
               </h2>
@@ -169,7 +182,9 @@ const FlightInfo = () => {
 
             {loading ? (
               <div className="self-end">
-                <MyButton text={"로딩중"} type={"loading"} onClick={() => {}} />
+                <div className="mr-3 mb-1">
+                  <SpinnerDiamond />
+                </div>
               </div>
             ) : (
               <div className="self-end">

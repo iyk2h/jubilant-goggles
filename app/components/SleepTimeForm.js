@@ -13,11 +13,9 @@ const SleepTimeForm = () => {
 
   return (
     <div>
-      <section className="grid grid-cols-2 gap-5 items-center mt-4">
+      <section className="flex justify-between items-center mt-4 ml-6">
         <div>
-          <h2 className="text-2xl font-bold text-teal-900 pt-2">
-            평소 취침 시간
-          </h2>
+          <h2 className="text-2xl font-bold pt-2">평소 취침 시간</h2>
           <div className="input_box">
             <input
               className="text-2xl font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
@@ -29,10 +27,8 @@ const SleepTimeForm = () => {
           </div>
         </div>
 
-        <div>
-          <h2 className="text-2xl font-bold text-teal-900 pt-2">
-            평소 기상 시간
-          </h2>
+        <div className="ml-5">
+          <h2 className="text-2xl font-bold pt-2 pr-1">평소 기상 시간</h2>
           <div className="input_box">
             <input
               className="text-2xl font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
