@@ -5,11 +5,10 @@ import MyButton from "../components/MyButton";
 
 import airlines from "../data/airlines.json";
 import SelectorAirportCode from "../components/SelectorAirportCode";
-import SleepTimeForm from "./SleepTimeForm";
 import RecommendNap from "./RecommendNap";
 
 const { getAirportInfos } = require("../api/airportInfo/AirportInfo");
-import { SpinnerDiamond } from "spinners-react";
+import { SpinnerCircular } from "spinners-react";
 
 const FlightInfo = () => {
   const flightNumRef = useRef();
@@ -23,15 +22,8 @@ const FlightInfo = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [sleepLoading, setSleepLoading] = useState(false);
 
   const [airportInfo, setAirportInfo] = useState("");
-
-  useEffect(() => {
-    if (airportInfo) {
-      setSleepLoading(false);
-    }
-  }, [airportInfo]);
 
   useEffect(() => {
     if (response != null) {
@@ -71,7 +63,6 @@ const FlightInfo = () => {
   const getFlightInfo = async () => {
     try {
       setLoading(true);
-      setSleepLoading(true);
 
       const apiUrl = "/api/airportInfo";
       const requestData = {
@@ -120,7 +111,7 @@ const FlightInfo = () => {
           {!airportInfo ? (
             <div className="flex items-center justify-center pt-15">
               <div className="mt-10">
-                <SpinnerDiamond />
+                <SpinnerCircular />
               </div>
             </div>
           ) : (
@@ -183,7 +174,7 @@ const FlightInfo = () => {
             {loading ? (
               <div className="self-end">
                 <div className="mr-3 mb-1">
-                  <SpinnerDiamond />
+                  <SpinnerCircular />
                 </div>
               </div>
             ) : (
@@ -200,8 +191,7 @@ const FlightInfo = () => {
       )}
       {airportInfo ? (
         <>
-          <SleepTimeForm />
-          <RecommendNap />
+          <RecommendNap airportInfo={airportInfo} />
         </>
       ) : (
         <></>
