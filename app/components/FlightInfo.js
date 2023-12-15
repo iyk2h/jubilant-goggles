@@ -192,7 +192,7 @@ const FlightInfo = () => {
       )}
       {airportInfo ? (
         <>
-          {/* <RecommendNap airportInfo={airportInfo} /> */}
+          <RecommendNap airportInfo={airportInfo} />
           <Text airportInfo={airportInfo} />
         </>
       ) : (
