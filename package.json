@@ -17,6 +17,7 @@
     "luxon": "^3.4.4",
     "next": "14.0.3",
     "react": "^18",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "^18",
     "react-router-dom": "^6.20.1",
     "spinners-react": "^1.0.7",
