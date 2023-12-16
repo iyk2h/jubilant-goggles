@@ -1,5 +1,5 @@
 const { DateTime } = require("luxon");
-import { CoffeeIcon, BedIcon, PlaneIcon } from "./Icon";
+import { CoffeeIcon, BedIcon, AirplaneIcon } from "./Icon";
 
 export const airplainLayout = (startDateTime, endDateTime, curDateTime) => {
   const start = formatDate(startDateTime);
@@ -13,7 +13,7 @@ export const airplainLayout = (startDateTime, endDateTime, curDateTime) => {
 
   const addPlaneIcon = (key) => (
     <div key={key} className="relative z-10">
-      <PlaneIcon />
+      <AirplaneIcon />
     </div>
   );
 

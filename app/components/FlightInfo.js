@@ -96,7 +96,7 @@ const FlightInfo = () => {
               <div className="text-center">
                 <p className="text-5xl">{response.departureAirportCode}</p>
                 <p className="text-xl">{response.departureCity}</p>
-                <p className="text-xl mt-1">{response.departureTime}</p>
+                <p className="text-base mt-1">{response.departureTime}</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl mt-2"> ✈︎ </p>
@@ -105,7 +105,7 @@ const FlightInfo = () => {
               <div className="text-center">
                 <p className="text-5xl"> {response.arrivalAirportCode}</p>
                 <p className="text-xl">{response.arrivalCity}</p>
-                <p className="text-xl mt-1">{response.arrivalTime}</p>
+                <p className="text-base mt-1">{response.arrivalTime}</p>
               </div>
             </div>
           </div>

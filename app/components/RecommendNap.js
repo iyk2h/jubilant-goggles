@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 
+import {
+  SleepIcon,
+  WakeUpIcon,
+  NoCoffee,
+  AirplaneDepartIcon,
+  AirplaneArrivalIcon,
+} from "./Icon";
 const { DateTime } = require("luxon");
-import { BanCoffeeIcon, CoffeeIcon } from "./Icon";
 
 const RecommendNap = ({ airportInfo }) => {
   const [dateInfo, setDateInfo] = useState({
@@ -67,9 +73,49 @@ const RecommendNap = ({ airportInfo }) => {
     return dateTime.toFormat("hh:mm a, LLL dd");
   };
 
+  const recommendItems = [
+    {
+      departDateTime: dateInfo.stopCaffein,
+      departDescription: "지금부터 커피 금지",
+      arrivalDateTime: "",
+      arrivalDescription: "",
+      icon: <NoCoffee />,
+    },
+    {
+      departDateTime: dateInfo.departStartDate,
+      departDescription: "출발",
+      arrivalDateTime: dateInfo.arrivalStartDate,
+      arrivalDescription: "",
+      icon: <AirplaneDepartIcon />,
+    },
+    {
+      departDateTime: dateInfo.departNapStart,
+      departDescription: "",
+      arrivalDateTime: dateInfo.arrvalNapStart,
+      arrivalDescription: "낮잠!",
+      icon: <SleepIcon />,
+    },
+    {
+      departDateTime: dateInfo.departNapEnd,
+      departDescription: "",
+      arrivalDateTime: dateInfo.arrvalNapEnd,
+      arrivalDescription: "기상!",
+      icon: <WakeUpIcon />,
+    },
+    {
+      departDateTime: dateInfo.departEndDate,
+      departDescription: "",
+      arrivalDateTime: dateInfo.arrivalEndDate,
+      arrivalDescription: "도착!",
+      icon: <AirplaneArrivalIcon />,
+    },
+  ];
+
   return (
     <>
-      <div className="my-3">
+      {/* idx, recommendItems */}
+
+      <div className="my-">
         <div className="flex items-center justify-center relative">
           <div className="absolute left-0 bg-slate-300 h-full w-1/2 z-0 flex items-center justify-center rounded-l-xl">
             <div className="rotate-90 origin-center pt-20 text-7xl text-white text-center whitespace-nowrap">
@@ -88,89 +134,29 @@ const RecommendNap = ({ airportInfo }) => {
             role="feed"
             className="relative flex flex-col gap-5 py-12 left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
           >
-            <li role="article" className="flex gap-2 mt-5">
-              <div className="flex flex-col w-28 text-right">
-                <p className="text-base text-slate-500">
-                  {dateInfo.stopCaffein}
-                </p>
-                <h4 className="text-xl font-medium text-slate-700">
-                  지금부터 커피 금지
-                </h4>
-              </div>
-              <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                <p className="">
-                  <BanCoffeeIcon />
-                </p>
-              </span>
-              <div className="flex flex-col gap-0 w-28">
-                <p className="text-base text-slate-500"></p>
-                <h4 className="text-xl font-medium text-slate-700"></h4>
-              </div>
-            </li>
-            <li role="article" className="flex gap-2 mt-5">
-              <div className="flex flex-col w-28 text-right">
-                <p className="text-base text-slate-500">
-                  {dateInfo.departStartDate}
-                </p>
-                <h4 className="text-xl text-slate-700">출발</h4>
-              </div>
-              <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                <p className="text-3xl mb-1 -rotate-45"> ✈︎ </p>
-              </span>
-              <div className="flex flex-col gap-0 w-28">
-                <p className="text-base text-slate-500">
-                  {dateInfo.arrivalStartDate}
-                </p>
-              </div>
-            </li>
-            <li role="article" className="flex gap-2 mt-5">
-              <div className="flex flex-col w-28 text-right">
-                <p className="text-base text-slate-500">
-                  {dateInfo.departNapStart}
-                </p>
-              </div>
-              <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                <p className="text-3xl mt-1"> ☾ </p>
-              </span>
-              <div className="flex flex-col gap-0 w-28">
-                <p className="text-base text-slate-500">
-                  {dateInfo.arrvalNapStart}
-                </p>
-                <h4 className="text-xl font-medium text-slate-700">낮잠!</h4>
-              </div>
-            </li>
-            <li role="article" className="flex gap-2 mt-5">
-              <div className="flex flex-col w-28 text-right">
-                <p className="text-base text-slate-500">
-                  {dateInfo.departNapEnd}
-                </p>
-              </div>
-              <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                <p className="text-3xl mt-1"> ☀ </p>
-              </span>
-              <div className="flex flex-col gap-0 w-28">
-                <p className="text-base text-slate-500">
-                  {dateInfo.arrvalNapEnd}
-                </p>
-                <h4 className="text-xl font-medium text-slate-700">기상!</h4>
-              </div>
-            </li>
-            <li role="article" className="flex gap-2 mt-5">
-              <div className="flex flex-col w-28 text-right">
-                <p className="text-base text-slate-500">
-                  {dateInfo.departEndDate}
-                </p>
-              </div>
-              <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                <p className="text-3xl ml-1 rotate-45"> ✈︎ </p>
-              </span>
-              <div className="flex flex-col gap-0 w-28">
-                <p className="text-base text-slate-500">
-                  {dateInfo.arrivalEndDate}
-                </p>
-                <h4 className="text-xl font-medium text-slate-700">도착</h4>
-              </div>
-            </li>
+            {recommendItems.map((item, index) => (
+              <li key={index} role="article" className="flex gap-2 mt-5">
+                <div className="flex flex-col w-28 text-right">
+                  <p className="text-base text-slate-500">
+                    {item.departDateTime}
+                  </p>
+                  <h4 className="text-xl font-medium text-slate-700">
+                    {item.departDescription}
+                  </h4>
+                </div>
+                <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
+                  <p className="">{item.icon}</p>
+                </span>
+                <div className="flex flex-col gap-0 w-28">
+                  <p className="text-base text-slate-500">
+                    {item.arrivalDateTime}
+                  </p>
+                  <h4 className="text-xl font-medium text-slate-700">
+                    {item.arrivalDescription}
+                  </h4>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
