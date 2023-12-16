@@ -10,49 +10,98 @@ import {
 import RecommendNapLayout from "./RecommendNapLayout";
 const { DateTime } = require("luxon");
 
-const RecommendNap = ({ airportInfo }) => {
-  const [dateInfo, setDateInfo] = useState({
-    departCity: "",
-    departStartDate: "",
-    departNapStart: "",
-    departNapEnd: "",
-    departEndDate: "",
-    arrivalStartDate: "",
-    arrvalNapStart: "",
-    arrvalNapEnd: "",
-    arrivalEndDate: "",
-    arrivalCity: "",
-    stopCaffein: "",
-  });
+const RecommendNap = ({ airportInfos }) => {
+  const [recommendNapItems, setRecommendNapItems] = useState([]);
 
   useEffect(() => {
-    if (airportInfo) {
-      const departureInfo = airportInfo.departureInfo;
-      const arrivalInfo = airportInfo.arrivalInfo;
+    if (airportInfos) {
+      const items = [];
 
-      const departDateForm = formatDate(departureInfo);
-      const arrivalDateForm = formatDate(arrivalInfo);
-      const flightTime = getDiffTime(arrivalDateForm.diff(departDateForm));
-      const departEndDateForm = departDateForm.plus(flightTime);
-      const arrivalStartDateForm = arrivalDateForm.minus(flightTime);
+      airportInfos.map((airportInfo, index) => {
+        const departureInfo = airportInfo.departureInfo;
+        const arrivalInfo = airportInfo.arrivalInfo;
 
-      setDateInfo({
-        departCity: departureInfo.city,
-        departStartDate: formatDateString(departDateForm),
-        departNapStart: formatDateString(departDateForm.plus({ hour: 1 })),
-        departNapEnd: formatDateString(departEndDateForm.minus({ hour: 1 })),
-        departEndDate: formatDateString(departEndDateForm),
-        arrivalStartDate: formatDateString(arrivalStartDateForm),
-        arrvalNapStart: formatDateString(
+        const departDateForm = formatDate(departureInfo);
+        const arrivalDateForm = formatDate(arrivalInfo);
+        const flightTime = getDiffTime(arrivalDateForm.diff(departDateForm));
+        const departEndDateForm = departDateForm.plus(flightTime);
+        const arrivalStartDateForm = arrivalDateForm.minus(flightTime);
+
+        const departStartDate = formatDateString(departDateForm);
+        const departNapStart = formatDateString(
+          departDateForm.plus({ hour: 1 })
+        );
+        const departNapEnd = formatDateString(
+          departEndDateForm.minus({ hour: 1 })
+        );
+        const departEndDate = formatDateString(departEndDateForm);
+        const arrivalStartDate = formatDateString(arrivalStartDateForm);
+        const arrvalNapStart = formatDateString(
           arrivalStartDateForm.plus({ hour: 1 })
-        ),
-        stopCaffein: formatDateString(arrivalStartDateForm.minus({ hours: 8 })),
-        arrvalNapEnd: formatDateString(arrivalDateForm.minus({ hour: 1 })),
-        arrivalEndDate: formatDateString(arrivalDateForm),
-        arrivalCity: arrivalInfo.city,
+        );
+        const arrvalNapEnd = formatDateString(
+          arrivalDateForm.minus({ hour: 1 })
+        );
+        const arrivalEndDate = formatDateString(arrivalDateForm);
+        const stopCaffein = formatDateString(
+          arrivalStartDateForm.minus({ hours: 8 })
+        );
+
+        const info = {
+          departCity: departureInfo.city,
+          arrivalCity: arrivalInfo.city,
+        };
+
+        const recommendItems = [];
+
+        if (index === 0) {
+          recommendItems.push({
+            departDateTime: stopCaffein,
+            departDescription: "지금부터 커피 금지",
+            arrivalDateTime: "",
+            arrivalDescription: "",
+            icon: <NoCoffee />,
+          });
+        }
+
+        recommendItems.push({
+          departDateTime: departStartDate,
+          departDescription: "출발",
+          arrivalDateTime: arrivalStartDate,
+          arrivalDescription: "",
+          icon: <AirplaneDepartIcon />,
+        });
+
+        recommendItems.push({
+          departDateTime: departNapStart,
+          departDescription: "",
+          arrivalDateTime: arrvalNapStart,
+          arrivalDescription: "낮잠!",
+          icon: <SleepIcon />,
+        });
+
+        recommendItems.push({
+          departDateTime: departNapEnd,
+          departDescription: "",
+          arrivalDateTime: arrvalNapEnd,
+          arrivalDescription: "기상!",
+          icon: <WakeUpIcon />,
+        });
+
+        recommendItems.push({
+          departDateTime: departEndDate,
+          departDescription: "",
+          arrivalDateTime: arrivalEndDate,
+          arrivalDescription: "도착!",
+          icon: <AirplaneArrivalIcon />,
+        });
+
+        items.push({ info, recommendItems });
       });
+
+      setRecommendNapItems(items);
     }
-  }, [airportInfo]);
+  }, [airportInfos]);
 
   const getDiffTime = (diff) => {
     return {
@@ -74,52 +123,21 @@ const RecommendNap = ({ airportInfo }) => {
     return dateTime.toFormat("hh:mm a, LLL dd");
   };
 
-  const info = {
-    departCity: "seoul",
-    arrivalCity: "Kuala Lumpur",
-  };
-
-  const [recommendItems, setRecommendItems] = useState([
-    {
-      departDateTime: dateInfo.stopCaffein,
-      departDescription: "지금부터 커피 금지",
-      arrivalDateTime: "",
-      arrivalDescription: "",
-      icon: <NoCoffee />,
-    },
-    {
-      departDateTime: dateInfo.departStartDate,
-      departDescription: "출발",
-      arrivalDateTime: dateInfo.arrivalStartDate,
-      arrivalDescription: "",
-      icon: <AirplaneDepartIcon />,
-    },
-    {
-      departDateTime: dateInfo.departNapStart,
-      departDescription: "",
-      arrivalDateTime: dateInfo.arrvalNapStart,
-      arrivalDescription: "낮잠!",
-      icon: <SleepIcon />,
-    },
-    {
-      departDateTime: dateInfo.departNapEnd,
-      departDescription: "",
-      arrivalDateTime: dateInfo.arrvalNapEnd,
-      arrivalDescription: "기상!",
-      icon: <WakeUpIcon />,
-    },
-    {
-      departDateTime: dateInfo.departEndDate,
-      departDescription: "",
-      arrivalDateTime: dateInfo.arrivalEndDate,
-      arrivalDescription: "도착!",
-      icon: <AirplaneArrivalIcon />,
-    },
-  ]);
-
   return (
     <>
-      <RecommendNapLayout idx={1} info={info} recommendItems={recommendItems} />
+      <div className="mt-5 mb-20">
+        {recommendNapItems.map((info, index) => (
+          <RecommendNapLayout
+            key={index}
+            idx={index}
+            info={info.info}
+            recommendItems={info.recommendItems}
+          />
+        ))}
+        <div className="text-right text-slate-400">
+          icon by <a href="https://icons8.com">Icons8</a>
+        </div>
+      </div>
     </>
   );
 };

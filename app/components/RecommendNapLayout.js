@@ -2,11 +2,11 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
   const bg_l = idx % 2 === 0 ? "bg-slate-300" : "bg-slate-200";
   const bg_r = idx % 2 === 0 ? "bg-slate-200" : "bg-slate-300";
 
-  console.log(recommendItems);
+  console.log("in layout", recommendItems);
 
   return (
     <>
-      <div className="my-">
+      <div className="mt-1">
         <div className="flex items-center justify-center relative">
           <div
             className={`absolute left-0 ${bg_l} h-full w-1/2 z-0 flex items-center justify-center rounded-l-xl`}
