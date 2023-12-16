@@ -34,8 +34,6 @@ const createAirportInfoWithDateTime = async (
   try {
     const airportInfo = await getAirportInfo(airportCode);
     const infoWithDateTime = {
-      name: airportInfo.name,
-      country: airportInfo.country,
       city,
       timezone: airportInfo.timezone,
       datetime: parseDateTimeWithTimezone(

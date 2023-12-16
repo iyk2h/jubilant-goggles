@@ -7,6 +7,7 @@ import {
   AirplaneDepartIcon,
   AirplaneArrivalIcon,
 } from "./Icon";
+import RecommendNapLayout from "./RecommendNapLayout";
 const { DateTime } = require("luxon");
 
 const RecommendNap = ({ airportInfo }) => {
@@ -73,7 +74,12 @@ const RecommendNap = ({ airportInfo }) => {
     return dateTime.toFormat("hh:mm a, LLL dd");
   };
 
-  const recommendItems = [
+  const info = {
+    departCity: "seoul",
+    arrivalCity: "Kuala Lumpur",
+  };
+
+  const [recommendItems, setRecommendItems] = useState([
     {
       departDateTime: dateInfo.stopCaffein,
       departDescription: "지금부터 커피 금지",
@@ -109,57 +115,11 @@ const RecommendNap = ({ airportInfo }) => {
       arrivalDescription: "도착!",
       icon: <AirplaneArrivalIcon />,
     },
-  ];
+  ]);
 
   return (
     <>
-      {/* idx, recommendItems */}
-
-      <div className="my-">
-        <div className="flex items-center justify-center relative">
-          <div className="absolute left-0 bg-slate-300 h-full w-1/2 z-0 flex items-center justify-center rounded-l-xl">
-            <div className="rotate-90 origin-center pt-20 text-7xl text-white text-center whitespace-nowrap">
-              {dateInfo.departCity}
-            </div>
-          </div>
-
-          <div className="absolute right-0 bg-slate-200 h-full w-1/2 z-0 flex items-center justify-center rounded-r-xl">
-            <div className="rotate-90 origin-center pb-20 text-7xl text-white whitespace-nowrap">
-              {dateInfo.arrivalCity}
-            </div>
-          </div>
-
-          <ul
-            aria-label="Activity feed"
-            role="feed"
-            className="relative flex flex-col gap-5 py-12 left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
-          >
-            {recommendItems.map((item, index) => (
-              <li key={index} role="article" className="flex gap-2 mt-5">
-                <div className="flex flex-col w-28 text-right">
-                  <p className="text-base text-slate-500">
-                    {item.departDateTime}
-                  </p>
-                  <h4 className="text-xl font-medium text-slate-700">
-                    {item.departDescription}
-                  </h4>
-                </div>
-                <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
-                  <p className="">{item.icon}</p>
-                </span>
-                <div className="flex flex-col gap-0 w-28">
-                  <p className="text-base text-slate-500">
-                    {item.arrivalDateTime}
-                  </p>
-                  <h4 className="text-xl font-medium text-slate-700">
-                    {item.arrivalDescription}
-                  </h4>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <RecommendNapLayout idx={1} info={info} recommendItems={recommendItems} />
     </>
   );
 };

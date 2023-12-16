@@ -6,7 +6,6 @@ import MyButton from "../components/MyButton";
 import airlines from "../data/airlines.json";
 import SelectorAirportCode from "../components/SelectorAirportCode";
 import RecommendNap from "./RecommendNap";
-import Text from "./Test";
 
 const { getAirportInfos } = require("../api/airportInfo/AirportInfo");
 import { SpinnerCircular } from "spinners-react";
@@ -193,7 +192,6 @@ const FlightInfo = () => {
       {airportInfo ? (
         <>
           <RecommendNap airportInfo={airportInfo} />
-          <Text airportInfo={airportInfo} />
         </>
       ) : (
         <></>
