@@ -69,16 +69,16 @@ const RecommendNap = ({ airportInfo }) => {
 
   return (
     <>
-      <div className="mt-3">
+      <div className="my-3">
         <div className="flex items-center justify-center relative">
-          <div className="absolute left-0 bg-slate-300 h-full w-1/2 z-0 flex items-center rounded-l-xl">
-            <div className=" rotate-90 origin-center pt-20 text-7xl text-white text-center whitespace-nowrap">
+          <div className="absolute left-0 bg-slate-300 h-full w-1/2 z-0 flex items-center justify-center rounded-l-xl">
+            <div className="rotate-90 origin-center pt-20 text-7xl text-white text-center whitespace-nowrap">
               {dateInfo.departCity}
             </div>
           </div>
 
-          <div className="absolute right-0 bg-slate-200 h-full w-1/2 z-0 flex items-center rounded-r-xl">
-            <div className="rotate-90 origin-center text-7xl pt-10 text-white text-center whitespace-nowrap">
+          <div className="absolute right-0 bg-slate-200 h-full w-1/2 z-0 flex items-center justify-center rounded-r-xl">
+            <div className="rotate-90 origin-center pb-20 text-7xl text-white whitespace-nowrap">
               {dateInfo.arrivalCity}
             </div>
           </div>
@@ -86,7 +86,7 @@ const RecommendNap = ({ airportInfo }) => {
           <ul
             aria-label="Activity feed"
             role="feed"
-            className="relative flex flex-col gap-5 py-12 left-[0rem] before:absolute before:top-0 before:left-[8.7rem] before:h-full before:border before:border-dashed before:border-slate-200 after:absolute after:top-6 after:left-[8.7rem] after:bottom-6 after:border after:border-slate-200"
+            className="relative flex flex-col gap-5 py-12 left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
           >
             <li role="article" className="flex gap-2 mt-5">
               <div className="flex flex-col w-28 text-right">
@@ -94,12 +94,12 @@ const RecommendNap = ({ airportInfo }) => {
                   {dateInfo.stopCaffein}
                 </p>
                 <h4 className="text-xl font-medium text-slate-700">
-                  커피 금지
+                  지금부터 커피 금지
                 </h4>
               </div>
               <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
                 <p className="">
-                  <BanCoffeeIcon />{" "}
+                  <BanCoffeeIcon />
                 </p>
               </span>
               <div className="flex flex-col gap-0 w-28">
@@ -107,22 +107,17 @@ const RecommendNap = ({ airportInfo }) => {
                 <h4 className="text-xl font-medium text-slate-700"></h4>
               </div>
             </li>
-            <li role="article" className="flex gap-2">
+            <li role="article" className="flex gap-2 mt-5">
               <div className="flex flex-col w-28 text-right">
-                <p className="text-xl text-slate-700 h-6">ㅤ</p>
                 <p className="text-base text-slate-500">
                   {dateInfo.departStartDate}
                 </p>
-                <h4 className="text-xl text-slate-700">
-                  출발
-                  {/* {dateInfo.departCity} */}
-                </h4>
+                <h4 className="text-xl text-slate-700">출발</h4>
               </div>
-              <span className="flex items-center z-10 justify-center w-10 h-10 mt-6 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
+              <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
                 <p className="text-3xl mb-1 -rotate-45"> ✈︎ </p>
               </span>
               <div className="flex flex-col gap-0 w-28">
-                <p className="text-xl text-slate-600 h-6">ㅤ</p>
                 <p className="text-base text-slate-500">
                   {dateInfo.arrivalStartDate}
                 </p>
@@ -160,24 +155,20 @@ const RecommendNap = ({ airportInfo }) => {
                 <h4 className="text-xl font-medium text-slate-700">기상!</h4>
               </div>
             </li>
-            <li role="article" className="flex gap-2">
-              <div className="flex flex-col w-28 text-right mt-5">
+            <li role="article" className="flex gap-2 mt-5">
+              <div className="flex flex-col w-28 text-right">
                 <p className="text-base text-slate-500">
                   {dateInfo.departEndDate}
                 </p>
               </div>
-              <span className="flex items-center z-10 mt-5 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
+              <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
                 <p className="text-3xl ml-1 rotate-45"> ✈︎ </p>
               </span>
               <div className="flex flex-col gap-0 w-28">
-                <p className="text-xl text-slate-700 h-5">ㅤ</p>
                 <p className="text-base text-slate-500">
                   {dateInfo.arrivalEndDate}
                 </p>
-                <h4 className="text-xl text-slate-700 whitespace-pre-line">
-                  {/* {dateInfo.arrivalCity} */}
-                  도착
-                </h4>
+                <h4 className="text-xl font-medium text-slate-700">도착</h4>
               </div>
             </li>
           </ul>
