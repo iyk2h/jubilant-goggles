@@ -22,7 +22,7 @@ export async function POST(req) {
       const response = await crawl(parseUrl);
 
       // Check if response is valid
-      if (response) {
+      if (response !== null && response) {
         return NextResponse.json(response);
       } else {
         return new Response(JSON.stringify({ error: "Not Found" }), {

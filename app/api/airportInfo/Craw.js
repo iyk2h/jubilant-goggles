@@ -4,7 +4,7 @@ const axios = require("axios");
 const cache = {};
 
 const crawl = async (url) => {
-  if (cache[url]) {
+  if (cache[url] !== undefined) {
     return cache[url];
   }
 
@@ -34,6 +34,7 @@ const crawl = async (url) => {
       arrivalInfo.code === "" ||
       arrivalInfo.city === ""
     ) {
+      cache[url] = null;
       return null;
     }
 
