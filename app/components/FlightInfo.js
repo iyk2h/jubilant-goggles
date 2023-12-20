@@ -9,6 +9,12 @@ import RecommendNap from "./RecommendNap";
 
 const { getAirportInfos } = require("../api/airportInfo/AirportInfo");
 import { SpinnerCircular } from "spinners-react";
+import { Nanum_Gothic_Coding } from "next/font/google";
+
+const nanum_Gothic_Coding = Nanum_Gothic_Coding({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const FlightInfo = () => {
   const flightNumRef = useRef();
@@ -139,33 +145,35 @@ const FlightInfo = () => {
               <h2 className="text-2xl font-bold text-teal-900 pt-2 mt-1">
                 Flight Number
               </h2>
-              <div className=" w-fit flex flex-wrap gap-2 bg-gray-200 rounded-lg p-2">
-                <div className="w-10 h-10">
-                  <SelectorAirportCode
-                    data={airlines.filter(
-                      (person) => person.iata.toString().length === 2
-                    )}
-                    selected={airlineCode}
-                    setSelected={setAirlineCode}
-                  />
-                </div>
-                <div className="w-12 h-fit mt-1 relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none">
-                  <div className="outline-none border-none p-2 text-2xl font-bold leading-5 text-gray-900 focus:ring-0">
-                    <input
-                      type="text"
-                      value={flightNumber}
-                      onChange={(e) => {
-                        const onlyNumbers = e.target.value.replace(
-                          /[^0-9]/g,
-                          ""
-                        );
-                        const limitedLength = onlyNumbers.slice(0, 4);
-                        setFlightNum(limitedLength);
-                      }}
-                      placeholder="1234"
-                      style={{ width: "100%" }}
-                      ref={flightNumRef}
+              <div className={nanum_Gothic_Coding.className}>
+                <div className=" w-fit flex flex-wrap gap-2 bg-gray-200 rounded-lg p-2">
+                  <div className="w-10 h-10">
+                    <SelectorAirportCode
+                      data={airlines.filter(
+                        (person) => person.iata.toString().length === 2
+                      )}
+                      selected={airlineCode}
+                      setSelected={setAirlineCode}
                     />
+                  </div>
+                  <div className="w-12 h-fit mt-1 relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none">
+                    <div className="outline-none border-none p-2 text-base font-bold leading-5 text-gray-900 focus:ring-0">
+                      <input
+                        type="text"
+                        value={flightNumber}
+                        onChange={(e) => {
+                          const onlyNumbers = e.target.value.replace(
+                            /[^0-9]/g,
+                            ""
+                          );
+                          const limitedLength = onlyNumbers.slice(0, 4);
+                          setFlightNum(limitedLength);
+                        }}
+                        placeholder="1234"
+                        style={{ width: "100%" }}
+                        ref={flightNumRef}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

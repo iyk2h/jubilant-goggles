@@ -30,13 +30,14 @@ function SelectorAirportCode({ data, selected, setSelected }) {
         <div className="relative mt-1 ">
           <div className="relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
-              className="outline-none border-none py-2 pl-3 pr-20 mr-2 text-2xl font-bold leading-5 text-gray-900 focus:ring-0"
+              className="outline-none border-none py-2 pl-3 pr-20 mr-2 text-base font-bold leading-5 text-gray-900 focus:ring-0"
               displayValue={(person) => person.iata}
               onChange={(event) => {
                 let inputValue = event.target.value.trim(); // 앞뒤 공백 제거
                 const filteredInput = inputValue
                   .replace(/[^0-9a-zA-Z]/g, "")
-                  .slice(0, 2);
+                  .slice(0, 2)
+                  .toUpperCase();
                 event.target.value = filteredInput;
 
                 inputQuery(filteredInput);
