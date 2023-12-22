@@ -26,7 +26,12 @@ export default function MyButton({ text, type, onClick }) {
         }
 
         .MyButton_default {
-          background-color: #ececec;
+          background-color: #f3f4f6;
+          color: black;
+        }
+
+        .MyButton_default:hover {
+          background-color: #d1d5db;
           color: black;
         }
 

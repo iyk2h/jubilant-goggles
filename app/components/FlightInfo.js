@@ -7,6 +7,8 @@ import SelectorAirportCode from "../components/SelectorAirportCode";
 import { SpinnerCircular } from "spinners-react";
 import { Nanum_Gothic_Coding } from "next/font/google";
 import { removeHyphens } from "../utils/DateUtils";
+import FlightInfoLayout from "./FlightInfoLayout";
+import FlightHistoryLayout from "./FlightHistoryLayout";
 
 const nanum_Gothic_Coding = Nanum_Gothic_Coding({
   weight: "400",
@@ -82,6 +84,19 @@ const FlightInfo = () => {
     });
   };
 
+  const [history, setHistory] = useState(() => {
+    const storedHistory = localStorage.getItem("flightHistory");
+    return storedHistory ? JSON.parse(storedHistory) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("flightHistory", JSON.stringify(history));
+  }, [history]);
+
+  const addResponse = (response) => {
+    setHistory((prevHistory) => [response, ...prevHistory]);
+  };
+
   return (
     <div>
       <div>
@@ -148,35 +163,11 @@ const FlightInfo = () => {
           <div className="py-5 px-3">
             {responses[key] ? (
               <div>
-                <div
-                  className="bg-gray-100 hover:bg-gray-300 rounded-xl cursor-pointer"
-                  // onClick={() => addResponse(responses[key])}
-                >
-                  <div className="flex justify-between px-2">
-                    <div className="text-center">
-                      <p className="text-5xl">
-                        {responses[key].departureAirportCode}
-                      </p>
-                      <p className="text-xl">{responses[key].departureCity}</p>
-                      <p className="text-base mt-1">
-                        {responses[key].departureTime}
-                      </p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-3xl mt-2"> ✈︎ </p>
-                      <p className="text-2xl text-teal-900">확인</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-5xl">
-                        {responses[key].arrivalAirportCode}
-                      </p>
-                      <p className="text-xl">{responses[key].arrivalCity}</p>
-                      <p className="text-base mt-1">
-                        {responses[key].arrivalTime}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <FlightInfoLayout
+                  flightInfo={responses[key]}
+                  onConfirm={() => addResponse(responses[key])}
+                  text="선택"
+                />
               </div>
             ) : (
               <>
@@ -185,6 +176,15 @@ const FlightInfo = () => {
             )}
           </div>
         )}
+        <section>
+          {history ? (
+            <div className="px-4">
+              <FlightHistoryLayout history={history} />
+            </div>
+          ) : (
+            <></>
+          )}
+        </section>
       </div>
     </div>
   );
