@@ -84,16 +84,20 @@ const FlightInfo = () => {
     });
   };
 
-  const [history, setHistory] = useState(() => {
-    const storedHistory = localStorage.getItem("flightHistory");
-    return storedHistory ? JSON.parse(storedHistory) : [];
-  });
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("flightHistory", JSON.stringify(history));
-  }, [history]);
+    const storedHistory = localStorage.getItem("flightHistory");
+    if (storedHistory) {
+      setHistory(JSON.parse(storedHistory));
+    }
+  }, []);
 
   const addResponse = (response) => {
+    localStorage.setItem(
+      "flightHistory",
+      JSON.stringify([response, ...history])
+    );
     setHistory((prevHistory) => [response, ...prevHistory]);
   };
 
