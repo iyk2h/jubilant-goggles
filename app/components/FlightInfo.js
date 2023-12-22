@@ -6,6 +6,7 @@ import SelectorAirportCode from "../components/SelectorAirportCode";
 
 import { SpinnerCircular } from "spinners-react";
 import { Nanum_Gothic_Coding } from "next/font/google";
+import { removeHyphens } from "../utils/DateUtils";
 
 const nanum_Gothic_Coding = Nanum_Gothic_Coding({
   weight: "400",
@@ -32,16 +33,8 @@ const FlightInfo = () => {
     }
   }, [departureDate, airlineCode, flightNumber]);
 
-  const formatDate = (inputDate) => {
-    const dateObject = new Date(inputDate);
-    const formattedDate = `${dateObject.getFullYear()}${String(
-      dateObject.getMonth() + 1
-    ).padStart(2, "0")}${String(dateObject.getDate()).padStart(2, "0")}`;
-    return formattedDate;
-  };
-
   const getFlightInfo = async () => {
-    const key = `${airlineCode.iata}_${flightNumber}_${formatDate(
+    const key = `${airlineCode.iata}_${flightNumber}_${removeHyphens(
       departureDate
     )}`;
     setKey(key);
@@ -57,7 +50,7 @@ const FlightInfo = () => {
       const requestData = {
         airline: airlineCode.iata,
         flightNumber,
-        date: formatDate(departureDate),
+        date: removeHyphens(departureDate),
       };
 
       const { data } = await axios.post(apiUrl, requestData);

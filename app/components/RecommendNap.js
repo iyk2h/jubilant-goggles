@@ -8,7 +8,7 @@ import {
   AirplaneArrivalIcon,
 } from "./Icon";
 import RecommendNapLayout from "./RecommendNapLayout";
-const { DateTime } = require("luxon");
+import { formatDate, getDiffTime, formatDateString } from "../utils/DateUtils";
 
 const RecommendNap = ({ airportInfos }) => {
   const [recommendNapItems, setRecommendNapItems] = useState([]);
@@ -102,26 +102,6 @@ const RecommendNap = ({ airportInfos }) => {
       setRecommendNapItems(items);
     }
   }, [airportInfos]);
-
-  const getDiffTime = (diff) => {
-    return {
-      hours: diff.toFormat("hh"),
-      minutes: diff.toFormat("mm"),
-    };
-  };
-
-  const formatDate = (info) => {
-    return DateTime.fromFormat(info.datetime, "MM/d/yyyy, h:mm:ss a").setZone(
-      info.timezone,
-      {
-        keepLocalTime: true,
-      }
-    );
-  };
-
-  const formatDateString = (dateTime) => {
-    return dateTime.toFormat("hh:mm a, LLL dd");
-  };
 
   return (
     <>
