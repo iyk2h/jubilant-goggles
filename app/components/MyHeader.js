@@ -2,7 +2,7 @@
 
 export default function MyHeader({ headText, leftChild, rightChild }) {
   return (
-    <div className="container flex justify-center my-5 py-5 text-3xl font-bold">
+    <div className="myHeader flex justify-center py-5 my-5 text-3xl font-bold">
       <header className="flex w-full items-center">
         <div className="head_btn_left">{leftChild}</div>
         <div className="head_text">{headText}</div>
@@ -10,7 +10,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
       </header>
 
       <style jsx>{`
-        .container {
+        .myHeader {
           border-bottom: 1px solid #e2e2e2;
         }
 

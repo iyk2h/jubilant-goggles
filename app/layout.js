@@ -1,5 +1,6 @@
 import { Yeon_Sung, Nanum_Pen_Script } from "next/font/google";
 import "./globals.css";
+import MyHeader from "./components/MyHeader";
 
 const yeonSung = Yeon_Sung({
   weight: "400",
@@ -19,7 +20,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={nanum_Pen_Script.className}>{children}</body>
+      <body className={nanum_Pen_Script.className}>
+        <div className="container">
+          <MyHeader headText="비행기 낮잠 가이드" />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
