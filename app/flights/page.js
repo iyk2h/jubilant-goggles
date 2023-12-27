@@ -12,8 +12,8 @@ export default function Flights() {
   const router = useRouter();
   const flights = useFlightsValue();
 
-  const [airports, setAirports] = useState([]);
-  const [airportInfos, setAirportInfos] = useState();
+  const [recommendNapInfos, setRecommendNapInfos] = useState();
+  const [airportInfos, setAirportInfos] = useState([]);
 
   const cancelHandle = () => {
     router.back();
@@ -29,7 +29,7 @@ export default function Flights() {
       flights.map((info) => getAirportInfos(info.key, info.response))
     );
 
-    setAirportInfos(airport);
+    setRecommendNapInfos(airport);
 
     const key = `${flights[0].response.departureTime}_${
       airport[flights.length - 1].arrivalInfo.city
@@ -37,15 +37,15 @@ export default function Flights() {
 
     localStorage.setItem(
       "airportInfos",
-      JSON.stringify([...airports, { key, airport }])
+      JSON.stringify([...airportInfos, { key, airport }])
     );
-    setAirports((prevAirports) => [...prevAirports, { key, airport }]);
+    setAirportInfos((prevAirports) => [...prevAirports, { key, airport }]);
   };
 
   useEffect(() => {
     const storedAirports = localStorage.getItem("airportInfos");
     if (storedAirports) {
-      setAirports(JSON.parse(storedAirports));
+      setAirportInfos(JSON.parse(storedAirports));
     }
   }, []);
 
@@ -61,8 +61,8 @@ export default function Flights() {
 
   return (
     <div className="px-4">
-      {airportInfos ? (
-        <RecommendNap airportInfos={airportInfos} />
+      {recommendNapInfos ? (
+        <RecommendNap airportInfos={recommendNapInfos} />
       ) : (
         <>
           <section>
