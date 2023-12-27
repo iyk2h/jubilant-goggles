@@ -25,7 +25,7 @@ const createAirportInfoWithDateTime = async (
   timeString,
   city
 ) => {
-  const cacheKey = `${airportCode}_${date}_${timeString}`;
+  const cacheKey = `${date}_${airportCode}_${timeString}`;
   if (cache[cacheKey]) {
     return cache[cacheKey];
   }
