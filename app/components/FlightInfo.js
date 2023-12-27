@@ -187,7 +187,7 @@ const FlightInfo = ({ addFlight }) => {
           {history ? (
             <div className="px-4">
               <FlightHistoryLayout
-                title={"최근 검색 기록"}
+                title={"최근 조회 내역"}
                 history={history}
                 onConfirm={addFlight}
                 onClickTitle={"선택"}
