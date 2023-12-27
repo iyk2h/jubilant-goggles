@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     addFlight(key, response) {
       const newFlights = [...flights, { key, response }];
       setFlights(newFlights);
-      router.back();
+      router.replace("/flights");
     },
   }));
 

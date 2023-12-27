@@ -51,7 +51,7 @@ export default function Flights() {
 
   useEffect(() => {
     if (flights.length === 0) {
-      addFlight();
+      router.replace("/flights/input");
     }
   }, [flights]);
 
