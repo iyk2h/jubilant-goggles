@@ -22,14 +22,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={nanum_Pen_Script.className}>
-        <AirportInfosProvider
-          children={
-            <div className="container">
-              <MyHeader headText="비행기 낮잠 가이드" />
-              {children}
-            </div>
-          }
-        />
+        <AirportInfosProvider>
+          <div className="container">
+            <MyHeader headText="비행기 낮잠 가이드" />
+            {children}
+          </div>
+        </AirportInfosProvider>
       </body>
     </html>
   );
