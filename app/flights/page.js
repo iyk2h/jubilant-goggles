@@ -5,7 +5,7 @@ import MyButton from "../components/MyButton";
 import { useRouter } from "next/navigation";
 import { useFlightsValue } from "./layout";
 
-export default function Test() {
+export default function Flights() {
   const router = useRouter();
 
   const flights = useFlightsValue();
