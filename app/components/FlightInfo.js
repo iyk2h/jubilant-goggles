@@ -36,9 +36,9 @@ const FlightInfo = ({ addFlight }) => {
   }, [departureDate, airlineCode, flightNumber]);
 
   const getFlightInfo = async () => {
-    const key = `${airlineCode.iata}_${flightNumber}_${removeHyphens(
-      departureDate
-    )}`;
+    const key = `${removeHyphens(departureDate)}_${
+      airlineCode.iata
+    }_${flightNumber}`;
     setKey(key);
 
     if (responses[key]) {
