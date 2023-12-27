@@ -184,7 +184,7 @@ const FlightInfo = ({ addFlight }) => {
           </div>
         )}
         <section className="py-4">
-          {history ? (
+          {history.length > 0 ? (
             <div className="px-4">
               <FlightHistoryLayout
                 title={"최근 조회 내역"}

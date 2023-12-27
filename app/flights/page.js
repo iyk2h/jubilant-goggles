@@ -65,7 +65,7 @@ export default function Flights() {
     <div className="px-4">
       <>
         <section>
-          {flights && (
+          {flights.length > 0 && (
             <div>
               <FlightHistoryLayout title="flights" history={flights} />
             </div>
