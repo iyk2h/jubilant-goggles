@@ -6,18 +6,19 @@ import { useFlightsValue } from "./layout";
 import { getAirportInfos } from "../api/airportInfo/AirportInfo";
 import FlightHistoryLayout from "../components/FlightHistoryLayout";
 import MyButton from "../components/MyButton";
-import RecommendNap from "../components/RecommendNap";
+import { useAirportInfosActions } from "../AirportProvider";
 
 export default function Flights() {
   const router = useRouter();
   const flights = useFlightsValue();
 
-  const [recommendNapInfos, setRecommendNapInfos] = useState();
   const [airportInfos, setAirportInfos] = useState([]);
 
   const cancelHandle = () => {
     router.back();
   };
+
+  const { setAirportInfo } = useAirportInfosActions();
 
   const confirmHandle = async () => {
     if (flights.length === 0) {
@@ -29,7 +30,7 @@ export default function Flights() {
       flights.map((info) => getAirportInfos(info.key, info.response))
     );
 
-    setRecommendNapInfos(airport);
+    setAirportInfo(airport);
 
     const key = `${flights[0].response.departureTime}_${
       airport[flights.length - 1].arrivalInfo.city
@@ -40,6 +41,7 @@ export default function Flights() {
       JSON.stringify([...airportInfos, { key, airport }])
     );
     setAirportInfos((prevAirports) => [...prevAirports, { key, airport }]);
+    router.replace("/nap");
   };
 
   useEffect(() => {
@@ -56,40 +58,36 @@ export default function Flights() {
   }, [flights]);
 
   const addFlight = () => {
-    router.push("/flights/input");
+    router.replace("/flights/input");
   };
 
   return (
     <div className="px-4">
-      {recommendNapInfos ? (
-        <RecommendNap airportInfos={recommendNapInfos} />
-      ) : (
-        <>
-          <section>
-            {flights && (
-              <div>
-                <FlightHistoryLayout title="flights" history={flights} />
-              </div>
-            )}
-            {flights.length <= 3 && (
-              <div
-                className="bg-gray-100 text-center py-3 my-3 rounded-xl text-lg cursor-pointer"
-                onClick={addFlight}
-              >
-                비행 추가 하기
-              </div>
-            )}
-          </section>
-          <section className="flex justify-between my-3">
-            <div className="flex items-start">
-              <MyButton text="취소" onClick={cancelHandle} />
+      <>
+        <section>
+          {flights && (
+            <div>
+              <FlightHistoryLayout title="flights" history={flights} />
             </div>
-            <div className="flex items-end">
-              <MyButton text="확인" onClick={confirmHandle} />
+          )}
+          {flights.length <= 3 && (
+            <div
+              className="bg-gray-100 text-center py-3 my-3 rounded-xl text-lg cursor-pointer"
+              onClick={addFlight}
+            >
+              비행 추가 하기
             </div>
-          </section>
-        </>
-      )}
+          )}
+        </section>
+        <section className="flex justify-between my-3">
+          <div className="flex items-start">
+            <MyButton text="취소" onClick={cancelHandle} />
+          </div>
+          <div className="flex items-end">
+            <MyButton text="확인" onClick={confirmHandle} />
+          </div>
+        </section>
+      </>
     </div>
   );
 }

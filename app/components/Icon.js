@@ -132,3 +132,14 @@ export function BackIcon() {
     />
   );
 }
+
+export function PlusIcon() {
+  return (
+    <img
+      width="15"
+      height="15"
+      src="https://img.icons8.com/ios-glyphs/15/plus-math.png"
+      alt="plus-math"
+    />
+  );
+}
