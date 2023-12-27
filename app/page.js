@@ -1,7 +1,6 @@
 "use client";
 
 import FlightInfo from "./components/FlightInfo";
-import MyHeader from "./components/MyHeader";
 import RecommendNap from "./components/RecommendNap";
 
 export default function Home() {

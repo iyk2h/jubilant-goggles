@@ -15,7 +15,7 @@ const nanum_Gothic_Coding = Nanum_Gothic_Coding({
   subsets: ["latin"],
 });
 
-const FlightInfo = () => {
+const FlightInfo = ({ addFlight }) => {
   const flightNumRef = useRef();
 
   const [departureDate, setDepartureDate] = useState(
@@ -93,12 +93,13 @@ const FlightInfo = () => {
     }
   }, []);
 
-  const addResponse = (response) => {
+  const addResponse = (key, response) => {
+    addFlight(key, response);
     localStorage.setItem(
       "flightHistory",
-      JSON.stringify([response, ...history])
+      JSON.stringify([{ key, response }, ...history])
     );
-    setHistory((prevHistory) => [response, ...prevHistory]);
+    setHistory((prevHistory) => [{ key, response }, ...prevHistory]);
   };
 
   return (
@@ -164,12 +165,14 @@ const FlightInfo = () => {
             </div>
           </div>
         ) : (
-          <div className="py-5 px-3">
+          <div className="pt-4 px-3">
             {responses[key] ? (
               <div>
                 <FlightInfoLayout
                   flightInfo={responses[key]}
-                  onConfirm={() => addResponse(responses[key])}
+                  onConfirm={() => {
+                    addResponse(key, responses[key]);
+                  }}
                   text="선택"
                 />
               </div>
@@ -180,10 +183,15 @@ const FlightInfo = () => {
             )}
           </div>
         )}
-        <section>
+        <section className="py-4">
           {history ? (
             <div className="px-4">
-              <FlightHistoryLayout history={history} />
+              <FlightHistoryLayout
+                title={"최근 검색 기록"}
+                history={history}
+                onConfirm={addFlight}
+                onClickTitle={"선택"}
+              />
             </div>
           ) : (
             <></>

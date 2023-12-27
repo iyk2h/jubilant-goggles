@@ -121,3 +121,14 @@ export function BedIcon(props) {
     </svg>
   );
 }
+
+export function BackIcon() {
+  return (
+    <img
+      width="20"
+      height="20"
+      src="https://img.icons8.com/metro/26/back.png"
+      alt="back"
+    />
+  );
+}
