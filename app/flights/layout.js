@@ -20,24 +20,25 @@ export default function RootLayout({ children }) {
 
       const lastFlight =
         flights.length > 0 ? flights[flights.length - 1] : null;
-      if (
-        lastFlight &&
-        lastFlight.response.arrivalCity !== response.departureCity
-      ) {
-        alert("선택한 비행의 출발지가 직전 비행의 도착지가 같지 않습니다.");
-        return;
-      }
 
-      const year = new Date().getFullYear();
-      const lastDate = new Date(`${lastFlight.response.arrivalTime}, ${year}`);
-      const newDate = new Date(`${response.departureTime}, ${year}`);
-      if (lastFlight && lastDate > newDate) {
-        alert(
-          "선택한 비행의 출발 시간이 직전 비행의 도착 시간보다 빠를 수 없습니다."
+      if (lastFlight) {
+        if (lastFlight.response.arrivalCity !== response.departureCity) {
+          alert("선택한 비행의 출발지가 직전 비행의 도착지가 같지 않습니다.");
+          return;
+        }
+
+        const year = new Date().getFullYear();
+        const lastDate = new Date(
+          `${lastFlight.response.arrivalTime}, ${year}`
         );
-        return;
+        const newDate = new Date(`${response.departureTime}, ${year}`);
+        if (lastDate > newDate) {
+          alert(
+            "선택한 비행의 출발 시간이 직전 비행의 도착 시간보다 빠를 수 없습니다."
+          );
+          return;
+        }
       }
-
       const newFlights = [...flights, { key, response }];
       setFlights(newFlights);
       router.replace("/flights");
