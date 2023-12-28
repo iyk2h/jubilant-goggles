@@ -95,11 +95,12 @@ const FlightInfo = ({ addFlight }) => {
 
   const addResponse = (key, response) => {
     addFlight(key, response);
-    localStorage.setItem(
-      "flightHistory",
-      JSON.stringify([{ key, response }, ...history])
-    );
-    setHistory((prevHistory) => [{ key, response }, ...prevHistory]);
+
+    const updatedFlights = history.filter((item) => item.key !== key);
+    const newHistory = [{ key, response }, ...updatedFlights];
+
+    localStorage.setItem("flightHistory", JSON.stringify(newHistory));
+    setHistory(newHistory);
   };
 
   return (
@@ -189,7 +190,7 @@ const FlightInfo = ({ addFlight }) => {
               <FlightHistoryLayout
                 title={"최근 조회 내역"}
                 history={history}
-                onConfirm={addFlight}
+                onConfirm={addResponse}
                 onClickTitle={"선택"}
               />
             </div>
