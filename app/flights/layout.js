@@ -15,6 +15,10 @@ export default function RootLayout({ children }) {
       setFlights(newFlights);
       router.replace("/flights");
     },
+    removeFlight(key) {
+      const updatedFlights = flights.filter((flight) => flight.key !== key);
+      setFlights(updatedFlights);
+    },
   }));
 
   return (

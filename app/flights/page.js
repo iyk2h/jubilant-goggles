@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useFlightsValue } from "./layout";
+import { useFlightsActions, useFlightsValue } from "./layout";
 import { getAirportInfos } from "../api/airportInfo/AirportInfo";
 import FlightHistoryLayout from "../components/FlightHistoryLayout";
 import MyButton from "../components/MyButton";
@@ -19,6 +19,8 @@ export default function Flights() {
   };
 
   const { setAirportInfo } = useAirportInfosActions();
+
+  const { removeFlight } = useFlightsActions();
 
   const confirmHandle = async () => {
     if (flights.length === 0) {
@@ -67,7 +69,12 @@ export default function Flights() {
         <section>
           {flights.length > 0 && (
             <div>
-              <FlightHistoryLayout title="flights" history={flights} />
+              <FlightHistoryLayout
+                title="flights"
+                history={flights}
+                onConfirm={removeFlight}
+                onClickTitle={"삭제"}
+              />
             </div>
           )}
           {flights.length <= 3 && (
