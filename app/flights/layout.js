@@ -13,12 +13,25 @@ export default function RootLayout({ children }) {
     addFlight(key, response) {
       const isDuplicate = flights.some((flight) => flight.key === key);
 
-      console.log(isDuplicate);
-
       if (!isDuplicate) {
-        const newFlights = [...flights, { key, response }];
-        setFlights(newFlights);
-        router.replace("/flights");
+        const lastFlight =
+          flights.length > 0 ? flights[flights.length - 1] : null;
+        console.log(lastFlight);
+        if (lastFlight) {
+          if (lastFlight.response.arrivalCity === response.departureCity) {
+            const newFlights = [...flights, { key, response }];
+            setFlights(newFlights);
+            router.replace("/flights");
+          } else {
+            alert(
+              "직전 비행기의 도착지가 추가한 비행기의 출발지가 같지 않습니다."
+            );
+          }
+        } else {
+          const newFlights = [...flights, { key, response }];
+          setFlights(newFlights);
+          router.replace("/flights");
+        }
       } else {
         alert("이미 선택한 비행입니다.");
       }
