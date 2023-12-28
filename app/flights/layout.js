@@ -11,9 +11,17 @@ export default function RootLayout({ children }) {
   const [flights, setFlights] = useState([]);
   const actions = useMemo(() => ({
     addFlight(key, response) {
-      const newFlights = [...flights, { key, response }];
-      setFlights(newFlights);
-      router.replace("/flights");
+      const isDuplicate = flights.some((flight) => flight.key === key);
+
+      console.log(isDuplicate);
+
+      if (!isDuplicate) {
+        const newFlights = [...flights, { key, response }];
+        setFlights(newFlights);
+        router.replace("/flights");
+      } else {
+        alert("이미 선택한 비행입니다.");
+      }
     },
     removeFlight(key) {
       const updatedFlights = flights.filter((flight) => flight.key !== key);
