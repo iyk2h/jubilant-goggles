@@ -97,7 +97,7 @@ const FlightInfo = ({ addFlight }) => {
     addFlight(key, response);
 
     const updatedFlights = history.filter((item) => item.key !== key);
-    const newHistory = [{ key, response }, ...updatedFlights];
+    const newHistory = [{ key, response }, ...updatedFlights.slice(0, 11)];
 
     localStorage.setItem("flightHistory", JSON.stringify(newHistory));
     setHistory(newHistory);
