@@ -38,11 +38,10 @@ export default function Flights() {
       airport[flights.length - 1].arrivalInfo.city
     }`;
 
-    localStorage.setItem(
-      "airportInfos",
-      JSON.stringify([...airportInfos, { key, airport }])
-    );
-    setAirportInfos((prevAirports) => [...prevAirports, { key, airport }]);
+    const newHistory = [...airportInfos, { key, airport }];
+
+    localStorage.setItem("airportInfos", JSON.stringify(newHistory));
+    setAirportInfos(newHistory);
     router.replace("/nap");
   };
 
