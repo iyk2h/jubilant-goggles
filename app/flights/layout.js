@@ -16,7 +16,6 @@ export default function RootLayout({ children }) {
       if (!isDuplicate) {
         const lastFlight =
           flights.length > 0 ? flights[flights.length - 1] : null;
-        console.log(lastFlight);
         if (lastFlight) {
           if (lastFlight.response.arrivalCity === response.departureCity) {
             const newFlights = [...flights, { key, response }];
