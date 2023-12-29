@@ -5,7 +5,7 @@ export const removeHyphens = (inputDate) => {
 };
 
 export const formatDate = (info) => {
-  return DateTime.fromFormat(info.datetime, "MM/d/yyyy, h:mm:ss a").setZone(
+  return DateTime.fromFormat(info.datetime, "M/d/yyyy, h:mm:ss a").setZone(
     info.timezone,
     {
       keepLocalTime: true,
