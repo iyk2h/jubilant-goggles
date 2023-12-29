@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AirplaneDepartIcon, PlusIcon } from "./components/Icon";
+import { AirplaneDepartIcon, PlusIcon } from "./utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
 

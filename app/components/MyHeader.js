@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { BackIcon } from "./Icon";
+import { BackIcon } from "../utils/icon/Icon";
 
 export default function MyHeader({ headText, leftChild, rightChild }) {
   const router = useRouter();

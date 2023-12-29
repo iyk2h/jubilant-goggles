@@ -6,7 +6,7 @@ import {
   NoCoffee,
   AirplaneDepartIcon,
   AirplaneArrivalIcon,
-} from "./Icon";
+} from "../utils/icon/Icon";
 import RecommendNapLayout from "./RecommendNapLayout";
 import { formatDate, getDiffTime, formatDateString } from "../utils/DateUtils";
 
