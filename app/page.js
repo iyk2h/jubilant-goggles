@@ -49,7 +49,7 @@ export default function Home() {
       )}
 
       <div
-        className="flex justify-center bg-gray-300 rounded-xl p-2 mx-20 cursor-pointer"
+        className="flex justify-center bg-gray-300 rounded-xl p-2 mx-20  mb-20 cursor-pointer"
         onClick={() => {
           router.push("/flights");
         }}
