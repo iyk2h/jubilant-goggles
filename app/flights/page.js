@@ -7,6 +7,7 @@ import { getAirportInfos } from "../api/airportInfo/AirportInfo";
 import FlightHistoryLayout from "../components/FlightHistoryLayout";
 import MyButton from "../components/MyButton";
 import { useAirportInfosActions } from "../AirportProvider";
+import { SpinnerCircular } from "spinners-react";
 
 export default function Flights() {
   const router = useRouter();
@@ -22,11 +23,15 @@ export default function Flights() {
 
   const { removeFlight } = useFlightsActions();
 
+  const [loadings, setLoadings] = useState(false);
+
   const confirmHandle = async () => {
     if (flights.length === 0) {
       alert("비행을 추가해 주세요.");
       return;
     }
+
+    setLoadings(true);
 
     const airport = await Promise.all(
       flights.map((info) => getAirportInfos(info.key, info.response))
@@ -59,7 +64,7 @@ export default function Flights() {
   }, [flights]);
 
   const addFlight = () => {
-    router.replace("/flights/input");
+    router.push("/flights/input");
   };
 
   return (
@@ -85,13 +90,23 @@ export default function Flights() {
             </div>
           )}
         </section>
-        <section className="flex justify-between my-3">
-          <div className="flex items-start">
-            <MyButton text="취소" onClick={cancelHandle} />
-          </div>
-          <div className="flex items-end">
-            <MyButton text="확인" onClick={confirmHandle} />
-          </div>
+        <section className="">
+          {loadings ? (
+            <div className="flex justify-center items-center py-5">
+              <div className="mr-3 mb-1">
+                <SpinnerCircular />
+              </div>
+            </div>
+          ) : (
+            <div className="flex justify-between my-3">
+              <div className="flex items-start">
+                <MyButton text="취소" onClick={cancelHandle} />
+              </div>
+              <div className="flex items-end">
+                <MyButton text="확인" onClick={confirmHandle} />
+              </div>
+            </div>
+          )}
         </section>
       </>
     </div>
