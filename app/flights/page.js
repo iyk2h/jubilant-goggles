@@ -25,6 +25,10 @@ export default function Flights() {
 
   const [loadings, setLoadings] = useState(false);
 
+  const hasDuplicate = (history, key) => {
+    return history.some((entry) => entry.key === key);
+  };
+
   const confirmHandle = async () => {
     if (flights.length === 0) {
       alert("비행을 추가해 주세요.");
@@ -37,16 +41,28 @@ export default function Flights() {
       flights.map((info) => getAirportInfos(info.key, info.response))
     );
 
-    setAirportInfo(airport);
+    const key = `${airport[0].departureInfo.datetime}_${airport
+      .map((info) => info.arrivalInfo.city)
+      .join(" -> ")}_${airport[flights.length - 1].arrivalInfo.city}`;
 
-    const key = `${airport[0].departureInfo.datetime}_${
-      airport[flights.length - 1].arrivalInfo.city
-    }`;
+    if (hasDuplicate(airportInfos, key)) {
+      alert("중복된 여행입니다. 다시 확인해주세요.");
+      setLoadings(false);
+      return;
+    }
+
+    setAirportInfo(airport);
 
     const newHistory = [...airportInfos, { key, airport }];
 
-    localStorage.setItem("airportInfos", JSON.stringify(newHistory));
-    setAirportInfos(newHistory);
+    const sortedHistory = newHistory.sort((a, b) => {
+      if (a.key < b.key) return -1;
+      if (a.key > b.key) return 1;
+      return 0;
+    });
+
+    localStorage.setItem("airportInfos", JSON.stringify(sortedHistory));
+    setAirportInfos(sortedHistory);
     router.replace("/nap");
   };
 

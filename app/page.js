@@ -34,7 +34,7 @@ export default function Home() {
               className="flex justify-center bg-gray-100 rounded-xl m-2 mx-20 text-center cursor-pointer"
               onClick={() => clickHandle(info.airport)}
             >
-              {info.key.split("_")[1]}
+              {info.key.split("_")[2]}
               <br />
               {formatStrS(info.key.split("_")[0])}
             </div>
