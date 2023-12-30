@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AirplaneDepartIcon, PlusIcon } from "./utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
-import { formatStrS } from "./utils/DateUtils";
+import { formatStrS, nowDate, formatDate } from "./utils/DateUtils";
 
 export default function Home() {
   const router = useRouter();
@@ -28,17 +28,29 @@ export default function Home() {
     <div>
       {airportInfos.length !== 0 ? (
         <>
-          {airportInfos.map((info, index) => (
-            <div
-              key={index}
-              className="flex justify-center bg-gray-100 rounded-xl m-2 mx-20 text-center cursor-pointer"
-              onClick={() => clickHandle(info.airport)}
-            >
-              {info.key.split("_")[2]}
-              <br />
-              {formatStrS(info.key.split("_")[0])}
-            </div>
-          ))}
+          {airportInfos.map((info, index) => {
+            const lastDateTime = formatDate(
+              info.airport[info.airport.length - 1].arrivalInfo
+            );
+
+            const nowDateTime = nowDate();
+
+            return (
+              <div
+                key={index}
+                className="flex justify-center bg-gray-100 rounded-xl m-2 mx-20 text-center cursor-pointer"
+                onClick={() => clickHandle(info.airport)}
+              >
+                {lastDateTime > nowDateTime && (
+                  <>
+                    {info.key.split("_")[2]}
+                    <br />
+                    {formatStrS(info.key.split("_")[0])}
+                  </>
+                )}
+              </div>
+            );
+          })}
         </>
       ) : (
         <>

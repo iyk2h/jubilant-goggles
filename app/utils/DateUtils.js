@@ -29,3 +29,7 @@ export const formatStrS = (input) => {
     "hh:mm a, LLL dd"
   );
 };
+
+export const nowDate = () => {
+  return DateTime.local();
+};
