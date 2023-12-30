@@ -39,7 +39,7 @@ export default function Flights() {
 
     setAirportInfo(airport);
 
-    const key = `${flights[0].response.departureTime}_${
+    const key = `${airport[0].departureInfo.datetime}_${
       airport[flights.length - 1].arrivalInfo.city
     }`;
 

@@ -23,3 +23,9 @@ export const getDiffTime = (diff) => {
 export const formatDateString = (dateTime) => {
   return dateTime.toFormat("hh:mm a, LLL dd");
 };
+
+export const formatStrS = (input) => {
+  return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a").toFormat(
+    "hh:mm a, LLL dd"
+  );
+};

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AirplaneDepartIcon, PlusIcon } from "./utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
+import { formatStrS } from "./utils/DateUtils";
 
 export default function Home() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function Home() {
             >
               {info.key.split("_")[1]}
               <br />
-              {info.key.split("_")[0]}
+              {formatStrS(info.key.split("_")[0])}
             </div>
           ))}
         </>
