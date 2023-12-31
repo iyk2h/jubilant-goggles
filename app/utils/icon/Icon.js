@@ -3,7 +3,7 @@ export function NoCoffee() {
     <img
       width="30"
       height="30"
-      src="icons8-no-beverages.png"
+      src="/icons8-no-beverages.png"
       alt="no-beverages"
     />
   );
@@ -14,14 +14,14 @@ export function SleepIcon() {
     <img
       width="30"
       height="30"
-      src="icons8-crescent-moon.png"
+      src="/icons8-crescent-moon.png"
       alt="crescent-moon"
     />
   );
 }
 
 export function WakeUpIcon() {
-  return <img width="40" height="40" src="icons8-sun.png" alt="sun--v1" />;
+  return <img width="40" height="40" src="/icons8-sun.png" alt="sun--v1" />;
 }
 
 export function AirplaneDepartIcon() {
@@ -29,7 +29,7 @@ export function AirplaneDepartIcon() {
     <img
       width="30"
       height="30"
-      src="icons8-flight.png"
+      src="/icons8-flight.png"
       alt="airplane-take-off"
     />
   );
@@ -40,22 +40,22 @@ export function AirplaneArrivalIcon() {
     <img
       width="30"
       height="30"
-      src="icons8-landing.png"
+      src="/icons8-landing.png"
       alt="airplane-landing"
     />
   );
 }
 
 export function BackIcon() {
-  return <img width="20" height="20" src="icons8-back.png" alt="back" />;
+  return <img width="20" height="20" src="/icons8-back.png" alt="back" />;
 }
 
 export function PlusIcon() {
   return (
-    <img width="15" height="15" src="icons8-plus-math.png" alt="plus-math" />
+    <img width="15" height="15" src="/icons8-plus-math.png" alt="plus-math" />
   );
 }
 
 export function LoadingIcon() {
-  return <img width="50" height="50" src="icons8-loading.gif" alt="loading" />;
+  return <img width="50" height="50" src="/icons8-loading.gif" alt="loading" />;
 }
