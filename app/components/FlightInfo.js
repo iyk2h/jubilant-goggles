@@ -18,9 +18,14 @@ const nanum_Gothic_Coding = Nanum_Gothic_Coding({
 const FlightInfo = ({ addFlight }) => {
   const flightNumRef = useRef();
 
-  const [departureDate, setDepartureDate] = useState(
-    new Date().toISOString().slice(0, 10)
-  );
+  const formatDate = (date) => {
+    const [month, day, year] = date.split("/");
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  };
+
+  const today = formatDate(new Date().toLocaleDateString());
+
+  const [departureDate, setDepartureDate] = useState(today);
   const [airlineCode, setAirlineCode] = useState(airlines[0]);
   const [flightNumber, setFlightNum] = useState("");
 
@@ -114,7 +119,11 @@ const FlightInfo = ({ addFlight }) => {
                 className="text-2xl font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
                 type="date"
                 value={departureDate}
-                onChange={(e) => setDepartureDate(e.target.value)}
+                min={today}
+                onChange={(e) => {
+                  setDepartureDate(e.target.value);
+                  console.log(e.target.value);
+                }}
               />
             </div>
           </div>
