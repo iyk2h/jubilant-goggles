@@ -130,7 +130,6 @@ const FlightInfo = ({ addFlight }) => {
                 min={today}
                 onChange={(e) => {
                   setDepartureDate(e.target.value);
-                  console.log(e.target.value);
                 }}
               />
             </div>
