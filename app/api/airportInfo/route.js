@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-const { crawl } = require("./Craw");
+import { stopover } from "./Stopover";
 
 const winston = require("winston");
 
@@ -19,7 +19,7 @@ export async function POST(req) {
 
     try {
       // Use lowercase 'json' here
-      const response = await crawl(parseUrl);
+      const response = await stopover(parseUrl);
 
       // Check if response is valid
       if (response !== null && response) {

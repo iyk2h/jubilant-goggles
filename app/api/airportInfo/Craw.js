@@ -49,7 +49,7 @@ const crawl = async (url) => {
 
     cache[url] = result;
 
-    console.log("craw result : ", result);
+    // console.log("craw result : ", result);
 
     return result;
   } catch (error) {

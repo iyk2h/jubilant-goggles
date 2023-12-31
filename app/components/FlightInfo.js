@@ -40,6 +40,15 @@ const FlightInfo = ({ addFlight }) => {
     }
   }, [departureDate, airlineCode, flightNumber]);
 
+  const setErrorMessage = () => {
+    setError(
+      <>
+        비행 정보가 없습니다.
+        <br /> 날짜와 Flight Number를 다시 확인해주세요.
+      </>
+    );
+  };
+
   const getFlightInfo = async () => {
     const key = `${removeHyphens(departureDate)}_${
       airlineCode.iata
@@ -68,14 +77,13 @@ const FlightInfo = ({ addFlight }) => {
         return newResponses;
       });
 
-      setError(null);
+      if (data.length === 0) {
+        setErrorMessage();
+      } else {
+        setError(null);
+      }
     } catch (error) {
-      setError(
-        <>
-          비행 정보가 없습니다.
-          <br /> 날짜와 Flight Number를 다시 확인해주세요.
-        </>
-      );
+      setErrorMessage();
     } finally {
       setLoadingsKey(false, key);
     }
@@ -176,15 +184,24 @@ const FlightInfo = ({ addFlight }) => {
           </div>
         ) : (
           <div className="pt-4 px-3">
-            {responses[key] ? (
+            {responses[key] && responses[key].length !== 0 ? (
               <div>
-                <FlightInfoLayout
-                  flightInfo={responses[key]}
-                  onConfirm={() => {
-                    addResponse(key, responses[key]);
-                  }}
-                  text="선택"
-                />
+                {responses[key].map((flightInfo, index) => (
+                  <div className="py-2" key={index}>
+                    {flightInfo && (
+                      <FlightInfoLayout
+                        flightInfo={flightInfo}
+                        onConfirm={() => {
+                          addResponse(
+                            key + "_" + flightInfo.arrivalAirportCode,
+                            flightInfo
+                          );
+                        }}
+                        text="선택"
+                      />
+                    )}
+                  </div>
+                ))}
               </div>
             ) : (
               <>
