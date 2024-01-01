@@ -59,3 +59,9 @@ export function PlusIcon() {
 export function LoadingIcon() {
   return <img width="50" height="50" src="/icons8-loading.gif" alt="loading" />;
 }
+
+export function ChatIcon() {
+  return (
+    <img width="30" height="30" src="/icons8-chat-room.png" alt="loading" />
+  );
+}

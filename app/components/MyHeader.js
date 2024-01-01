@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { BackIcon } from "../utils/icon/Icon";
+import { BackIcon, ChatIcon } from "../utils/icon/Icon";
 
 export default function MyHeader({ headText, leftChild, rightChild }) {
   const router = useRouter();
@@ -22,7 +22,14 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
           )}
         </div>
         <div className="head_text">{headText}</div>
-        <div className="head_btn_right">{rightChild}</div>
+        <div
+          className="head_btn_right"
+          onClick={() => router.push("/feedback")}
+        >
+          <div className="flex justify-center cursor-pointer">
+            <ChatIcon />
+          </div>
+        </div>
       </header>
 
       <style jsx>{`
