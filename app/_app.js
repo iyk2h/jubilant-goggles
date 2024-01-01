@@ -5,6 +5,7 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <Script
+        id="smartlook"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
