@@ -16,6 +16,13 @@ function SelectorAirportCode({ data, selected, setSelected }) {
           );
 
     setFilteredPeople(updatedFilteredPeople);
+
+    if (
+      updatedFilteredPeople.length === 1 &&
+      updatedFilteredPeople[0].iata === query
+    ) {
+      setSelected(updatedFilteredPeople[0]);
+    }
   }, [query]);
 
   const inputQuery = (input) => {
