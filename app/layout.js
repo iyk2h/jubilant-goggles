@@ -2,8 +2,7 @@ import { Yeon_Sung, Nanum_Pen_Script } from "next/font/google";
 import "./globals.css";
 import MyHeader from "./components/MyHeader";
 import AirportInfosProvider from "./AirportProvider";
-import { Suspense } from "react";
-import { Analytics } from "./components/Analytics";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const yeonSung = Yeon_Sung({
   weight: "400",
@@ -24,9 +23,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={nanum_Pen_Script.className}>
-        <Suspense>
-          <Analytics />
-        </Suspense>
         <AirportInfosProvider>
           <div className="container">
             <MyHeader headText="비행기 낮잠 가이드" />
@@ -34,6 +30,7 @@ export default function RootLayout({ children }) {
           </div>
         </AirportInfosProvider>
       </body>
+      <GoogleTagManager gtmId="GTM-TFZ2VB2Q" />
     </html>
   );
 }
