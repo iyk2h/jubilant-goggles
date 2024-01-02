@@ -8,15 +8,15 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
   const pathname = usePathname();
   return (
     <div className="myHeader flex justify-center py-5 my-5 text-3xl font-bold">
-      <header className="flex w-full items-center">
+      <header
+        className="flex w-full items-center cursor-pointer"
+        onClick={router.back}
+      >
         <div className="head_btn_left">
           {pathname === "/" ? (
             <></>
           ) : (
-            <div
-              className="flex justify-center cursor-pointer"
-              onClick={router.back}
-            >
+            <div className="flex justify-center">
               <BackIcon />
             </div>
           )}
@@ -24,7 +24,12 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         <div className="head_text">{headText}</div>
         <div
           className="head_btn_right"
-          onClick={() => router.push("/feedback")}
+          onClick={() =>
+            window.open(
+              "https://docs.google.com/forms/d/e/1FAIpQLScDXl1lx5x0NBHFuPxjsp7fQC4M_A8ha-Z8XJdzIP3XahA6GA/viewform?usp=sf_link",
+              "_blank"
+            )
+          }
         >
           <div className="flex justify-center cursor-pointer">
             <ChatIcon />
