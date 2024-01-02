@@ -67,7 +67,7 @@ export default function Home() {
           router.push("/flights");
         }}
       >
-        <div className="flex justify-normal items-center">
+        <div className="add_flight flex justify-normal items-center">
           <div>
             <AirplaneDepartIcon />
           </div>
