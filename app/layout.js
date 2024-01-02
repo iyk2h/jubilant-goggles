@@ -3,6 +3,7 @@ import "./globals.css";
 import MyHeader from "./components/MyHeader";
 import AirportInfosProvider from "./AirportProvider";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Script from "next/script";
 
 const yeonSung = Yeon_Sung({
   weight: "400",
@@ -22,6 +23,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <div>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-DESYR520TS"
+        ></Script>
+        <Script id="google-analytics">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-DESYR520TS');
+        `}
+        </Script>
+      </div>
       <body className={nanum_Pen_Script.className}>
         <AirportInfosProvider>
           <div className="container">
