@@ -37,6 +37,7 @@ export default function Home() {
 
             return (
               <div
+                id={`view_detail_${index}`}
                 key={index}
                 className="flex justify-center bg-gray-100 rounded-xl m-2 mx-20 text-center cursor-pointer"
                 onClick={() => clickHandle(info.airport)}
@@ -62,17 +63,18 @@ export default function Home() {
       )}
 
       <div
+        id="add_flight"
         className="flex justify-center bg-gray-300 rounded-xl p-2 mx-20  mb-20 cursor-pointer"
         onClick={() => {
           router.push("/flights");
         }}
       >
-        <div className="add_flight flex justify-normal items-center">
+        <div id="add_flight_icons" className="flex justify-normal items-center">
           <div>
-            <AirplaneDepartIcon />
+            <AirplaneDepartIcon id={"add_flight_icons_airport_img"} />
           </div>
           <div>
-            <PlusIcon />
+            <PlusIcon id={"add_flight_icons_plus"} />
           </div>
         </div>
       </div>
