@@ -10,10 +10,25 @@ export default function Home() {
   const router = useRouter();
 
   const [airportInfos, setAirports] = useState([]);
+  const nowDateTime = nowDate();
+
   useEffect(() => {
     const storedAirports = localStorage.getItem("airportInfos");
+    const afterToday = [];
+
     if (storedAirports) {
-      setAirports(JSON.parse(storedAirports));
+      const parsedAirports = JSON.parse(storedAirports);
+
+      parsedAirports.forEach((info, index) => {
+        const lastDateTime = formatDate(
+          info.airport[info.airport.length - 1].arrivalInfo
+        );
+        if (lastDateTime > nowDateTime) {
+          afterToday.push(info);
+        }
+      });
+
+      setAirports(afterToday);
     }
   }, []);
 

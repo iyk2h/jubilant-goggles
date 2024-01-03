@@ -102,7 +102,17 @@ const FlightInfo = ({ addFlight }) => {
   useEffect(() => {
     const storedHistory = localStorage.getItem("flightHistory");
     if (storedHistory) {
-      setHistory(JSON.parse(storedHistory));
+      const parsedHistory = JSON.parse(storedHistory);
+      const today = new Date();
+
+      const filteredHistory = parsedHistory.filter((item) => {
+        const keyDate = new Date(
+          item.key.substring(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
+        );
+        return keyDate >= today;
+      });
+
+      setHistory(filteredHistory);
     }
   }, []);
 

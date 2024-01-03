@@ -23,7 +23,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <div>
+      <>
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-DESYR520TS"
@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
           gtag('config', 'G-DESYR520TS');
         `}
         </Script>
-      </div>
+      </>
       <body className={nanum_Pen_Script.className}>
         <AirportInfosProvider>
           <div className="container">
