@@ -47,6 +47,9 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
             <Combobox.Input
               className="outline-none border-none py-2 mx-2 w-12 text-base font-bold leading-5 text-gray-900 focus:ring-0 text-center"
               displayValue={(person) => person.iata}
+              onClick={() => {
+                setSelected({ iata: "" });
+              }}
               onChange={(event) => {
                 let inputValue = event.target.value.trim();
 
