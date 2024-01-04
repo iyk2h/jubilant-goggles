@@ -22,6 +22,7 @@ const FlightInfo = ({ addFlight }) => {
 
   const [departureDate, setDepartureDate] = useState(today);
   const [airlineCode, setAirlineCode] = useState(airlines[0]);
+  const [displayCode, setDisplayCode] = useState(airlines[0]);
   const [flightNumber, setFlightNum] = useState("");
 
   const [responses, setResponses] = useState({});
@@ -147,34 +148,17 @@ const FlightInfo = ({ addFlight }) => {
               Flight Number
             </h2>
             <div className={nanum_Gothic_Coding.className}>
-              <div className=" w-fit flex flex-wrap gap-2 bg-gray-200 rounded-lg p-2">
-                <div className="w-10 h-10">
+              <div className=" w-20 flex flex-wrap justify-center bg-gray-200 rounded-lg p-1">
+                <div className="w-20 h-10 px-2">
                   <SelectorAirportCode
                     data={airlines.filter(
                       (person) => person.iata.toString().length === 2
                     )}
-                    selected={airlineCode}
-                    setSelected={setAirlineCode}
+                    selected={displayCode}
+                    setSelected={setDisplayCode}
+                    setCode={setAirlineCode}
+                    setNum={setFlightNum}
                   />
-                </div>
-                <div className="w-12 h-fit mt-1 relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none">
-                  <div className="outline-none border-none p-2 text-base font-bold leading-5 text-gray-900 focus:ring-0">
-                    <input
-                      type="text"
-                      value={flightNumber}
-                      onChange={(e) => {
-                        const onlyNumbers = e.target.value.replace(
-                          /[^0-9]/g,
-                          ""
-                        );
-                        const limitedLength = onlyNumbers.slice(0, 4);
-                        setFlightNum(limitedLength);
-                      }}
-                      placeholder="1234"
-                      style={{ width: "100%" }}
-                      ref={flightNumRef}
-                    />
-                  </div>
                 </div>
               </div>
             </div>
