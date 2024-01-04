@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AirplaneDepartIcon, PlusIcon } from "./utils/icon/Icon";
+import { AirplaneDepartIcon, PlusIcon, TrashIcon } from "./utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
 import { formatStrS, nowDate, formatDate } from "./utils/DateUtils";
@@ -39,6 +39,12 @@ export default function Home() {
     router.push("/nap");
   };
 
+  const clearAirportHistory = () => {
+    localStorage.removeItem("airportInfos");
+    setAirports([]);
+    router.refresh();
+  };
+
   return (
     <div>
       {airportInfos.length !== 0 ? (
@@ -69,19 +75,33 @@ export default function Home() {
         </>
       )}
 
-      <div
-        id="add_flight"
-        className="flex justify-center bg-gray-300 rounded-xl p-2 mx-20  mb-20 cursor-pointer"
-        onClick={() => {
-          router.push("/flights");
-        }}
-      >
-        <div id="add_flight_icons" className="flex justify-normal items-center">
-          <div>
-            <AirplaneDepartIcon id={"add_flight_icons_airport_img"} />
+      <div className="flex justify-between m-5  mx-20  mb-20">
+        {airportInfos.length !== 0 && (
+          <div
+            id="clear_airport_his"
+            className="flex justify-center items-center w-10 bg-gray-300 rounded-xl mx-1 px-1 cursor-pointer"
+            onClick={clearAirportHistory}
+          >
+            <TrashIcon />
           </div>
-          <div>
-            <PlusIcon id={"add_flight_icons_plus"} />
+        )}
+        <div
+          id="add_flight"
+          className="flex justify-center w-full bg-gray-300 rounded-xl p-2 cursor-pointer"
+          onClick={() => {
+            router.push("/flights");
+          }}
+        >
+          <div
+            id="add_flight_icons"
+            className="flex justify-normal items-center"
+          >
+            <div>
+              <AirplaneDepartIcon id={"add_flight_icons_airport_img"} />
+            </div>
+            <div>
+              <PlusIcon id={"add_flight_icons_plus"} />
+            </div>
           </div>
         </div>
       </div>

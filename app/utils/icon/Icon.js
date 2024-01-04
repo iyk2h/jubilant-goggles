@@ -72,3 +72,7 @@ export function ChatIcon() {
     <img width="30" height="30" src="/icons8-chat-room.png" alt="loading" />
   );
 }
+
+export function TrashIcon() {
+  return <img width="30" height="30" src="/icons8-trash.png" alt="loading" />;
+}
