@@ -5,7 +5,7 @@ import airlines from "../data/airlines.json";
 import SelectorAirportCode from "../components/SelectorAirportCode";
 
 import { Nanum_Gothic_Coding } from "next/font/google";
-import { removeHyphens } from "../utils/DateUtils";
+import { getDateForCalender, removeHyphens } from "../utils/DateUtils";
 import FlightInfoLayout from "./FlightInfoLayout";
 import FlightHistoryLayout from "./FlightHistoryLayout";
 import { LoadingIcon } from "../utils/icon/Icon";
@@ -18,13 +18,7 @@ const nanum_Gothic_Coding = Nanum_Gothic_Coding({
 const FlightInfo = ({ addFlight }) => {
   const flightNumRef = useRef();
 
-  const formatDate = (date) => {
-    console.log(date);
-    const [month, day, year] = date.split("/");
-    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-  };
-
-  const today = formatDate(new Date().toLocaleDateString());
+  const today = getDateForCalender();
 
   const [departureDate, setDepartureDate] = useState(today);
   const [airlineCode, setAirlineCode] = useState(airlines[0]);

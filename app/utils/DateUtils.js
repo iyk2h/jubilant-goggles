@@ -33,3 +33,7 @@ export const formatStrS = (input) => {
 export const nowDate = () => {
   return DateTime.local();
 };
+
+export const getDateForCalender = () => {
+  return DateTime.local().toFormat("yyyy-MM-dd");
+};
