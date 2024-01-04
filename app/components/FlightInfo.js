@@ -9,6 +9,7 @@ import { Nanum_Gothic_Coding } from "next/font/google";
 import { removeHyphens } from "../utils/DateUtils";
 import FlightInfoLayout from "./FlightInfoLayout";
 import FlightHistoryLayout from "./FlightHistoryLayout";
+import { LoadingIcon } from "../utils/icon/Icon";
 
 const nanum_Gothic_Coding = Nanum_Gothic_Coding({
   weight: "400",
@@ -188,7 +189,7 @@ const FlightInfo = ({ addFlight }) => {
         {loadings[key] ? (
           <div className="flex justify-center py-5">
             <div className="mr-3 mb-1">
-              <SpinnerCircular />
+              <LoadingIcon />
             </div>
           </div>
         ) : (

@@ -7,7 +7,7 @@ import { getAirportInfos } from "../api/airportInfo/AirportInfo";
 import FlightHistoryLayout from "../components/FlightHistoryLayout";
 import MyButton from "../components/MyButton";
 import { useAirportInfosActions } from "../AirportProvider";
-import { SpinnerCircular } from "spinners-react";
+import { LoadingIcon } from "../utils/icon/Icon";
 
 export default function Flights() {
   const router = useRouter();
@@ -110,7 +110,7 @@ export default function Flights() {
           {loadings ? (
             <div className="flex justify-center items-center py-5">
               <div className="mr-3 mb-1">
-                <SpinnerCircular />
+                <LoadingIcon />
               </div>
             </div>
           ) : (
