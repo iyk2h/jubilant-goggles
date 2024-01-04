@@ -44,12 +44,6 @@ export default function Home() {
       {airportInfos.length !== 0 ? (
         <>
           {airportInfos.map((info, index) => {
-            const lastDateTime = formatDate(
-              info.airport[info.airport.length - 1].arrivalInfo
-            );
-
-            const nowDateTime = nowDate();
-
             return (
               <div
                 id={`view_detail_${index}`}
@@ -57,13 +51,11 @@ export default function Home() {
                 className="flex justify-center bg-gray-100 rounded-xl m-2 mx-20 text-center cursor-pointer"
                 onClick={() => clickHandle(info.airport)}
               >
-                {lastDateTime > nowDateTime && (
-                  <>
-                    {info.key.split("_")[2]}
-                    <br />
-                    {formatStrS(info.key.split("_")[0])}
-                  </>
-                )}
+                <>
+                  {info.key.split("_")[2]}
+                  <br />
+                  {formatStrS(info.key.split("_")[0])}
+                </>
               </div>
             );
           })}

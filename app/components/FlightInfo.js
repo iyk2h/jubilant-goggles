@@ -4,7 +4,6 @@ import axios from "axios";
 import airlines from "../data/airlines.json";
 import SelectorAirportCode from "../components/SelectorAirportCode";
 
-import { SpinnerCircular } from "spinners-react";
 import { Nanum_Gothic_Coding } from "next/font/google";
 import { removeHyphens } from "../utils/DateUtils";
 import FlightInfoLayout from "./FlightInfoLayout";
@@ -20,6 +19,7 @@ const FlightInfo = ({ addFlight }) => {
   const flightNumRef = useRef();
 
   const formatDate = (date) => {
+    console.log(date);
     const [month, day, year] = date.split("/");
     return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
   };
