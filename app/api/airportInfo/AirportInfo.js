@@ -1,3 +1,4 @@
+const { formatStrS } = require("@/app/utils/DateUtils");
 const airportInfo = require("airport-info");
 
 const cache = {};
@@ -60,7 +61,7 @@ const parseDateTimeWithTimezone = (date, timeString, timezone) => {
 
   const formattedDateString = `${month} ${day}, ${year} ${time} ${ampm}`;
 
-  return new Date(formattedDateString).toLocaleString();
+  return formatStrS(formattedDateString);
 };
 
 module.exports = {
