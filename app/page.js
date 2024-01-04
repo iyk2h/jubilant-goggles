@@ -5,6 +5,12 @@ import { AirplaneDepartIcon, PlusIcon, TrashIcon } from "./utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
 import { formatStrS, nowDate, formatDate } from "./utils/DateUtils";
+import { Yeon_Sung } from "next/font/google";
+
+const yeonSung = Yeon_Sung({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   const router = useRouter();
@@ -68,7 +74,9 @@ export default function Home() {
         </>
       ) : (
         <>
-          <div className="py-8 mx-10 m-5 text-center text-lg bg-gray-100 rounded-xl">
+          <div
+            className={`${yeonSung.className} py-8 px-5 m-2 text-center text-lg bg-gray-100 rounded-xl`}
+          >
             아래 버튼을 클릭해 여행을 등록해보세요. <br />
             여행 별 낮잠 추천을 받을 수 있습니다.
           </div>
