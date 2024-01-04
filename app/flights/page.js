@@ -89,14 +89,23 @@ export default function Flights() {
         <section>
           {flights.length > 0 && (
             <div>
-              <FlightHistoryLayout
-                title="flights"
-                history={flights}
-                onConfirm={removeFlight}
-                onClickTitle={"삭제"}
-              />
+              {flights.length > 1 ? (
+                <FlightHistoryLayout
+                  title="flights"
+                  history={flights}
+                  onConfirm={removeFlight}
+                  onClickTitle={"삭제"}
+                />
+              ) : (
+                <FlightHistoryLayout
+                  title="flights"
+                  history={flights}
+                  onConfirm={() => {}}
+                />
+              )}
             </div>
           )}
+
           {flights.length <= 3 && (
             <div
               className="bg-gray-100 text-center py-3 my-3 rounded-xl text-lg cursor-pointer"
