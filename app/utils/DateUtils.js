@@ -15,8 +15,8 @@ export const formatDate = (info) => {
 
 export const getDiffTime = (diff) => {
   return {
-    hours: diff.toFormat("hh"),
-    minutes: diff.toFormat("mm"),
+    // hours: diff.toFormat("hh"),
+    minutes: diff.toFormat("m"),
   };
 };
 
