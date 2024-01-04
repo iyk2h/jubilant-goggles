@@ -55,7 +55,10 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
                 if (inputValue.length <= 2) {
                   code = inputValue.replace(/[^0-9a-zA-Z]/g, "").toUpperCase();
                 } else {
-                  code = inputValue.slice(0, 2);
+                  code = inputValue
+                    .slice(0, 2)
+                    .replace(/[^0-9a-zA-Z]/g, "")
+                    .toUpperCase();
                   num = inputValue.slice(2, 6).replace(/[^0-9]/g, "");
                 }
 
