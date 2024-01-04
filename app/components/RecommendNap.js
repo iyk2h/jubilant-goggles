@@ -21,6 +21,8 @@ const RecommendNap = ({ airportInfos }) => {
         const departureInfo = airportInfo.departureInfo;
         const arrivalInfo = airportInfo.arrivalInfo;
 
+        console.log(departureInfo);
+
         const departDateForm = formatDate(departureInfo);
         const arrivalDateForm = formatDate(arrivalInfo);
         const flightTime = getDiffTime(arrivalDateForm.diff(departDateForm));
