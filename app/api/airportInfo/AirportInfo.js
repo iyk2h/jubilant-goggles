@@ -1,4 +1,4 @@
-const { formatStrS } = require("@/app/utils/DateUtils");
+const { formatStrS, formatFromCrawl } = require("@/app/utils/DateUtils");
 const airportInfo = require("airport-info");
 
 const cache = {};
@@ -59,9 +59,9 @@ const parseDateTimeWithTimezone = (date, timeString, timezone) => {
   const [time, ampm, month, day] = cleanedString.split(/\s+/);
   const year = date.substring(0, 4);
 
-  const formattedDateString = `${month} ${day}, ${year} ${time} ${ampm}`;
+  const formattedDateString = `${month}/${day}/${year}, ${time} ${ampm}`;
 
-  return formatStrS(formattedDateString);
+  return formatFromCrawl(formattedDateString);
 };
 
 module.exports = {

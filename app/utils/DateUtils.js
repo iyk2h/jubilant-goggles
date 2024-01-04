@@ -37,3 +37,9 @@ export const nowDate = () => {
 export const getDateForCalender = () => {
   return DateTime.local().toFormat("yyyy-MM-dd");
 };
+
+export const formatFromCrawl = (input) => {
+  return DateTime.fromFormat(input, "LLL/d/yyyy, h:mm a").toFormat(
+    "M/d/yyyy, h:mm:ss a"
+  );
+};
