@@ -127,10 +127,10 @@ const FlightInfo = ({ addFlight }) => {
       <div>
         <section>
           <div className="pl-4">
-            <h2 className="text-2xl font-bold text-teal-900">출발 날짜</h2>
+            <h2 className="text-xl font-bold text-teal-900">출발 날짜</h2>
             <div>
               <input
-                className="text-2xl font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
+                className="text-base font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
                 type="date"
                 value={departureDate}
                 min={today}
@@ -144,7 +144,7 @@ const FlightInfo = ({ addFlight }) => {
 
         <section className="flex justify-between">
           <div className="pl-4">
-            <h2 className="text-2xl font-bold text-teal-900 pt-2 mt-1">
+            <h2 className="text-xl font-bold text-teal-900 pt-2 mt-1">
               Flight Number
             </h2>
             <div className={nanum_Gothic_Coding.className}>
@@ -171,7 +171,7 @@ const FlightInfo = ({ addFlight }) => {
             </div>
           </div>
         ) : (
-          <div className="pt-4 px-3">
+          <div className="pt-4">
             {responses[key] && responses[key].length !== 0 ? (
               <div>
                 {responses[key].map((flightInfo, index) => (
@@ -193,14 +193,14 @@ const FlightInfo = ({ addFlight }) => {
               </div>
             ) : (
               <>
-                <p className="text-center text-xl">{error}</p>
+                <p className="text-center text-base py-2">{error}</p>
               </>
             )}
           </div>
         )}
         <section className="py-4">
           {history.length > 0 ? (
-            <div className="px-4">
+            <div>
               <FlightHistoryLayout
                 title={"최근 조회 내역"}
                 history={history}

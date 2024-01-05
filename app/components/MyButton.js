@@ -8,7 +8,7 @@ export default function MyButton({ text, type, onClick }) {
   return (
     <div>
       <button
-        className={["MyButton", `MyButton_${btnType}`, "text-xl"].join(" ")}
+        className={["MyButton", `MyButton_${btnType}`, "text-base"].join(" ")}
         onClick={onClick}
       >
         {text} {/* Add this line to display the text inside the button */}

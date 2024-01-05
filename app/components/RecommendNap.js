@@ -54,15 +54,15 @@ const RecommendNap = ({ airportInfos }) => {
 
         const recommendItems = [];
 
-        if (index === 0) {
-          recommendItems.push({
-            departDateTime: stopCaffein,
-            departDescription: "지금부터 커피 금지",
-            arrivalDateTime: "",
-            arrivalDescription: "",
-            icon: <NoCoffee />,
-          });
-        }
+        // if (index === 0) {
+        //   recommendItems.push({
+        //     departDateTime: stopCaffein,
+        //     departDescription: "지금부터 커피 금지",
+        //     arrivalDateTime: "",
+        //     arrivalDescription: "",
+        //     icon: <NoCoffee />,
+        //   });
+        // }
 
         recommendItems.push({
           departDateTime: departStartDate,
@@ -114,7 +114,7 @@ const RecommendNap = ({ airportInfos }) => {
             recommendItems={info.recommendItems}
           />
         ))}
-        <div className="text-right text-slate-400">
+        <div className="text-xs text-right text-slate-400">
           icon by <a href="https://icons8.com">Icons8</a>
         </div>
       </div>

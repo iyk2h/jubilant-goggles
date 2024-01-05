@@ -60,7 +60,7 @@ export default function Home() {
               <div
                 id={`view_detail_${index}`}
                 key={index}
-                className="flex justify-center bg-gray-100 rounded-xl m-2 mx-20 text-center cursor-pointer"
+                className="flex justify-center bg-gray-100 rounded-xl p-2 my-2 mx-10 text-base text-center cursor-pointer"
                 onClick={() => clickHandle(info.airport)}
               >
                 <>
@@ -75,7 +75,7 @@ export default function Home() {
       ) : (
         <>
           <div
-            className={`${yeonSung.className} py-8 px-5 m-2 text-center text-lg bg-gray-100 rounded-xl`}
+            className={`py-8 px-5 m-2 text-center text-base bg-gray-100 rounded-xl`}
           >
             아래 버튼을 클릭해 여행을 등록해보세요. <br />
             여행 별 낮잠 추천을 받을 수 있습니다.

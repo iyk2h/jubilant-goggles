@@ -30,10 +30,8 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
             {recommendItems.map((item, index) => (
               <li key={index} role="article" className="flex gap-2 mt-5">
                 <div className="flex flex-col w-28 text-right">
-                  <p className="text-base text-slate-500">
-                    {item.departDateTime}
-                  </p>
-                  <h4 className="text-xl font-medium text-slate-700">
+                  <p className="text-xs font-bold">{item.departDateTime}</p>
+                  <h4 className="text-base font-bold text-slate-700">
                     {item.departDescription}
                   </h4>
                 </div>
@@ -41,10 +39,8 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
                   <p className="">{item.icon}</p>
                 </span>
                 <div className="flex flex-col gap-0 w-28">
-                  <p className="text-base text-slate-500">
-                    {item.arrivalDateTime}
-                  </p>
-                  <h4 className="text-xl font-medium text-slate-700">
+                  <p className="text-xs font-bold">{item.arrivalDateTime}</p>
+                  <h4 className="text-base font-bold text-slate-700">
                     {item.arrivalDescription}
                   </h4>
                 </div>

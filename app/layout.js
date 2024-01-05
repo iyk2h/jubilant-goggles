@@ -1,4 +1,4 @@
-import { Yeon_Sung, Nanum_Pen_Script } from "next/font/google";
+import { Yeon_Sung, Nanum_Pen_Script, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import MyHeader from "./components/MyHeader";
 import AirportInfosProvider from "./AirportProvider";
@@ -11,6 +11,11 @@ const yeonSung = Yeon_Sung({
 });
 
 const nanum_Pen_Script = Nanum_Pen_Script({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+const noto_Sans_KR = Noto_Sans_KR({
   weight: "400",
   subsets: ["latin"],
 });
@@ -38,7 +43,7 @@ export default function RootLayout({ children }) {
         `}
         </Script>
       </>
-      <body className={nanum_Pen_Script.className}>
+      <body>
         <AirportInfosProvider>
           <div className="container">
             <MyHeader headText="비행기 낮잠 가이드" />

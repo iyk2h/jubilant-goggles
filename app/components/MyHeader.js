@@ -7,7 +7,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
   const router = useRouter();
   const pathname = usePathname();
   return (
-    <div className="myHeader flex justify-center py-5 my-5 text-3xl font-bold">
+    <div className="myHeader flex justify-center py-5 my-5 text-2xl font-bold">
       <header className="flex w-full items-center">
         <div
           className="head_btn_left py-5 cursor-pointer"

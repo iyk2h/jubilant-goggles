@@ -5,6 +5,8 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
   const [query, setQuery] = useState("");
   const [filteredPeople, setFilteredPeople] = useState(data);
 
+  const [flag, setFlag] = useState(true);
+
   useEffect(() => {
     const querySlice = query.slice(0, 2);
     const updatedFilteredPeople =
@@ -23,6 +25,7 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
       updatedFilteredPeople.length === 1 &&
       updatedFilteredPeople[0].iata === querySlice
     ) {
+      setFlag(true);
       setCode(updatedFilteredPeople[0]);
       setNum(query.slice(2));
     }
@@ -45,7 +48,7 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
         <div className="relative mt-1 ">
           <div className="relative cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
             <Combobox.Input
-              className="outline-none border-none py-2 mx-2 w-12 text-base font-bold leading-5 text-gray-900 focus:ring-0 text-center"
+              className="outline-none border-none py-2 mx-2 text-base font-bold leading-5 text-gray-900 focus:ring-0 "
               displayValue={(person) => person.iata}
               onClick={() => {
                 setSelected({ iata: "" });
@@ -55,6 +58,9 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
 
                 let code = "";
                 let num = "";
+                if (inputValue.length === 1) {
+                  setFlag(false);
+                }
                 if (inputValue.length <= 2) {
                   code = inputValue.replace(/[^0-9a-zA-Z]/g, "").toUpperCase();
                 } else {
@@ -62,7 +68,9 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
                     .slice(0, 2)
                     .replace(/[^0-9a-zA-Z]/g, "")
                     .toUpperCase();
-                  num = inputValue.slice(2, 6).replace(/[^0-9]/g, "");
+                  if (flag) {
+                    num = inputValue.slice(2, 6).replace(/[^0-9]/g, "");
+                  }
                 }
 
                 event.target.value = code + num;
@@ -70,46 +78,50 @@ function SelectorAirportCode({ data, selected, setSelected, setCode, setNum }) {
               }}
             />
           </div>
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Combobox.Options className="absolute mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-20">
-              {query.length <= 2 &&
-              filteredPeople.length === 0 &&
-              query !== "" ? (
-                <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                  Nothing found.
-                </div>
-              ) : (
-                filteredPeople.map((person, index) => (
-                  <Combobox.Option
-                    key={index}
-                    className={({ active }) =>
-                      `relative cursor-default select-none py-2 pl-3 pr-4 ${
-                        active ? "bg-gray-300 text-black" : "text-gray-900"
-                      }`
-                    }
-                    value={person}
-                  >
-                    {({ selected, active }) => (
-                      <>
-                        <span
-                          className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
-                          }`}
-                        >
-                          {person.iata}
-                        </span>
-                      </>
-                    )}
-                  </Combobox.Option>
-                ))
-              )}
-            </Combobox.Options>
-          </Transition>
+          <div>
+            {query.length <= 2 && (
+              <Transition
+                as={Fragment}
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <Combobox.Options className="absolute mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-20">
+                  {query.length <= 2 &&
+                  filteredPeople.length === 0 &&
+                  query !== "" ? (
+                    <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                      Nothing found.
+                    </div>
+                  ) : (
+                    filteredPeople.map((person, index) => (
+                      <Combobox.Option
+                        key={index}
+                        className={({ active }) =>
+                          `relative cursor-default select-none py-2 pl-3 pr-4 ${
+                            active ? "bg-gray-300 text-black" : "text-gray-900"
+                          }`
+                        }
+                        value={person}
+                      >
+                        {({ selected, active }) => (
+                          <>
+                            <span
+                              className={`block truncate ${
+                                selected ? "font-medium" : "font-normal"
+                              }`}
+                            >
+                              {person.iata}
+                            </span>
+                          </>
+                        )}
+                      </Combobox.Option>
+                    ))
+                  )}
+                </Combobox.Options>
+              </Transition>
+            )}
+          </div>
         </div>
       </Combobox>
     </div>
