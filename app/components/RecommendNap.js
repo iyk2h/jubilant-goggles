@@ -11,6 +11,9 @@ import RecommendNapLayout from "./RecommendNapLayout";
 import { formatDate, getDiffTime, formatDateString } from "../utils/DateUtils";
 
 const RecommendNap = ({ airportInfos }) => {
+  const [showText, setShowText] = useState(false);
+  const [stopCaffein, setStopCaffein] = useState();
+
   const [recommendNapItems, setRecommendNapItems] = useState([]);
 
   useEffect(() => {
@@ -23,28 +26,67 @@ const RecommendNap = ({ airportInfos }) => {
 
         const departDateForm = formatDate(departureInfo);
         const arrivalDateForm = formatDate(arrivalInfo);
+
         const flightTime = getDiffTime(arrivalDateForm.diff(departDateForm));
-        const departEndDateForm = departDateForm.plus(flightTime);
+
         const arrivalStartDateForm = arrivalDateForm.minus(flightTime);
+        const departEndDateForm = departDateForm.plus(flightTime);
 
         const departStartDate = formatDateString(departDateForm);
-        const departNapStart = formatDateString(
-          departDateForm.plus({ hour: 1 })
-        );
-        const departNapEnd = formatDateString(
-          departEndDateForm.minus({ hour: 1 })
-        );
         const departEndDate = formatDateString(departEndDateForm);
         const arrivalStartDate = formatDateString(arrivalStartDateForm);
+        const arrivalEndDate = formatDateString(arrivalDateForm);
+
+        let startNap = "";
+        let endNap = "";
+        if (flightTime.minutes >= 300) {
+          // 비행시간 5시간 이상
+          if (arrivalDateForm.hour < 10 || arrivalDateForm.hour > 22) {
+            // Late night or early morning arrival
+            startNap = flightTime.minutes * 0.1;
+            endNap = flightTime.minutes * 0.9;
+          } else if (arrivalDateForm.hour >= 10 && arrivalDateForm.hour < 16) {
+            // Afternoon arrival
+            startNap = flightTime.minutes * 0.6;
+            endNap = flightTime.minutes * 0.9;
+          } else if (arrivalDateForm.hour >= 16 && arrivalDateForm.hour < 22) {
+            // Evening arrival
+            startNap = flightTime.minutes * 0.2;
+            endNap = flightTime.minutes * 0.5;
+          }
+        } else {
+          // 비행시간 5시간 이하
+          if (arrivalDateForm.hour < 12) {
+            // 오전 도착
+            startNap = flightTime.minutes * 0.1;
+            endNap = flightTime.minutes * 0.9;
+          } else {
+            // 오후 도착
+            startNap = flightTime.minutes * 0.1;
+            endNap = flightTime.minutes * 0.4;
+          }
+          console.log("min 5 hours flightTime", `${arrivalDateForm.hour}`);
+        }
+
+        if (index === 0) {
+          setStopCaffein(
+            formatDateString(
+              departDateForm.plus({ minutes: startNap }).minus({ hours: 8 })
+            )
+          );
+        }
+
+        const departNapStart = formatDateString(
+          departDateForm.plus({ minutes: startNap })
+        );
+        const departNapEnd = formatDateString(
+          departDateForm.plus({ minutes: endNap })
+        );
         const arrvalNapStart = formatDateString(
-          arrivalStartDateForm.plus({ hour: 1 })
+          arrivalStartDateForm.plus({ minutes: startNap })
         );
         const arrvalNapEnd = formatDateString(
-          arrivalDateForm.minus({ hour: 1 })
-        );
-        const arrivalEndDate = formatDateString(arrivalDateForm);
-        const stopCaffein = formatDateString(
-          arrivalStartDateForm.minus({ hours: 8 })
+          arrivalStartDateForm.plus({ minutes: endNap })
         );
 
         const info = {
@@ -53,16 +95,6 @@ const RecommendNap = ({ airportInfos }) => {
         };
 
         const recommendItems = [];
-
-        // if (index === 0) {
-        //   recommendItems.push({
-        //     departDateTime: stopCaffein,
-        //     departDescription: "지금부터 커피 금지",
-        //     arrivalDateTime: "",
-        //     arrivalDescription: "",
-        //     icon: <NoCoffee />,
-        //   });
-        // }
 
         recommendItems.push({
           departDateTime: departStartDate,
@@ -114,6 +146,22 @@ const RecommendNap = ({ airportInfos }) => {
             recommendItems={info.recommendItems}
           />
         ))}
+        <div
+          className="flex items-center my-2"
+          onClick={() => {
+            setShowText(!showText);
+          }}
+        >
+          <div className="cursor-pointer bg-slate-200 w-fit p-2 rounded-full m-2">
+            <NoCoffee />
+          </div>
+          {showText && (
+            <span className="ml-2 text-sm">
+              카페인에 예민하다면 <br />
+              출발 국가 기준 {stopCaffein} <br /> 부터 커피를 피하면 좋습니다.{" "}
+            </span>
+          )}
+        </div>
         <div className="text-xs text-right text-slate-400">
           icon by <a href="https://icons8.com">Icons8</a>
         </div>
