@@ -64,7 +64,6 @@ const RecommendNap = ({ airportInfos }) => {
             startNap = flightTime.minutes * 0.1;
             endNap = flightTime.minutes * 0.4;
           }
-          console.log("min 5 hours flightTime", `${arrivalDateForm.hour}`);
         }
 
         if (index === 0) {
