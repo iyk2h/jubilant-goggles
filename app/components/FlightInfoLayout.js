@@ -23,7 +23,7 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text }) => {
         </div>
         <div className="text-center w-1/5">
           <p className="text-xl mt-2"> ✈︎ </p>
-          <p className="text-base text-teal-900">{text}</p>
+          <p className="text-base font-bold text-teal-900">{text}</p>
         </div>
         <div className="text-center w-2/5">
           <p className="text-2xl">{arrivalAirportCode}</p>
