@@ -48,18 +48,18 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         }
 
         .head_text {
-          width: 60%;
+          width: 80%;
           color: #004d40;
           text-align: center;
         }
 
         .head_btn_left {
-          width: 20%;
+          width: 10%;
           justify-content: start;
         }
 
         .head_btn_right {
-          width: 20%;
+          width: 10%;
           justify-content: end;
         }
       `}</style>
