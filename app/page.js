@@ -75,7 +75,7 @@ export default function Home() {
       ) : (
         <>
           <div
-            className={`py-8 px-5 m-2 text-center text-base bg-gray-100 rounded-xl`}
+            className={`py-8 m-2 text-center text-base bg-gray-100 rounded-xl`}
           >
             아래 버튼을 클릭해 여행을 등록해보세요. <br />
             여행 별 낮잠 추천을 받을 수 있습니다.
