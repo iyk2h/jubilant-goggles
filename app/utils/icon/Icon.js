@@ -10,18 +10,11 @@ export function NoCoffee() {
 }
 
 export function SleepIcon() {
-  return (
-    <img
-      width="30"
-      height="30"
-      src="/icons8-crescent-moon.png"
-      alt="crescent-moon"
-    />
-  );
+  return <img width="28" height="28" src="/icons8-sleep.png" />;
 }
 
 export function WakeUpIcon() {
-  return <img width="40" height="40" src="/icons8-sun.png" alt="sun--v1" />;
+  return <img width="32" height="32" src="/icons8-wake-up.png" />;
 }
 
 export function AirplaneDepartIcon({ id }) {

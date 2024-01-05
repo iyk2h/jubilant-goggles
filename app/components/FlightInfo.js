@@ -52,6 +52,7 @@ const FlightInfo = ({ addFlight }) => {
     setKey(key);
 
     if (responses[key]) {
+      console.log("reson key : ", key);
       return;
     }
 

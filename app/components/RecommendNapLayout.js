@@ -12,6 +12,9 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
             <div className="rotate-90 origin-center pt-20 text-7xl text-white text-center whitespace-nowrap">
               {info.departCity}
             </div>
+            <div className="absolute z-1 text-xs font-bold top-0 mt-8 ml-10">
+              출발국가 시간
+            </div>
           </div>
 
           <div
@@ -19,6 +22,9 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
           >
             <div className="rotate-90 origin-center pb-20 text-7xl text-white whitespace-nowrap">
               {info.arrivalCity}
+            </div>
+            <div className="absolute z-1 text-xs font-bold top-0 mt-8 mr-10">
+              도착국가 시간
             </div>
           </div>
 
@@ -29,18 +35,46 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
           >
             {recommendItems.map((item, index) => (
               <li key={index} role="article" className="flex gap-2 mt-5">
-                <div className="flex flex-col w-28 text-right">
-                  <p className="text-xs font-bold">{item.departDateTime}</p>
-                  <h4 className="text-base font-bold text-slate-700">
+                <div
+                  className={`flex flex-col w-28 text-right ${
+                    index === 1 || index === 2 ? "font-bold" : ""
+                  }`}
+                >
+                  <p
+                    className={`text-xs ${
+                      index === 1 || index === 2 ? "font-bold" : ""
+                    }`}
+                  >
+                    {item.departDateTime}
+                  </p>
+                  <h4
+                    className={`text-base ${
+                      index === 1 || index === 2 ? "font-bold" : ""
+                    } text-slate-700`}
+                  >
                     {item.departDescription}
                   </h4>
                 </div>
-                <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white ">
+                <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white">
                   <p className="">{item.icon}</p>
                 </span>
-                <div className="flex flex-col gap-0 w-28">
-                  <p className="text-xs font-bold">{item.arrivalDateTime}</p>
-                  <h4 className="text-base font-bold text-slate-700">
+                <div
+                  className={`flex flex-col gap-0 w-28 ${
+                    index === 1 || index === 2 ? "font-bold" : ""
+                  }`}
+                >
+                  <p
+                    className={`text-xs ${
+                      index === 1 || index === 2 ? "font-bold" : ""
+                    }`}
+                  >
+                    {item.arrivalDateTime}
+                  </p>
+                  <h4
+                    className={`text-base ${
+                      index === 1 || index === 2 ? "font-bold" : ""
+                    } text-slate-700`}
+                  >
                     {item.arrivalDescription}
                   </h4>
                 </div>
