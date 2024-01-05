@@ -130,7 +130,7 @@ const FlightInfo = ({ addFlight }) => {
             <h2 className="text-xl font-bold text-teal-900">출발 날짜</h2>
             <div>
               <input
-                className="text-base font-bold bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
+                className="text-base bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
                 type="date"
                 value={departureDate}
                 min={today}
