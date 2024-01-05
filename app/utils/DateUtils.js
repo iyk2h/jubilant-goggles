@@ -1,4 +1,4 @@
-const { DateTime } = require("luxon");
+const { DateTime, Locale } = require("luxon");
 
 export const removeHyphens = (inputDate) => {
   return inputDate.replace(/-/g, "");
@@ -21,13 +21,17 @@ export const getDiffTime = (diff) => {
 };
 
 export const formatDateString = (dateTime) => {
-  return dateTime.toFormat("hh:mm a, LLL dd");
+  return dateTime
+    .toFormat("M월 d일, a h:mm")
+    .replace("AM", "오전")
+    .replace("PM", "오후");
 };
 
 export const formatStrS = (input) => {
-  return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a").toFormat(
-    "hh:mm a, LLL dd"
-  );
+  return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a")
+    .toFormat("M월 d일, a h:mm")
+    .replace("AM", "오전")
+    .replace("PM", "오후");
 };
 
 export const nowDate = () => {

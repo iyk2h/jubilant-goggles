@@ -11,7 +11,6 @@ import RecommendNapLayout from "./RecommendNapLayout";
 import { formatDate, getDiffTime, formatDateString } from "../utils/DateUtils";
 
 const RecommendNap = ({ airportInfos }) => {
-  const [showText, setShowText] = useState(false);
   const [stopCaffein, setStopCaffein] = useState();
 
   const [recommendNapItems, setRecommendNapItems] = useState([]);
@@ -146,22 +145,18 @@ const RecommendNap = ({ airportInfos }) => {
             recommendItems={info.recommendItems}
           />
         ))}
-        <div
-          className="flex items-center my-2"
-          onClick={() => {
-            setShowText(!showText);
-          }}
-        >
-          <div className="cursor-pointer bg-slate-200 w-fit p-2 rounded-full m-2">
-            <NoCoffee />
-          </div>
-          {showText && (
+        {stopCaffein && (
+          <div className="flex items-center my-2">
+            <div className="bg-slate-200 w-fit p-2 rounded-full m-2">
+              <NoCoffee />
+            </div>
             <span className="ml-2 text-sm">
-              카페인에 예민하다면 <br />
-              출발 국가 기준 {stopCaffein} <br /> 부터 커피를 피하면 좋습니다.{" "}
+              출발 국가 기준
+              <br />
+              {stopCaffein} 부터 커피는 피하세요!
             </span>
-          )}
-        </div>
+          </div>
+        )}
         <div className="text-xs text-right text-slate-400">
           icon by <a href="https://icons8.com">Icons8</a>
         </div>

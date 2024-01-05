@@ -1,6 +1,6 @@
 const RecommendNapLayout = ({ idx, info, recommendItems }) => {
-  const bg_l = idx % 2 === 0 ? "bg-slate-300" : "bg-slate-200";
-  const bg_r = idx % 2 === 0 ? "bg-slate-200" : "bg-slate-300";
+  const bg_l = idx % 2 === 0 ? "bg-slate-200" : "bg-slate-100";
+  const bg_r = idx % 2 === 0 ? "bg-slate-100" : "bg-slate-200";
 
   return (
     <>
