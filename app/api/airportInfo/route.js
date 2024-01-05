@@ -17,9 +17,11 @@ export async function POST(req) {
   if (airline && flightNumber && date) {
     const parseUrl = `https://www.flightview.com/flight-tracker/${airline}/${flightNumber}?date=${date}`;
 
+    const key = `${date}_${airline}${flightNumber}`;
+
     try {
       // Use lowercase 'json' here
-      const response = await stopover(parseUrl);
+      const response = await stopover(key, parseUrl);
 
       // Check if response is valid
       if (response !== null && response) {

@@ -1,12 +1,14 @@
+import { kv } from "@vercel/kv";
+
 const cheerio = require("cheerio");
 const axios = require("axios");
 const { crawl } = require("./Craw");
 
-const cache = {};
-
-const stopover = async (url) => {
-  if (cache[url] !== undefined) {
-    return cache[url];
+const stopover = async (key, url) => {
+  const session = await kv.get(key);
+  if (session !== null) {
+    console.log("kv : ", key);
+    return session;
   }
 
   try {
@@ -37,7 +39,7 @@ const stopover = async (url) => {
         })
       );
     }
-    cache[url] = results;
+    await kv.set(key, results);
     console.log("stopover craw result : ", results);
     return results;
   } catch (error) {
