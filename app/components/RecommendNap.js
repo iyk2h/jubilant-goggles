@@ -161,11 +161,12 @@ const RecommendNap = ({ airportInfos }) => {
             {locale === "ko" ? (
               <span className="ml-2 text-sm">
                 {t("no_coffee_msg_1")}
-                <br />"{stopCaffein}" {t("no_coffee_msg_2")}
+                <br />
+                {stopCaffein} {t("no_coffee_msg_2")}
               </span>
             ) : (
               <span className="ml-2 text-sm">
-                {t("no_coffee_msg_1")} "{stopCaffein}"
+                {t("no_coffee_msg_1")} {stopCaffein}
                 <br /> {t("no_coffee_msg_2")}
               </span>
             )}
