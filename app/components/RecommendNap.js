@@ -9,8 +9,12 @@ import {
 } from "../utils/icon/Icon";
 import RecommendNapLayout from "./RecommendNapLayout";
 import { formatDate, getDiffTime, formatDateString } from "../utils/DateUtils";
+import { useTranslations, useLocale } from "next-intl";
 
 const RecommendNap = ({ airportInfos }) => {
+  const t = useTranslations("Result");
+  const locale = useLocale();
+
   const [stopCaffein, setStopCaffein] = useState();
 
   const [recommendNapItems, setRecommendNapItems] = useState([]);
@@ -31,10 +35,10 @@ const RecommendNap = ({ airportInfos }) => {
         const arrivalStartDateForm = arrivalDateForm.minus(flightTime);
         const departEndDateForm = departDateForm.plus(flightTime);
 
-        const departStartDate = formatDateString(departDateForm);
-        const departEndDate = formatDateString(departEndDateForm);
-        const arrivalStartDate = formatDateString(arrivalStartDateForm);
-        const arrivalEndDate = formatDateString(arrivalDateForm);
+        const departStartDate = formatDateString(departDateForm, locale);
+        const departEndDate = formatDateString(departEndDateForm, locale);
+        const arrivalStartDate = formatDateString(arrivalStartDateForm, locale);
+        const arrivalEndDate = formatDateString(arrivalDateForm, locale);
 
         let startNap = "";
         let endNap = "";
@@ -69,22 +73,27 @@ const RecommendNap = ({ airportInfos }) => {
         if (index === 0) {
           setStopCaffein(
             formatDateString(
-              departDateForm.plus({ minutes: startNap }).minus({ hours: 8 })
+              departDateForm.plus({ minutes: startNap }).minus({ hours: 8 }),
+              locale
             )
           );
         }
 
         const departNapStart = formatDateString(
-          departDateForm.plus({ minutes: startNap })
+          departDateForm.plus({ minutes: startNap }),
+          locale
         );
         const departNapEnd = formatDateString(
-          departDateForm.plus({ minutes: endNap })
+          departDateForm.plus({ minutes: endNap }),
+          locale
         );
         const arrvalNapStart = formatDateString(
-          arrivalStartDateForm.plus({ minutes: startNap })
+          arrivalStartDateForm.plus({ minutes: startNap }),
+          locale
         );
         const arrvalNapEnd = formatDateString(
-          arrivalStartDateForm.plus({ minutes: endNap })
+          arrivalStartDateForm.plus({ minutes: endNap }),
+          locale
         );
 
         const info = {
@@ -96,7 +105,7 @@ const RecommendNap = ({ airportInfos }) => {
 
         recommendItems.push({
           departDateTime: departStartDate,
-          departDescription: "출발",
+          departDescription: t("departure"),
           arrivalDateTime: arrivalStartDate,
           arrivalDescription: "",
           icon: <AirplaneDepartIcon />,
@@ -106,7 +115,7 @@ const RecommendNap = ({ airportInfos }) => {
           departDateTime: departNapStart,
           departDescription: "",
           arrivalDateTime: arrvalNapStart,
-          arrivalDescription: "낮잠!",
+          arrivalDescription: t("nap"),
           icon: <SleepIcon />,
         });
 
@@ -114,7 +123,7 @@ const RecommendNap = ({ airportInfos }) => {
           departDateTime: departNapEnd,
           departDescription: "",
           arrivalDateTime: arrvalNapEnd,
-          arrivalDescription: "기상!",
+          arrivalDescription: t("wake_up"),
           icon: <WakeUpIcon />,
         });
 
@@ -122,7 +131,7 @@ const RecommendNap = ({ airportInfos }) => {
           departDateTime: departEndDate,
           departDescription: "",
           arrivalDateTime: arrivalEndDate,
-          arrivalDescription: "도착!",
+          arrivalDescription: t("arrival"),
           icon: <AirplaneArrivalIcon />,
         });
 
@@ -149,16 +158,19 @@ const RecommendNap = ({ airportInfos }) => {
             <div className="bg-slate-200 w-fit p-2 rounded-full m-2">
               <NoCoffee />
             </div>
-            <span className="ml-2 text-sm">
-              출발 국가 기준
-              <br />
-              {stopCaffein} 부터 커피는 피하세요!
-            </span>
+            {locale === "ko" ? (
+              <span className="ml-2 text-sm">
+                {t("no_coffee_msg_1")}
+                <br />"{stopCaffein}" {t("no_coffee_msg_2")}
+              </span>
+            ) : (
+              <span className="ml-2 text-sm">
+                {t("no_coffee_msg_1")} "{stopCaffein}"
+                <br /> {t("no_coffee_msg_2")}
+              </span>
+            )}
           </div>
         )}
-        <div className="text-xs text-right text-slate-400">
-          icon by <a href="https://icons8.com">Icons8</a>
-        </div>
       </div>
     </>
   );

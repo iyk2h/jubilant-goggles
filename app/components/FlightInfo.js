@@ -9,6 +9,7 @@ import { getDateForCalender, removeHyphens } from "../utils/DateUtils";
 import FlightInfoLayout from "./FlightInfoLayout";
 import FlightHistoryLayout from "./FlightHistoryLayout";
 import { LoadingIcon } from "../utils/icon/Icon";
+import { useTranslations } from "next-intl";
 
 const nanum_Gothic_Coding = Nanum_Gothic_Coding({
   weight: "400",
@@ -16,6 +17,7 @@ const nanum_Gothic_Coding = Nanum_Gothic_Coding({
 });
 
 const FlightInfo = ({ addFlight }) => {
+  const t = useTranslations("AddFlight");
   const flightNumRef = useRef();
 
   const today = getDateForCalender();
@@ -37,12 +39,7 @@ const FlightInfo = ({ addFlight }) => {
   }, [departureDate, airlineCode, flightNumber]);
 
   const setErrorMessage = () => {
-    setError(
-      <>
-        비행 정보가 없습니다.
-        <br /> 날짜와 Flight Number를 다시 확인해주세요.
-      </>
-    );
+    setError(<>{t("notFound_air_info")}</>);
   };
 
   const getFlightInfo = async () => {
@@ -127,7 +124,7 @@ const FlightInfo = ({ addFlight }) => {
       <div>
         <section>
           <div className="pl-4">
-            <h2 className="text-xl font-bold text-teal-900">출발 날짜</h2>
+            <h2 className="text-xl font-bold text-teal-900">{t("date")}</h2>
             <div>
               <input
                 className="text-base bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
@@ -145,7 +142,7 @@ const FlightInfo = ({ addFlight }) => {
         <section className="flex justify-between">
           <div className="pl-4">
             <h2 className="text-xl font-bold text-teal-900 pt-2 mt-1">
-              Flight Number
+              {t("flightNum")}
             </h2>
             <div className={nanum_Gothic_Coding.className}>
               <div className=" w-20 flex flex-wrap justify-center bg-gray-200 rounded-lg p-1">
@@ -185,7 +182,7 @@ const FlightInfo = ({ addFlight }) => {
                             flightInfo
                           );
                         }}
-                        text="선택"
+                        text={t("select")}
                       />
                     )}
                   </div>
@@ -202,10 +199,10 @@ const FlightInfo = ({ addFlight }) => {
           {history.length > 0 ? (
             <div>
               <FlightHistoryLayout
-                title={"최근 조회 내역"}
+                title={t("recent_view_list")}
                 history={history}
                 onConfirm={addResponse}
-                onClickTitle={"선택"}
+                onClickTitle={t("select")}
               />
             </div>
           ) : (

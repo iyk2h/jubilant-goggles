@@ -1,6 +1,6 @@
 "use client";
 
-import { LoadingIcon } from "./utils/icon/Icon";
+import { LoadingIcon } from "../utils/icon/Icon";
 
 export default function Loading() {
   return (

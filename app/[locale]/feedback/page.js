@@ -1,5 +1,3 @@
-"use client";
-
 export default function FeedBack() {
   return (
     <div className="flex justify-center mb-20">

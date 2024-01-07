@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { createContext, useState, useMemo, useContext } from "react";
-import { formatStringToDate } from "../utils/DateUtils";
+import { formatStringToDate } from "../../utils/DateUtils";
 
 const FlightsValueContext = createContext();
 const FlightsActionsContext = createContext();

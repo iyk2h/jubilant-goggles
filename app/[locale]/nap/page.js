@@ -1,7 +1,7 @@
 "use client";
 
 import { useAirportInfosValue } from "../AirportProvider";
-import RecommendNap from "../components/RecommendNap";
+import RecommendNap from "../../components/RecommendNap";
 import { useRouter } from "next/navigation";
 
 import { useEffect } from "react";

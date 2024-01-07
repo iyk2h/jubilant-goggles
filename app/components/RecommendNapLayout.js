@@ -1,4 +1,8 @@
+import { useTranslations } from "next-intl";
+
 const RecommendNapLayout = ({ idx, info, recommendItems }) => {
+  const t = useTranslations("Result");
+
   const bg_l = idx % 2 === 0 ? "bg-slate-200" : "bg-slate-100";
   const bg_r = idx % 2 === 0 ? "bg-slate-100" : "bg-slate-200";
 
@@ -13,7 +17,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
               {info.departCity}
             </div>
             <div className="absolute z-1 text-xs font-bold top-0 mt-8 ml-10">
-              출발국가 시간
+              {t("departure_country_time")}
             </div>
           </div>
 
@@ -24,7 +28,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
               {info.arrivalCity}
             </div>
             <div className="absolute z-1 text-xs font-bold top-0 mt-8 mr-10">
-              도착국가 시간
+              {t("arrival_country_time")}
             </div>
           </div>
 

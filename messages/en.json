@@ -1,0 +1,36 @@
+{
+  "Head": {
+    "title": "Sky Nap Guide"
+  },
+  "Home": {
+    "guide_msg_1": "Get customized nap recommendations",
+    "guide_msg_2": "and get over jet lag by your trip now!",
+    "addTravel": "Add a Trip",
+    "deleteAll": "Are you sure you want to delete the all trip?"
+  },
+  "Flights": {
+    "flights": "Seleted Flights",
+    "add_flight": "Add a Flight",
+    "cancel": "Cancel",
+    "done": "Done",
+    "empty_flight": "Please add a flight.",
+    "duplicate_travel": "Duplicate trip. Please check again."
+  },
+  "AddFlight": {
+    "date": "Departure Date",
+    "flightNum": "Flight Number",
+    "notFound_air_info": "No flight information found. Please double-check the date and flight number.",
+    "recent_view_list": "Recent Views",
+    "select": "Select"
+  },
+  "Result": {
+    "departure_country_time": "Departure Time Zone",
+    "arrival_country_time": "Arrival Time Zone",
+    "departure": "Departure",
+    "nap": "Nap!",
+    "wake_up": "Wake Up!",
+    "arrival": "Arrival!",
+    "no_coffee_msg_1": "Avoid coffee from ",
+    "no_coffee_msg_2": "based on the departure time zone!"
+  }
+}

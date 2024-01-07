@@ -20,14 +20,22 @@ export const getDiffTime = (diff) => {
   };
 };
 
-export const formatDateString = (dateTime) => {
+export const formatDateString = (dateTime, locale) => {
+  if (locale !== "ko") {
+    return dateTime.toFormat("LLL dd, h:mm a");
+  }
   return dateTime
     .toFormat("M월 d일, a h:mm")
     .replace("AM", "오전")
     .replace("PM", "오후");
 };
 
-export const formatStrS = (input) => {
+export const formatStrS = (input, locale) => {
+  if (locale !== "ko") {
+    return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a").toFormat(
+      "LLL dd, h:mm a"
+    );
+  }
   return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a")
     .toFormat("M월 d일, a h:mm")
     .replace("AM", "오전")

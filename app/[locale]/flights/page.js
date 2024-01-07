@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useFlightsActions, useFlightsValue } from "./layout";
-import { getAirportInfos } from "../api/airportInfo/AirportInfo";
-import FlightHistoryLayout from "../components/FlightHistoryLayout";
-import MyButton from "../components/MyButton";
+import { getAirportInfos } from "../../api/airportInfo/AirportInfo";
+import FlightHistoryLayout from "../../components/FlightHistoryLayout";
+import MyButton from "../../components/MyButton";
 import { useAirportInfosActions } from "../AirportProvider";
-import { LoadingIcon } from "../utils/icon/Icon";
+import { LoadingIcon } from "../../utils/icon/Icon";
+import { useTranslations } from "next-intl";
 
 export default function Flights() {
+  const t = useTranslations("Flights");
   const router = useRouter();
   const flights = useFlightsValue();
 
@@ -31,7 +33,7 @@ export default function Flights() {
 
   const confirmHandle = async () => {
     if (flights.length === 0) {
-      alert("비행을 추가해 주세요.");
+      alert(t("empty_flight"));
       return;
     }
 
@@ -46,7 +48,7 @@ export default function Flights() {
       .join(" -> ")}_${airport[flights.length - 1].arrivalInfo.city}`;
 
     if (hasDuplicate(airportInfos, key)) {
-      alert("중복된 여행입니다. 다시 확인해주세요.");
+      alert(t("duplicate_travel"));
       setLoadings(false);
       return;
     }
@@ -91,14 +93,14 @@ export default function Flights() {
             <div>
               {flights.length > 1 ? (
                 <FlightHistoryLayout
-                  title="flights"
+                  title={t("flights")}
                   history={flights}
                   onConfirm={removeFlight}
                   onClickTitle={"삭제"}
                 />
               ) : (
                 <FlightHistoryLayout
-                  title="flights"
+                  title={t("flights")}
                   history={flights}
                   onConfirm={() => {}}
                 />
@@ -111,7 +113,7 @@ export default function Flights() {
               className="bg-gray-100 text-center py-3 my-3 rounded-xl text-lg cursor-pointer"
               onClick={addFlight}
             >
-              비행 추가 하기
+              {t("add_flight")}
             </div>
           )}
         </section>
@@ -125,10 +127,10 @@ export default function Flights() {
           ) : (
             <div className="flex justify-between my-3">
               <div className="flex items-start">
-                <MyButton text="취소" onClick={cancelHandle} />
+                <MyButton text={t("cancel")} onClick={cancelHandle} />
               </div>
               <div className="flex items-end">
-                <MyButton text="확인" onClick={confirmHandle} />
+                <MyButton text={t("done")} onClick={confirmHandle} />
               </div>
             </div>
           )}

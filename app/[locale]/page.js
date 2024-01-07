@@ -1,18 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AirplaneDepartIcon, PlusIcon, TrashIcon } from "./utils/icon/Icon";
+import { TrashIcon } from "../utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
-import { formatStrS, nowDate, formatDate } from "./utils/DateUtils";
-import { Yeon_Sung } from "next/font/google";
-
-const yeonSung = Yeon_Sung({
-  weight: "400",
-  subsets: ["latin"],
-});
+import { formatStrS, nowDate, formatDate } from "../utils/DateUtils";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Home() {
+  const t = useTranslations("Home");
+  const local = useLocale();
   const router = useRouter();
 
   const [airportInfos, setAirports] = useState([]);
@@ -46,9 +43,12 @@ export default function Home() {
   };
 
   const clearAirportHistory = () => {
-    localStorage.removeItem("airportInfos");
-    setAirports([]);
-    router.refresh();
+    const isConfirmed = window.confirm(t("deleteAll"));
+    if (isConfirmed) {
+      localStorage.removeItem("airportInfos");
+      setAirports([]);
+      router.refresh();
+    }
   };
 
   return (
@@ -66,7 +66,7 @@ export default function Home() {
                 <>
                   {info.key.split("_")[2]}
                   <br />
-                  {formatStrS(info.key.split("_")[0])}
+                  {formatStrS(info.key.split("_")[0], local)}
                 </>
               </div>
             );
@@ -77,22 +77,13 @@ export default function Home() {
           <div
             className={`py-8 m-2 text-center text-base bg-gray-100 rounded-xl`}
           >
-            아래 버튼을 클릭해 여행을 등록해보세요. <br />
-            여행 별 낮잠 추천을 받을 수 있습니다.
+            <p>{t("guide_msg_1")}</p>
+            <p>{t("guide_msg_2")}</p>
           </div>
         </>
       )}
 
       <div className="flex justify-between m-5  mx-20  mb-20">
-        {airportInfos.length !== 0 && (
-          <div
-            id="clear_airport_his"
-            className="flex justify-center items-center w-10 bg-gray-300 rounded-xl mx-1 px-1 cursor-pointer"
-            onClick={clearAirportHistory}
-          >
-            <TrashIcon />
-          </div>
-        )}
         <div
           id="add_flight"
           className="flex justify-center w-full bg-gray-300 rounded-xl p-2 cursor-pointer"
@@ -104,14 +95,18 @@ export default function Home() {
             id="add_flight_icons"
             className="flex justify-normal items-center"
           >
-            <div>
-              <AirplaneDepartIcon id={"add_flight_icons_airport_img"} />
-            </div>
-            <div>
-              <PlusIcon id={"add_flight_icons_plus"} />
-            </div>
+            <div id="add_flight_msg">{t("addTravel")}</div>
           </div>
         </div>
+        {airportInfos.length !== 0 && (
+          <div
+            id="clear_airport_his"
+            className="flex justify-center items-center w-10 bg-gray-300 rounded-xl mx-1 px-1 cursor-pointer"
+            onClick={clearAirportHistory}
+          >
+            <TrashIcon />
+          </div>
+        )}
       </div>
     </div>
   );
