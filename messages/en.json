@@ -1,12 +1,12 @@
 {
   "Head": {
-    "title": "Sky Nap Guide"
+    "title": "LagLess"
   },
   "Home": {
     "guide_msg_1": "Get customized nap recommendations",
-    "guide_msg_2": "and get over jet lag by your trip now!",
-    "addTravel": "Add a Trip",
-    "deleteAll": "Are you sure you want to delete the all trip?"
+    "guide_msg_2": "and get over jet lag by your travel now!",
+    "addTravel": "Add a Travel",
+    "deleteAll": "Are you sure you want to delete the all travel?"
   },
   "Flights": {
     "flights": "Seleted Flights",
@@ -14,7 +14,7 @@
     "cancel": "Cancel",
     "done": "Done",
     "empty_flight": "Please add a flight.",
-    "duplicate_travel": "Duplicate trip. Please check again."
+    "duplicate_travel": "Duplicate travel. Please check again."
   },
   "AddFlight": {
     "date": "Departure Date",

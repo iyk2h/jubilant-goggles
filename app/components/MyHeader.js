@@ -2,18 +2,20 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { BackIcon, ChatIcon } from "../utils/icon/Icon";
+import { useLocale } from "next-intl";
 
 export default function MyHeader({ headText, leftChild, rightChild }) {
   const router = useRouter();
   const pathname = usePathname();
+  const locale = useLocale();
   return (
-    <div className="myHeader flex justify-center py-5 my-5 text-2xl font-bold">
+    <div className="myHeader flex justify-center py-5 text-2xl font-bold">
       <header className="flex w-full items-center">
         <div
           className="head_btn_left py-5 cursor-pointer"
           onClick={router.back}
         >
-          {pathname === "/" ? (
+          {pathname === `/${locale}` ? (
             <></>
           ) : (
             <div className="flex justify-center">
@@ -23,7 +25,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         </div>
         <div
           className="head_text py-5 cursor-pointer"
-          onClick={() => router.push("/")}
+          onClick={() => router.push(`/${locale}`)}
         >
           {headText}
         </div>
