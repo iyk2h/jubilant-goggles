@@ -12,11 +12,13 @@ export function NoCoffee() {
 }
 
 export function SleepIcon() {
-  return <Image width={28} height={28} src="/icons8-sleep.png" />;
+  return <Image width={28} height={28} src="/icons8-sleep.png" alt="sleep" />;
 }
 
 export function WakeUpIcon() {
-  return <Image width={32} height={32} src="/icons8-wake-up.png" />;
+  return (
+    <Image width={32} height={32} src="/icons8-wake-up.png" alt="wake-up" />
+  );
 }
 
 export function AirplaneDepartIcon({ id }) {
@@ -85,5 +87,5 @@ export function DropdownIcon() {
 }
 
 export function CheckIcon() {
-  return <Image width={20} height={20} src="/icons8-check.png" alt="check" />;
+  return <Image width={25} height={0} src="/icons8-check.png" alt="check" />;
 }
