@@ -9,7 +9,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
   const pathname = usePathname();
   const locale = useLocale();
   return (
-    <div className="myHeader flex justify-center py-5 text-2xl font-bold">
+    <div className="myHeader flex justify-center py-2 text-2xl mb-4 font-bold">
       <header className="flex w-full items-center">
         <div
           className="head_btn_left py-5 cursor-pointer"
@@ -51,7 +51,6 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
 
         .head_text {
           width: 80%;
-          color: #004d40;
           text-align: center;
         }
 

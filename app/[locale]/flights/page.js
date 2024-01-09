@@ -86,7 +86,7 @@ export default function Flights() {
   };
 
   return (
-    <div className="px-4">
+    <div className="px-2">
       <>
         <section>
           {flights.length > 0 && (
@@ -110,7 +110,7 @@ export default function Flights() {
 
           {flights.length <= 3 && (
             <div
-              className="bg-gray-100 text-center py-3 my-3 rounded-xl text-lg cursor-pointer"
+              className="bg-gray-100 text-center py-3 my-2 rounded-xl text-lg cursor-pointer"
               onClick={addFlight}
             >
               {t("add_flight")}

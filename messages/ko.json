@@ -20,6 +20,7 @@
     "date": "출발 날짜",
     "flightNum": "항공편(Flight Number)",
     "notFound_air_info": "비행 정보가 없습니다. 날짜와 항공편을 다시 확인해주세요.",
+    "search_new_air_info": "새로운 비행 조회",
     "recent_view_list": "최근 조회 내역",
     "select": "선택"
   },

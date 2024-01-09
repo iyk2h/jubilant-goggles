@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FlightInfoDisplay from "./FlightInfoLayout";
 import MyButton from "./MyButton";
 
-const FlightHistoryLayout = ({ title, history, onConfirm, onClickTitle }) => {
+const FlightHistoryLayout = ({ history, onConfirm, onClickTitle }) => {
   const gap = 4;
 
   const [visibleItems, setVisibleItems] = useState(0);
@@ -20,7 +20,6 @@ const FlightHistoryLayout = ({ title, history, onConfirm, onClickTitle }) => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-teal-900">{title}</h2>
       {history.slice(visibleItems, visibleItems + gap).map((info, index) => (
         <div className="py-2" key={index}>
           <FlightInfoDisplay

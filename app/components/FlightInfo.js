@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import airlines from "../data/airlines.json";
@@ -7,7 +7,6 @@ import SelectorAirportCode from "../components/SelectorAirportCode";
 import { Nanum_Gothic_Coding } from "next/font/google";
 import { getDateForCalender, removeHyphens } from "../utils/DateUtils";
 import FlightInfoLayout from "./FlightInfoLayout";
-import FlightHistoryLayout from "./FlightHistoryLayout";
 import { LoadingIcon } from "../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 
@@ -18,7 +17,6 @@ const nanum_Gothic_Coding = Nanum_Gothic_Coding({
 
 const FlightInfo = ({ addFlight }) => {
   const t = useTranslations("AddFlight");
-  const flightNumRef = useRef();
 
   const today = getDateForCalender();
 
@@ -90,41 +88,12 @@ const FlightInfo = ({ addFlight }) => {
     });
   };
 
-  const [history, setHistory] = useState([]);
-
-  useEffect(() => {
-    const storedHistory = localStorage.getItem("flightHistory");
-    if (storedHistory) {
-      const parsedHistory = JSON.parse(storedHistory);
-      const today = new Date();
-
-      const filteredHistory = parsedHistory.filter((item) => {
-        const keyDate = new Date(
-          item.key.substring(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
-        );
-        return keyDate >= today;
-      });
-
-      setHistory(filteredHistory);
-    }
-  }, []);
-
-  const addResponse = (key, response) => {
-    addFlight(key, response);
-
-    const updatedFlights = history.filter((item) => item.key !== key);
-    const newHistory = [{ key, response }, ...updatedFlights.slice(0, 11)];
-
-    localStorage.setItem("flightHistory", JSON.stringify(newHistory));
-    setHistory(newHistory);
-  };
-
   return (
     <div>
       <div>
         <section>
-          <div className="pl-4">
-            <h2 className="text-xl font-bold text-teal-900">{t("date")}</h2>
+          <div className="pl-2">
+            <h2 className="text-xl font-bold">{t("date")}</h2>
             <div>
               <input
                 className="text-base bg-gray-200 rounded-lg px-2 py-1 cursor-pointer"
@@ -140,10 +109,8 @@ const FlightInfo = ({ addFlight }) => {
         </section>
 
         <section className="flex justify-between">
-          <div className="pl-4">
-            <h2 className="text-xl font-bold text-teal-900 pt-2 mt-1">
-              {t("flightNum")}
-            </h2>
+          <div className="pl-2">
+            <h2 className="text-xl font-bold pt-2 mt-1">{t("flightNum")}</h2>
             <div className={nanum_Gothic_Coding.className}>
               <div className=" w-20 flex flex-wrap justify-center bg-gray-200 rounded-lg p-1">
                 <div className="w-20 h-10 px-2">
@@ -168,7 +135,7 @@ const FlightInfo = ({ addFlight }) => {
             </div>
           </div>
         ) : (
-          <div className="pt-4">
+          <div className="">
             {responses[key] && responses[key].length !== 0 ? (
               <div>
                 {responses[key].map((flightInfo, index) => (
@@ -177,7 +144,7 @@ const FlightInfo = ({ addFlight }) => {
                       <FlightInfoLayout
                         flightInfo={flightInfo}
                         onConfirm={() => {
-                          addResponse(
+                          addFlight(
                             key + "_" + flightInfo.arrivalAirportCode,
                             flightInfo
                           );
@@ -195,20 +162,6 @@ const FlightInfo = ({ addFlight }) => {
             )}
           </div>
         )}
-        <section className="py-4">
-          {history.length > 0 ? (
-            <div>
-              <FlightHistoryLayout
-                title={t("recent_view_list")}
-                history={history}
-                onConfirm={addResponse}
-                onClickTitle={t("select")}
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-        </section>
       </div>
     </div>
   );

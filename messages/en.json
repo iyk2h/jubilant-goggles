@@ -20,6 +20,7 @@
     "date": "Departure Date",
     "flightNum": "Flight Number",
     "notFound_air_info": "No flight information found. Please double-check the date and flight number.",
+    "search_new_air_info": "New Flight Search",
     "recent_view_list": "Recent Views",
     "select": "Select"
   },
