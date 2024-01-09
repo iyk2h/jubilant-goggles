@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 export function NoCoffee() {
   return (
-    <img
-      width="30"
-      height="30"
+    <Image
+      width={30}
+      height={30}
       src="/icons8-no-beverages.png"
       alt="no-beverages"
     />
@@ -10,19 +12,19 @@ export function NoCoffee() {
 }
 
 export function SleepIcon() {
-  return <img width="28" height="28" src="/icons8-sleep.png" />;
+  return <Image width={28} height={28} src="/icons8-sleep.png" />;
 }
 
 export function WakeUpIcon() {
-  return <img width="32" height="32" src="/icons8-wake-up.png" />;
+  return <Image width={32} height={32} src="/icons8-wake-up.png" />;
 }
 
 export function AirplaneDepartIcon({ id }) {
   return (
-    <img
+    <Image
       id={id}
-      width="30"
-      height="30"
+      width={30}
+      height={30}
       src="/icons8-flight.png"
       alt="airplane-take-off"
     />
@@ -31,9 +33,9 @@ export function AirplaneDepartIcon({ id }) {
 
 export function AirplaneArrivalIcon() {
   return (
-    <img
-      width="30"
-      height="30"
+    <Image
+      width={30}
+      height={30}
       src="/icons8-landing.png"
       alt="airplane-landing"
     />
@@ -41,15 +43,15 @@ export function AirplaneArrivalIcon() {
 }
 
 export function BackIcon() {
-  return <img width="20" height="20" src="/icons8-back.png" alt="back" />;
+  return <Image width={20} height={20} src="/icons8-back.png" alt="back" />;
 }
 
 export function PlusIcon({ id }) {
   return (
-    <img
+    <Image
       id={id}
-      width="15"
-      height="15"
+      width={20}
+      height={20}
       src="/icons8-plus-math.png"
       alt="plus-math"
     />
@@ -57,15 +59,31 @@ export function PlusIcon({ id }) {
 }
 
 export function LoadingIcon() {
-  return <img width="50" height="50" src="/icons8-loading.gif" alt="loading" />;
+  return (
+    <Image width={50} height={50} src="/icons8-loading.gif" alt="loading" />
+  );
 }
 
 export function ChatIcon() {
   return (
-    <img width="30" height="30" src="/icons8-chat-room.png" alt="loading" />
+    <Image width={30} height={30} src="/icons8-chat-room.png" alt="loading" />
   );
 }
 
 export function TrashIcon() {
-  return <img width="30" height="30" src="/icons8-trash.png" alt="loading" />;
+  return <Image width={30} height={30} src="/icons8-trash.png" alt="loading" />;
+}
+
+export function MenuIcon() {
+  return <Image width={30} height={30} src="/icons8-menu.png" alt="menu" />;
+}
+
+export function DropdownIcon() {
+  return (
+    <Image width={30} height={30} src="/icons8-dropdown.png" alt="dropdown" />
+  );
+}
+
+export function CheckIcon() {
+  return <Image width={20} height={20} src="/icons8-check.png" alt="check" />;
 }
