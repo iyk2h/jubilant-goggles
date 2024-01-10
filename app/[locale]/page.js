@@ -90,7 +90,7 @@ export default function Home() {
               className="relative inline-block text-left px-2 pb-2 w-full text-base cursor-pointer"
               ref={dropdownRef}
             >
-              <div className="flex justify-between">
+              <div className="flex justify-between shadow-xl rounded-xl">
                 <div
                   className="bg-gray-100 w-full p-4 rounded-l-xl"
                   onClick={() => clickHandle(info.airport)}
