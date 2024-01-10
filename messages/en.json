@@ -6,7 +6,9 @@
     "guide_msg_1": "Get customized nap recommendations",
     "guide_msg_2": "and get over jet lag by your travel now!",
     "addTravel": "Add a Travel",
-    "deleteAll": "Are you sure you want to delete the all travel?"
+    "deleteAll": "Are you sure you want to delete the all travel?",
+    "delete": "Delete",
+    "close": "Close"
   },
   "Flights": {
     "flights": "Seleted Flights",

@@ -77,7 +77,7 @@ export function TrashIcon() {
 }
 
 export function MenuIcon() {
-  return <Image width={30} height={30} src="/icons8-menu.png" alt="menu" />;
+  return <Image width={25} height={25} src="/icons8-menu.png" alt="menu" />;
 }
 
 export function DropdownIcon() {

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { TrashIcon } from "../utils/icon/Icon";
+import { useEffect, useRef, useState } from "react";
+import { MenuIcon, PlusIcon, TrashIcon } from "../utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
 import { formatStrS, nowDate, formatDate } from "../utils/DateUtils";
@@ -42,32 +42,101 @@ export default function Home() {
     router.push("/nap");
   };
 
-  const clearAirportHistory = () => {
-    const isConfirmed = window.confirm(t("deleteAll"));
-    if (isConfirmed) {
-      localStorage.removeItem("airportInfos");
-      setAirports([]);
-      router.refresh();
+  const deleteAirportHistory = (key) => {
+    const storedAirports = localStorage.getItem("airportInfos");
+    if (storedAirports) {
+      const parsedAirports = JSON.parse(storedAirports);
+      const updatedAirports = parsedAirports.filter(
+        (airportInfo) => airportInfo.key !== key
+      );
+      localStorage.setItem("airportInfos", JSON.stringify(updatedAirports));
+      setAirports(updatedAirports);
     }
   };
+
+  const dropdownRef = useRef(null);
+  const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
+
+  const toggleDropdown = (index) => {
+    setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
+
+  const handleSelect = (key) => {
+    setOpenDropdownIndex(null);
+    deleteAirportHistory(key);
+  };
+
+  useEffect(() => {
+    const closeDropdown = (event) => {
+      setOpenDropdownIndex(null);
+    };
+
+    document.addEventListener("click", closeDropdown);
+
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+  }, [dropdownRef, openDropdownIndex]);
 
   return (
     <div>
       {airportInfos.length !== 0 ? (
         <>
+          <div className="text-2xl mx-2 font-bold mb-4">나의 여행</div>
           {airportInfos.map((info, index) => {
             return (
               <div
                 id={`view_detail_${index}`}
                 key={index}
-                className="flex justify-center bg-gray-100 rounded-xl p-2 my-2 mx-10 text-base text-center cursor-pointer"
-                onClick={() => clickHandle(info.airport)}
+                className="relative inline-block text-left px-2 pb-2 w-full text-base cursor-pointer"
+                ref={dropdownRef}
               >
-                <>
-                  {info.key.split("_")[2]}
-                  <br />
-                  {formatStrS(info.key.split("_")[0], local)}
-                </>
+                <div className="flex justify-between">
+                  <div
+                    className="bg-gray-100 w-full p-4 rounded-l-xl"
+                    onClick={() => clickHandle(info.airport)}
+                  >
+                    {info.key.split("_")[2]}
+                    <br />
+                    {formatStrS(info.key.split("_")[0], local)}
+                  </div>
+                  <div
+                    className="p-2 pt-3 bg-gray-100 rounded-r-xl"
+                    onClick={() => {
+                      toggleDropdown(index);
+                    }}
+                  >
+                    <MenuIcon />
+                    {openDropdownIndex !== null &&
+                      openDropdownIndex === index && (
+                        <div className="absolute origin-top-right z-10 right-2 mt-2 w-18 rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <div
+                            className="py-1"
+                            role="menu"
+                            aria-orientation="vertical"
+                            aria-labelledby="options-menu"
+                          >
+                            <div
+                              onClick={() => handleSelect(info.key)}
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b-2"
+                              role="menuitem"
+                            >
+                              <div className="flex gap-1">{t("delete")}</div>
+                            </div>
+                            <div
+                              onClick={() => {
+                                setOpenDropdownIndex(null);
+                              }}
+                              className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900`}
+                              role="menuitem"
+                            >
+                              <div className="flex gap-1">{t("close")}</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                  </div>
+                </div>
               </div>
             );
           })}
@@ -83,10 +152,10 @@ export default function Home() {
         </>
       )}
 
-      <div className="flex justify-between m-5  mx-20  mb-20">
+      <div className="flex justify-between m-2 mb-20">
         <div
           id="add_flight"
-          className="flex justify-center w-full bg-gray-300 rounded-xl p-2 cursor-pointer"
+          className="flex justify-center w-full bg-black text-white shadow-xl rounded-xl p-2 cursor-pointer"
           onClick={() => {
             router.push("/flights");
           }}
@@ -98,15 +167,6 @@ export default function Home() {
             <div id="add_flight_msg">{t("addTravel")}</div>
           </div>
         </div>
-        {airportInfos.length !== 0 && (
-          <div
-            id="clear_airport_his"
-            className="flex justify-center items-center w-10 bg-gray-300 rounded-xl mx-1 px-1 cursor-pointer"
-            onClick={clearAirportHistory}
-          >
-            <TrashIcon />
-          </div>
-        )}
       </div>
     </div>
   );
