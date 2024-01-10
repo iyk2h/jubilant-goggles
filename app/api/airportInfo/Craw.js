@@ -53,7 +53,7 @@ const crawl = async (url) => {
 
     return result;
   } catch (error) {
-    console.error("크롤 에러", error);
+    console.error("크롤 에러", error.code);
   }
 };
 

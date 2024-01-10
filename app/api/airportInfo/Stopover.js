@@ -39,11 +39,14 @@ const stopover = async (key, url) => {
         })
       );
     }
-    await kv.set(key, results);
-    console.log("stopover craw result : ", results);
-    return results;
+    if (results.length > 0 && results[0]) {
+      console.log("stopover ", key, " crawl result : ", results);
+      await kv.set(key, results);
+      return results;
+    }
   } catch (error) {
-    console.error("stopover 크롤 에러", error);
+    console.error("stopover ", key, "에러", " : ", error.response.status);
+    return [];
   }
 };
 
