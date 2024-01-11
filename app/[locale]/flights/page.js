@@ -7,7 +7,7 @@ import { getAirportInfos } from "../../api/airportInfo/AirportInfo";
 import FlightHistoryLayout from "../../components/FlightHistoryLayout";
 import MyButton from "../../components/MyButton";
 import { useAirportInfosActions } from "../AirportProvider";
-import { LoadingIcon } from "../../utils/icon/Icon";
+import { CloseIcon, LoadingIcon, SearchIcon } from "../../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 
 export default function Flights() {
@@ -17,13 +17,15 @@ export default function Flights() {
 
   const [airportInfos, setAirportInfos] = useState([]);
 
-  const cancelHandle = () => {
-    router.back();
+  const resetFlights = () => {
+    if (flights.length > 0) {
+      removeFlightAll();
+    }
   };
 
   const { setAirportInfo } = useAirportInfosActions();
 
-  const { removeFlight } = useFlightsActions();
+  const { removeFlight, addFlight, removeFlightAll } = useFlightsActions();
 
   const [loadings, setLoadings] = useState(false);
 
@@ -75,45 +77,69 @@ export default function Flights() {
     }
   }, []);
 
-  useEffect(() => {
-    if (flights.length === 0) {
-      router.replace("/flights/input");
-    }
-  }, [flights]);
+  const [history, setHistory] = useState([]);
 
-  const addFlight = () => {
-    router.push("/flights/input");
+  useEffect(() => {
+    const storedHistory = localStorage.getItem("flightHistory");
+    if (storedHistory) {
+      const parsedHistory = JSON.parse(storedHistory);
+      const today = new Date();
+
+      const filteredHistory = parsedHistory.filter((item) => {
+        const keyDate = new Date(
+          item.key.substring(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
+        );
+        return keyDate >= today;
+      });
+
+      setHistory(filteredHistory);
+    }
+  }, []);
+
+  const addResponse = (key, response) => {
+    addFlight(key, response);
+
+    const updatedFlights = history.filter((item) => item.key !== key);
+    const newHistory = [{ key, response }, ...updatedFlights.slice(0, 11)];
+
+    localStorage.setItem("flightHistory", JSON.stringify(newHistory));
+    setHistory(newHistory);
   };
 
   return (
     <div className="px-2">
+      <div className="flex justify-between items-center">
+        <div className="text-2xl font-bold">{t("myflights")}</div>
+        <div
+          className="flex p-1 mx-1 cursor-pointer rounded-full hover:bg-gray-200"
+          onClick={() => {
+            router.back();
+          }}
+        >
+          <CloseIcon />
+        </div>
+      </div>
+      {flights.length <= 3 && (
+        <div
+          className="flex gap-2 bg-gray-100 rounded-xl p-2 px-2 mt-1 mb-2 cursor-pointer"
+          onClick={() => {
+            router.push("/flights/input");
+          }}
+        >
+          <SearchIcon />
+          <p className="text-gray-600">{t("search_flight")}</p>
+        </div>
+      )}
       <>
         <section>
           {flights.length > 0 && (
             <div>
-              {flights.length > 1 ? (
-                <FlightHistoryLayout
-                  title={t("flights")}
-                  history={flights}
-                  onConfirm={removeFlight}
-                  onClickTitle={"삭제"}
-                />
-              ) : (
-                <FlightHistoryLayout
-                  title={t("flights")}
-                  history={flights}
-                  onConfirm={() => {}}
-                />
-              )}
-            </div>
-          )}
-
-          {flights.length <= 3 && (
-            <div
-              className="bg-gray-100 text-center py-3 my-2 rounded-xl text-lg cursor-pointer"
-              onClick={addFlight}
-            >
-              {t("add_flight")}
+              <FlightHistoryLayout
+                title={t("flights")}
+                history={flights}
+                onConfirm={() => {}}
+                hover={false}
+              />
             </div>
           )}
         </section>
@@ -127,7 +153,7 @@ export default function Flights() {
           ) : (
             <div className="flex justify-between my-3">
               <div className="flex items-start">
-                <MyButton text={t("cancel")} onClick={cancelHandle} />
+                <MyButton text={t("cancel")} onClick={resetFlights} />
               </div>
               <div className="flex items-end">
                 <MyButton text={t("done")} onClick={confirmHandle} />
@@ -136,6 +162,19 @@ export default function Flights() {
           )}
         </section>
       </>
+      <div className="flex text-lg font-bold mt-8">{t("recent_view_list")}</div>
+
+      <div className="mt-2">
+        <section className="px-2">
+          {history.length > 0 ? (
+            <div>
+              <FlightHistoryLayout history={history} onConfirm={addResponse} />
+            </div>
+          ) : (
+            <></>
+          )}
+        </section>
+      </div>
     </div>
   );
 }

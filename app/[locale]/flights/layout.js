@@ -51,6 +51,9 @@ export default function RootLayout({ children }) {
       const updatedFlights = flights.filter((flight) => flight.key !== key);
       setFlights(updatedFlights);
     },
+    removeFlightAll() {
+      setFlights([]);
+    },
   }));
 
   return (

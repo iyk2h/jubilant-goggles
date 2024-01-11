@@ -1,6 +1,6 @@
 import React from "react";
 
-const FlightInfoLayout = ({ flightInfo, onConfirm, text }) => {
+const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
   const {
     departureAirportCode,
     departureCity,
@@ -12,7 +12,9 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text }) => {
 
   return (
     <div
-      className="bg-gray-100 hover:bg-gray-300 rounded-xl cursor-pointer p-1"
+      className={`bg-gray-100 rounded-xl  p-1 ${
+        hover ? "hover:bg-gray-300 cursor-pointer" : ""
+      }`}
       onClick={onConfirm}
     >
       <div className="flex justify-center">

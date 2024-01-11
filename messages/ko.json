@@ -5,6 +5,7 @@
   "Home": {
     "guide_msg_1": "지금 여행을 추가하여",
     "guide_msg_2": "맞춤형 낮잠을 추천 받고 시차를 극복하세요!",
+    "mytravels": "나의 여행",
     "addTravel": "여행 추가",
     "deleteAll": "모든 여행을 삭제하시겠습니까?",
     "delete": "삭제",
@@ -12,19 +13,26 @@
   },
   "Flights": {
     "flights": "선택한 비행 목록",
-    "add_flight": "비행 추가",
-    "cancel": "취소",
+    "myflights": "나의 비행",
+    "search_flight": "비행 검색 및 추가",
+    "cancel": "다시 입력",
     "done": "완료",
     "empty_flight": "비행을 추가해 주세요.",
-    "duplicate_travel": "중복된 여행입니다. 다시 확인해주세요."
-  },
-  "AddFlight": {
-    "date": "출발 날짜",
-    "flightNum": "항공편(Flight Number)",
-    "notFound_air_info": "비행 정보가 없습니다. 날짜와 항공편을 다시 확인해주세요.",
-    "search_new_air_info": "비행 조회",
+    "duplicate_travel": "중복된 여행입니다. 다시 확인해주세요.",
     "recent_view_list": "최근 조회 내역",
     "select": "선택"
+  },
+  "AddFlight": {
+    "add_flight": "비행 추가",
+    "date": "출발 날짜",
+    "flightNum": "항공편(Flight Number)",
+    "notFound_air_info_1": "비행 정보가 없습니다.",
+    "notFound_air_info_2": "날짜와 항공편을 다시 확인해주세요.",
+    "search_new_air_info": "비행 조회",
+    "today": "오늘",
+    "tomorrow": "내일",
+    "noresult_1": "결과 없음",
+    "noresult_2": "비행 번호를 확인하세요"
   },
   "Result": {
     "departure_country_time": "출발국가 시간",

@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import FlightInfoDisplay from "./FlightInfoLayout";
 import MyButton from "./MyButton";
 
-const FlightHistoryLayout = ({ history, onConfirm, onClickTitle }) => {
+const FlightHistoryLayout = ({
+  history,
+  onConfirm,
+  onClickTitle,
+  hover = true,
+}) => {
   const gap = 4;
 
   const [visibleItems, setVisibleItems] = useState(0);
@@ -26,6 +31,7 @@ const FlightHistoryLayout = ({ history, onConfirm, onClickTitle }) => {
             flightInfo={info.response}
             onConfirm={() => onConfirm(info.key, info.response)}
             text={onClickTitle}
+            hover={hover}
           />
         </div>
       ))}

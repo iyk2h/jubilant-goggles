@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { MenuIcon } from "../utils/icon/Icon";
+import { MenuIcon, SearchIcon } from "../utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
 import { formatStrS, nowDate, formatDate } from "../utils/DateUtils";
@@ -80,9 +80,23 @@ export default function Home() {
 
   return (
     <div>
+      <div className="text-2xl mx-2 font-bold">{t("mytravels")}</div>
+      <div className="flex justify-between m-2 mb-6">
+        <div
+          id="add_flight"
+          className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 cursor-pointer hover:bg-gray-200 hover:text-black"
+          onClick={() => router.push("/flights")}
+        >
+          <div
+            id="add_flight_icons"
+            className="flex justify-normal items-center"
+          >
+            <div id="add_flight_msg">{t("addTravel")}</div>
+          </div>
+        </div>
+      </div>
       {airportInfos.length !== 0 ? (
         <>
-          <div className="text-2xl mx-2 font-bold mb-4">나의 여행</div>
           {airportInfos.map((info, index) => (
             <div
               id={`view_detail_${index}`}
@@ -90,9 +104,9 @@ export default function Home() {
               className="relative inline-block text-left px-2 pb-2 w-full text-base cursor-pointer"
               ref={dropdownRef}
             >
-              <div className="flex justify-between shadow-xl rounded-xl">
+              <div className="flex justify-between shadow-xl rounded-xl bg-gray-100 hover:bg-gray-300">
                 <div
-                  className="bg-gray-100 w-full p-4 rounded-l-xl"
+                  className=" w-full p-4 rounded-l-xl"
                   onClick={() => clickHandle(info.airport)}
                 >
                   {info.key.split("_")[2]}
@@ -100,7 +114,7 @@ export default function Home() {
                   {formatStrS(info.key.split("_")[0], local)}
                 </div>
                 <div
-                  className="p-2 pt-3 bg-gray-100 rounded-r-xl"
+                  className="p-2 pt-3 rounded-r-xl"
                   onClick={() => toggleDropdown(index)}
                 >
                   <MenuIcon />
@@ -143,21 +157,6 @@ export default function Home() {
           </div>
         </>
       )}
-
-      <div className="flex justify-between m-2 mb-20">
-        <div
-          id="add_flight"
-          className="flex justify-center w-full bg-black text-white shadow-xl rounded-xl p-2 cursor-pointer"
-          onClick={() => router.push("/flights")}
-        >
-          <div
-            id="add_flight_icons"
-            className="flex justify-normal items-center"
-          >
-            <div id="add_flight_msg">{t("addTravel")}</div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

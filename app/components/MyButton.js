@@ -17,16 +17,16 @@ export default function MyButton({ text, type, onClick }) {
         .MyButton {
           cursor: pointer;
           border: none;
-          border-radius: 5px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          padding-left: 20px;
-          padding-right: 20px;
+          border-radius: 15px;
+          padding-top: 8px;
+          padding-bottom: 8px;
+          padding-left: 15px;
+          padding-right: 15px;
           white-space: nowrap;
         }
 
         .MyButton_default {
-          background-color: #f3f4f6;
+          border: 3px solid #f3f4f6;
           color: black;
         }
 

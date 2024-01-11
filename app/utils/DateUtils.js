@@ -50,6 +50,10 @@ export const getDateForCalender = () => {
   return DateTime.local().toFormat("yyyy-MM-dd");
 };
 
+export const getTomorrowDateForCalender = () => {
+  return DateTime.local().plus({ days: 1 }).toFormat("yyyy-MM-dd");
+};
+
 export const formatFromCrawl = (input) => {
   return DateTime.fromFormat(input, "LLL/d/yyyy, h:mm a").toFormat(
     "M/d/yyyy, h:mm:ss a"

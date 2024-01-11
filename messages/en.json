@@ -5,6 +5,7 @@
   "Home": {
     "guide_msg_1": "Get customized nap recommendations",
     "guide_msg_2": "and get over jet lag by your travel now!",
+    "mytravels": "My Travels",
     "addTravel": "Add a Travel",
     "deleteAll": "Are you sure you want to delete the all travel?",
     "delete": "Delete",
@@ -12,19 +13,26 @@
   },
   "Flights": {
     "flights": "Seleted Flights",
-    "add_flight": "Add a Flight",
+    "myflights": "My Flights",
+    "search_flight": "Search to add flights",
     "cancel": "Cancel",
     "done": "Done",
     "empty_flight": "Please add a flight.",
-    "duplicate_travel": "Duplicate travel. Please check again."
-  },
-  "AddFlight": {
-    "date": "Departure Date",
-    "flightNum": "Flight Number",
-    "notFound_air_info": "No flight information found. Please double-check the date and flight number.",
-    "search_new_air_info": "Flight Search",
+    "duplicate_travel": "Duplicate travel. Please check again.",
     "recent_view_list": "Recent Views",
     "select": "Select"
+  },
+  "AddFlight": {
+    "add_flight": "Add Flight",
+    "date": "Departure Date",
+    "flightNum": "Flight Number",
+    "notFound_air_info_1": "No flight information found.",
+    "notFound_air_info_2": "Please double-check the date and flight number.",
+    "search_new_air_info": "Flight Search",
+    "today": "Today",
+    "tomorrow": "Tomorro",
+    "noresult_1": "No Result",
+    "noresult_2": "Please Ckeck Your FlightNumber"
   },
   "Result": {
     "departure_country_time": "Departure Time Zone",

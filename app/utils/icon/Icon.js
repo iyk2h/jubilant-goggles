@@ -87,5 +87,34 @@ export function DropdownIcon() {
 }
 
 export function CheckIcon() {
-  return <Image width={25} height={0} src="/icons8-check.png" alt="check" />;
+  return <Image width={25} height={25} src="/icons8-check.png" alt="check" />;
+}
+
+export function EnterIcon() {
+  return <Image width={20} height={20} src="/icons8-enter.png" alt="enter" />;
+}
+
+export function CalendarsIcon() {
+  return (
+    <Image width={35} height={35} src="/icons8-calendars.png" alt="calendars" />
+  );
+}
+
+export function CalendarOneIcon() {
+  return (
+    <Image
+      width={35}
+      height={35}
+      src="/icons8-calendar-one.png"
+      alt="calendarOne"
+    />
+  );
+}
+
+export function SearchIcon() {
+  return <Image width={25} height={25} src="/icons8-search.png" alt="Search" />;
+}
+
+export function CloseIcon() {
+  return <Image width={17} height={17} src="/icons8-close.png" alt="close" />;
 }
