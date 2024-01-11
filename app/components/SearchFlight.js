@@ -4,6 +4,7 @@ import Image from "next/image";
 import {
   AirplaneDepartIcon,
   CalendarOneIcon,
+  CalendarsIcon,
   CloseIcon,
   EnterIcon,
 } from "../utils/icon/Icon";
@@ -119,6 +120,13 @@ const SearchFlight = ({
     }
   };
 
+  const handleDateEnterPress = (event) => {
+    if (event.key === "Enter" || event.key === "Tab") {
+      event.preventDefault();
+      setDepartureDate(today);
+    }
+  };
+
   const handleClick = (value, num) => {
     if (value === "" || num === "") {
       flightNumRef.current.focus();
@@ -182,7 +190,7 @@ const SearchFlight = ({
         ) : (
           <div className="flex bg-gray-100 w-full rounded-lg">
             <input
-              className={`${nanum_Gothic_Coding.className} bg-gray-100 p-1 pl-2 my-1 ml-2 w-full font-bold rounded-lg outline-gray-400`}
+              className={`${nanum_Gothic_Coding.className} bg-gray-100 p-1 pl-2 my-1 ml-2 w-full font-bold rounded-lg outline-gray-400 focus:ring-0`}
               value={query}
               onChange={handleInputChange}
               onKeyDown={handleEnterPress}
@@ -206,18 +214,12 @@ const SearchFlight = ({
         )}
         {departureDate === "" ? (
           <input
-            className={`text-base  rounded-lg px-2 py-1 m-1 shadow-sm appearance-none  outline-gray-400 ${
+            className={`text-base  rounded-lg px-2 py-1 m-1 shadow-sm appearance-none  outline-gray-400 focus:ring-0 ${
               focusFlag ? "w-4 bg-gray-100" : "bg-gray-200 cursor-pointer"
             }`}
-            type="date"
-            placeholder="test"
+            placeholder={t("date")}
             value={departureDate}
-            min={today}
-            onChange={(e) => {
-              if (code !== "" && num !== "") {
-                setDepartureDate(e.target.value);
-              }
-            }}
+            onKeyDown={handleDateEnterPress}
             ref={dateInputRef}
           />
         ) : (
@@ -283,9 +285,11 @@ const SearchFlight = ({
                       </div>
                     </div>
                   </div>
-                  <div className="p-2 flex items-center">
-                    <EnterIcon />
-                  </div>
+                  {index === 0 && (
+                    <div className="p-2 flex items-center">
+                      <EnterIcon />
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
@@ -301,7 +305,7 @@ const SearchFlight = ({
       )}
       {!focusFlag && dateFocus && (
         <div>
-          <ul className="max-h-40 overflow-y-auto border border-gray-300 p-2 rounded-lg">
+          <ul className="max-h-60 overflow-y-auto border border-gray-300 p-2 rounded-lg">
             <li
               className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-gray-200 bg-gray-100
               }`}
@@ -332,27 +336,36 @@ const SearchFlight = ({
                   {t("tomorrow")}
                 </div>
               </div>
-              <div className="p-2 flex items-center">
-                <EnterIcon />
-              </div>
             </li>
-            {/* <li
-              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-gray-200
+            <li
+              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer
               }`}
-              onClick={() => dateInputRef.current.focus()}
             >
-              <div className="flex">
-                <div className="p-2">
+              <div className=" flex">
+                <div className="p-2 flex justify-center items-center">
                   <CalendarsIcon />
                 </div>
-                <div className="flex items-center p-2 mr-2">
-                  Pick from Calendar
+                <div className="">
+                  <div className="flex items-cente mx-2 mt-1">
+                    Pick from Calendar
+                  </div>
+                  <div className="">
+                    <input
+                      className={`text-base rounded-lg px-2 mx-2 bg-gray-100 appearance-none hover:bg-200`}
+                      type="date"
+                      placeholder="test"
+                      value={today}
+                      min={today}
+                      onChange={(e) => {
+                        if (code !== "" && num !== "") {
+                          setDepartureDate(e.target.value);
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="p-2 flex items-center">
-                <EnterIcon />
-              </div>
-            </li> */}
+            </li>
           </ul>
         </div>
       )}
