@@ -107,7 +107,7 @@ export default function Flights() {
   };
 
   return (
-    <div className="px-2">
+    <div className="">
       <div className="flex justify-between items-center">
         <div className="text-2xl font-bold">{t("myflights")}</div>
         <div

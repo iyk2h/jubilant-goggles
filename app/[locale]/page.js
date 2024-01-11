@@ -80,8 +80,8 @@ export default function Home() {
 
   return (
     <div>
-      <div className="text-2xl mx-2 font-bold">{t("mytravels")}</div>
-      <div className="flex justify-between m-2 mb-6">
+      <div className="text-2xl font-bold">{t("mytravels")}</div>
+      <div className="flex justify-between my-2 mb-6">
         <div
           id="add_flight"
           className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 cursor-pointer hover:bg-gray-200 hover:text-black"
@@ -101,7 +101,7 @@ export default function Home() {
             <div
               id={`view_detail_${index}`}
               key={index}
-              className="relative inline-block text-left px-2 pb-2 w-full text-base cursor-pointer"
+              className="relative inline-block text-left pb-2 w-full text-base cursor-pointer"
               ref={dropdownRef}
             >
               <div className="flex justify-between shadow-xl rounded-xl bg-gray-100 hover:bg-gray-300">
@@ -151,7 +151,7 @@ export default function Home() {
         </>
       ) : (
         <>
-          <div className="py-8 m-2 text-center text-base bg-gray-100 rounded-xl">
+          <div className="py-8 y-2 text-center text-base bg-gray-100 rounded-xl">
             <p>{t("guide_msg_1")}</p>
             <p>{t("guide_msg_2")}</p>
           </div>
