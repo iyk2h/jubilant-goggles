@@ -165,7 +165,7 @@ export default function Flights() {
       <div className="flex text-lg font-bold mt-8">{t("recent_view_list")}</div>
 
       <div className="mt-2">
-        <section className="px-2">
+        <section className="">
           {history.length > 0 ? (
             <div>
               <FlightHistoryLayout history={history} onConfirm={addResponse} />
