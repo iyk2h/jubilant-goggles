@@ -33,7 +33,7 @@ const RecentViews = ({
             onConfirm={() => onConfirm(info.key, info.response)}
             text={onClickTitle}
             hover={hover}
-            flight_num={`${info.key.split("_")[1]}, ${info.key.split("_")[2]}`}
+            flight_num={`${info.key.split("_")[1]}${info.key.split("_")[2]}`}
             onRemove={() => onRemove(info.key)}
           />
         </div>
