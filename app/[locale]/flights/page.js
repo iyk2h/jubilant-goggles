@@ -96,15 +96,11 @@ export default function Flights() {
     }
   }, []);
 
-  const addResponse = (key, response) => {
-    addFlight(key, response);
-
-    const updatedFlights = history.filter((item) => item.key !== key);
-    const newHistory = [{ key, response }, ...updatedFlights.slice(0, 11)];
-
-    localStorage.setItem("flightHistory", JSON.stringify(newHistory));
-    setHistory(newHistory);
-  };
+  useEffect(() => {
+    if (flights.length === 0) {
+      router.replace("/flights/input");
+    }
+  }, [flights]);
 
   return (
     <div className="">
@@ -162,19 +158,6 @@ export default function Flights() {
           )}
         </section>
       </>
-      <div className="flex text-lg font-bold mt-8">{t("recent_view_list")}</div>
-
-      <div className="mt-2">
-        <section className="">
-          {history.length > 0 ? (
-            <div>
-              <FlightHistoryLayout history={history} onConfirm={addResponse} />
-            </div>
-          ) : (
-            <></>
-          )}
-        </section>
-      </div>
     </div>
   );
 }

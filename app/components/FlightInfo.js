@@ -108,6 +108,7 @@ const FlightInfo = ({ addFlight }) => {
               </div>
             ) : (
               <div className="">
+                <div className="flex text-lg font-bold mt-2">{t("result")}</div>
                 {responses[key] && responses[key].length !== 0 ? (
                   <div>
                     {responses[key].map((flightInfo, index) => (

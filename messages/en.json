@@ -15,11 +15,10 @@
     "flights": "Seleted Flights",
     "myflights": "My Flights",
     "search_flight": "Search to add flights",
-    "cancel": "Cancel",
-    "done": "Done",
+    "cancel": "Retry",
+    "done": "Add Travel",
     "empty_flight": "Please add a flight.",
     "duplicate_travel": "Duplicate travel. Please check again.",
-    "recent_view_list": "Recent Views",
     "select": "Select"
   },
   "AddFlight": {
@@ -32,7 +31,9 @@
     "today": "Today",
     "tomorrow": "Tomorrow",
     "noresult_1": "No Result",
-    "noresult_2": "Please Ckeck Your FlightNumber"
+    "noresult_2": "Please Ckeck Your FlightNumber",
+    "recent_view_list": "Recent Views",
+    "result": "Result"
   },
   "Result": {
     "departure_country_time": "Departure Time Zone",

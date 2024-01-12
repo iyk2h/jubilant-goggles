@@ -4,6 +4,7 @@ import FlightInfo from "@/app/components/FlightInfo";
 import { useFlightsActions } from "../layout";
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import FlightHistoryLayout from "@/app/components/FlightHistoryLayout";
 
 export default function FlightInputLayout() {
   const t = useTranslations("AddFlight");
@@ -42,6 +43,18 @@ export default function FlightInputLayout() {
     <>
       <div className="mt-2">
         <FlightInfo addFlight={addResponse} />
+      </div>
+      <div className="flex text-lg font-bold mt-8">{t("recent_view_list")}</div>
+      <div className="mt-2">
+        <section className="">
+          {history.length > 0 ? (
+            <div>
+              <FlightHistoryLayout history={history} onConfirm={addResponse} />
+            </div>
+          ) : (
+            <></>
+          )}
+        </section>
       </div>
     </>
   );
