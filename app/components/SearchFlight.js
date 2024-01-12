@@ -87,10 +87,7 @@ const SearchFlight = ({
     const alphanumericRegex = /[^a-zA-Z0-9]/g;
     const isCheckEnNum = !alphanumericRegex.test(inputValue);
 
-    if (!isCheckEnNum) {
-      setOnly_en_num_flag(true);
-      return;
-    }
+    setOnly_en_num_flag(!isCheckEnNum);
 
     let code = "";
     let num = "";
