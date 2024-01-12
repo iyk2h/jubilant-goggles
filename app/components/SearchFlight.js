@@ -76,10 +76,22 @@ const SearchFlight = ({
       setCode(updatedFilteredPeople[0].iata);
       setNum(query.slice(2));
     }
+    setOnly_en_num_flag(false);
   }, [query]);
+
+  const [only_en_num_flag, setOnly_en_num_flag] = useState(false);
 
   const handleInputChange = (event) => {
     let inputValue = event.target.value.trim();
+
+    const alphanumericRegex = /[^a-zA-Z0-9]/g;
+    const isCheckEnNum = !alphanumericRegex.test(inputValue);
+
+    if (!isCheckEnNum) {
+      setOnly_en_num_flag(true);
+      return;
+    }
+
     let code = "";
     let num = "";
 
@@ -88,11 +100,11 @@ const SearchFlight = ({
     }
 
     if (inputValue.length <= 2) {
-      code = inputValue.replace(/[^0-9a-zA-Z]/g, "").toUpperCase();
+      code = inputValue.replace(alphanumericRegex, "").toUpperCase();
     } else {
       code = inputValue
         .slice(0, 2)
-        .replace(/[^0-9a-zA-Z]/g, "")
+        .replace(alphanumericRegex, "")
         .toUpperCase();
 
       if (flag) {
@@ -221,6 +233,7 @@ const SearchFlight = ({
             value={departureDate}
             onKeyDown={handleDateEnterPress}
             ref={dateInputRef}
+            onChange={(e) => {}}
           />
         ) : (
           <div
@@ -234,6 +247,7 @@ const SearchFlight = ({
           </div>
         )}
       </div>
+      {only_en_num_flag && <p className="px-4">{t("only_en_num_msg")}</p>}
       <div className="flex items-center"></div>
       {focusFlag && query.length !== 0 && (
         <div>

@@ -16,15 +16,17 @@
     "myflights": "My Flights",
     "search_flight": "Search to add flights",
     "cancel": "Retry",
-    "done": "Add Travel",
+    "done": "Get Nap Tips",
     "empty_flight": "Please add a flight.",
     "duplicate_travel": "Duplicate travel. Please check again.",
-    "select": "Select"
+    "select": "Select",
+    "no_flights_msg_1": "No added flights for your travel.",
+    "no_flights_msg_2": "Search and add a flight here!"
   },
   "AddFlight": {
     "add_flight": "Add Flight",
     "date": "Departure Date",
-    "flightNum": "Flight Number",
+    "flightNum": "Flight Numbers",
     "notFound_air_info_1": "No flight information found.",
     "notFound_air_info_2": "Please double-check the date and flight number.",
     "search_new_air_info": "Flight Search",
@@ -33,7 +35,9 @@
     "noresult_1": "No Result",
     "noresult_2": "Please Ckeck Your FlightNumber",
     "recent_view_list": "Recent Views",
-    "result": "Result"
+    "result": "Result",
+    "no_search_history": "No search history.",
+    "only_en_num_msg": "Only English letters and numbers are allowed for flight numbers."
   },
   "Result": {
     "departure_country_time": "Departure Time Zone",
