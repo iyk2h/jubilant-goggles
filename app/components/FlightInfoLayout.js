@@ -24,14 +24,16 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
           <p className="text-sm mt-1">{departureTime}</p>
         </div>
         <div className="text-center w-1/5">
-          <p className="text-xl mt-2"> ✈︎ </p>
-          <p className="text-base font-bold text-teal-900">{text}</p>
+          <p className="text-xl mt-4"> ✈︎ </p>
         </div>
         <div className="text-center w-2/5">
           <p className="text-2xl">{arrivalAirportCode}</p>
           <p className="text-xs">{arrivalCity}</p>
           <p className="text-sm mt-1">{arrivalTime}</p>
         </div>
+        {text && (
+          <div className="flex items-center rotate-180 mr-1">{text}</div>
+        )}
       </div>
     </div>
   );

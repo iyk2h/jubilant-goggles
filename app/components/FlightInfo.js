@@ -5,7 +5,7 @@ import airlines from "../data/airlines.json";
 
 import { getDateForCalender, removeHyphens } from "../utils/DateUtils";
 import FlightInfoLayout from "./FlightInfoLayout";
-import { LoadingIcon } from "../utils/icon/Icon";
+import { BackIcon, LoadingIcon } from "../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 import SearchFlight from "./SearchFlight";
 
@@ -117,6 +117,8 @@ const FlightInfo = ({ addFlight }) => {
                       <div className="py-2" key={index}>
                         {flightInfo && (
                           <FlightInfoLayout
+                            hover={true}
+                            text={<BackIcon />}
                             flightInfo={flightInfo}
                             onConfirm={() => {
                               addFlight(

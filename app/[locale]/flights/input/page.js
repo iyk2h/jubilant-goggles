@@ -4,7 +4,7 @@ import FlightInfo from "@/app/components/FlightInfo";
 import { useFlightsActions } from "../layout";
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import FlightHistoryLayout from "@/app/components/FlightHistoryLayout";
+import RecentViews from "@/app/components/RecentViews";
 
 export default function FlightInputLayout() {
   const t = useTranslations("AddFlight");
@@ -29,6 +29,20 @@ export default function FlightInputLayout() {
     }
   }, []);
 
+  const removeFlightHistory = (key) => {
+    const storedFlights = localStorage.getItem("flightHistory");
+
+    if (storedFlights) {
+      const parsedAirports = JSON.parse(storedFlights);
+      const updatedAirports = parsedAirports.filter(
+        (airportInfo) => airportInfo.key !== key
+      );
+
+      localStorage.setItem("flightHistory", JSON.stringify(updatedAirports));
+      setHistory(updatedAirports);
+    }
+  };
+
   const addResponse = (key, response) => {
     addFlight(key, response);
 
@@ -44,14 +58,18 @@ export default function FlightInputLayout() {
       <div className="mt-2">
         <FlightInfo addFlight={addResponse} />
       </div>
-      <div className="flex text-lg font-bold mt-8 border-b-2">
-        {t("recent_view_list")}
-      </div>
       <div>
+        <div className="flex text-lg font-bold mt-8 border-b-2">
+          {t("recent_view_list")}
+        </div>
         <section className="">
           {history.length > 0 ? (
             <div>
-              <FlightHistoryLayout history={history} onConfirm={addResponse} />
+              <RecentViews
+                history={history}
+                onConfirm={addResponse}
+                onRemove={removeFlightHistory}
+              />
             </div>
           ) : (
             <>

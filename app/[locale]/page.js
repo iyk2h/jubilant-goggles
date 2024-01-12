@@ -23,16 +23,16 @@ export default function Home() {
     if (storedAirports) {
       const parsedAirports = JSON.parse(storedAirports);
 
-      parsedAirports.forEach((info, index) => {
-        const lastDateTime = formatDate(
-          info.airport[info.airport.length - 1].arrivalInfo
-        );
-        if (lastDateTime > nowDate()) {
-          afterToday.push(info);
-        }
-      });
+      // parsedAirports.forEach((info, index) => {
+      //   const lastDateTime = formatDate(
+      //     info.airport[info.airport.length - 1].arrivalInfo
+      //   );
+      //   if (lastDateTime > nowDate()) {
+      //     afterToday.push(info);
+      //   }
+      // });
 
-      setAirports(afterToday);
+      setAirports(parsedAirports);
     }
   }, []);
 
