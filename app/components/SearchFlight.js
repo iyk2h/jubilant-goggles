@@ -352,7 +352,7 @@ const SearchFlight = ({
               </div>
             </li>
             <li
-              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer
+              className={`flex items-center justify-between border-b-2 rounded-lg
               }`}
             >
               <div className=" flex">
@@ -365,7 +365,7 @@ const SearchFlight = ({
                   </div>
                   <div className="">
                     <input
-                      className={`text-base rounded-lg px-2 mx-2 bg-gray-100 appearance-none hover:bg-200`}
+                      className={`text-base rounded-lg px-2 mx-2 bg-gray-100 appearance-none cursor-pointer hover:bg-200`}
                       type="date"
                       placeholder="test"
                       value={today}
