@@ -159,7 +159,7 @@ export default function Flights() {
                 </div>
               ) : (
                 <div>
-                  <div className="py-8 y-2 text-center text-base bg-gray-100 rounded-xl">
+                  <div className="py-8 mt-7 text-center text-base bg-gray-100 rounded-xl">
                     <p>{t("no_flights_msg_1")}</p>
                     <p>{t("no_flights_msg_2")}</p>
                   </div>
