@@ -184,7 +184,7 @@ const SearchFlight = ({
         className={`flex gap-2 mt-1 ${
           code !== "" && num !== "" && departureDate !== ""
             ? ""
-            : "bg-gray-100 rounded-xl shadow-lg"
+            : "bg-gray-100 rounded-xl"
         }`}
       >
         {!focusFlag ? (
