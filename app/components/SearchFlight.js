@@ -184,12 +184,12 @@ const SearchFlight = ({
         className={`flex gap-2 mt-1 ${
           code !== "" && num !== "" && departureDate !== ""
             ? ""
-            : "bg-gray-100 rounded-xl"
+            : "bg-gray-100 rounded-xl shadow-lg"
         }`}
       >
         {!focusFlag ? (
           <div
-            className="flex bg-gray-200 w-fit p-1 px-2 my-1 rounded-lg shadow-sm hover:bg-gray-300 cursor-pointer"
+            className="flex bg-gray-200 w-fit p-1 px-2 my-1 rounded-lg shadow-lg hover:bg-gray-300 cursor-pointer"
             onClick={() => {
               setDepartureDate("");
               setDateFocus(false);
@@ -226,7 +226,7 @@ const SearchFlight = ({
         )}
         {departureDate === "" ? (
           <input
-            className={`text-base  rounded-lg px-2 py-1 m-1 shadow-sm appearance-none  outline-gray-400 focus:ring-0 ${
+            className={`text-base  rounded-lg px-2 py-1 m-1 appearance-none  outline-gray-400 focus:ring-0 ${
               focusFlag ? "w-4 bg-gray-100" : "bg-gray-200 cursor-pointer"
             }`}
             placeholder={t("date")}
@@ -237,7 +237,7 @@ const SearchFlight = ({
           />
         ) : (
           <div
-            className="flex items-center bg-gray-200 px-2 p-1 my-1 shadow-sm rounded-lg hover:bg-gray-300 cursor-pointer"
+            className="flex items-center bg-gray-200 px-2 p-1 my-1 shadow-lg rounded-lg hover:bg-gray-300 cursor-pointer"
             onClick={() => {
               setDepartureDate("");
               setDateFocus(true);
@@ -252,7 +252,7 @@ const SearchFlight = ({
       {focusFlag && query.length !== 0 && (
         <div>
           {matchingValues.length > 0 ? (
-            <ul className="max-h-40 overflow-y-auto border border-gray-300 p-2 rounded-lg">
+            <ul className="max-h-40 overflow-y-auto border border-gray-300 p-2 rounded-lg shadow-lg">
               {matchingValues.map((item, index) => (
                 <li
                   key={index}
@@ -308,7 +308,7 @@ const SearchFlight = ({
               ))}
             </ul>
           ) : (
-            <ul className="max-h-40 overflow-y-auto border border-gray-300 p-2 rounded-lg">
+            <ul className="max-h-40 overflow-y-auto border border-gray-300 p-2 rounded-lg shadow-lg">
               <div className="text-center">
                 <div className="p-2 mt-2 font-bold">{t("noresult_1")}</div>
                 <div className="pb-2 mb-2">{t("noresult_2")}</div>
@@ -319,7 +319,7 @@ const SearchFlight = ({
       )}
       {!focusFlag && dateFocus && (
         <div>
-          <ul className="max-h-60 overflow-y-auto border border-gray-300 p-2 rounded-lg">
+          <ul className="max-h-60 overflow-y-auto border border-gray-300 p-2 rounded-lg shadow-lg">
             <li
               className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-gray-200 bg-gray-100
               }`}

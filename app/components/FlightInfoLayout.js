@@ -12,7 +12,7 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
 
   return (
     <div
-      className={`bg-gray-100 rounded-xl  p-1 ${
+      className={`bg-gray-100 rounded-xl  p-1 shadow-lg ${
         hover ? "hover:bg-gray-300 cursor-pointer" : ""
       }`}
       onClick={onConfirm}

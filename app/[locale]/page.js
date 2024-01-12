@@ -151,7 +151,7 @@ export default function Home() {
         </>
       ) : (
         <>
-          <div className="py-8 y-2 text-center text-base bg-gray-100 rounded-xl">
+          <div className="py-8 y-2 text-center text-base bg-gray-100 rounded-xl shadow-lg">
             <p>{t("guide_msg_1")}</p>
             <p>{t("guide_msg_2")}</p>
           </div>
