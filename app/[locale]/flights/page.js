@@ -96,11 +96,11 @@ export default function Flights() {
     }
   }, []);
 
-  useEffect(() => {
-    if (flights.length === 0) {
-      router.replace("/flights/input");
-    }
-  }, [flights]);
+  // useEffect(() => {
+  //   if (flights.length === 0) {
+  //     router.replace("/flights/input");
+  //   }
+  // }, [flights]);
 
   return (
     <div className="">
@@ -147,14 +147,25 @@ export default function Flights() {
               </div>
             </div>
           ) : (
-            <div className="flex justify-between my-3">
-              <div className="flex items-start">
-                <MyButton text={t("cancel")} onClick={resetFlights} />
-              </div>
-              <div className="flex items-end">
-                <MyButton text={t("done")} onClick={confirmHandle} />
-              </div>
-            </div>
+            <>
+              {flights.length > 0 ? (
+                <div className="flex justify-between my-3">
+                  <div className="flex items-start">
+                    <MyButton text={t("cancel")} onClick={resetFlights} />
+                  </div>
+                  <div className="flex items-end">
+                    <MyButton text={t("done")} onClick={confirmHandle} />
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div className="py-8 y-2 text-center text-base bg-gray-100 rounded-xl">
+                    <p>{t("no_flights_msg_1")}</p>
+                    <p>{t("no_flights_msg_2")}</p>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </section>
       </>

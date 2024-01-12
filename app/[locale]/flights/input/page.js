@@ -16,16 +16,16 @@ export default function FlightInputLayout() {
     const storedHistory = localStorage.getItem("flightHistory");
     if (storedHistory) {
       const parsedHistory = JSON.parse(storedHistory);
-      const today = new Date();
+      // const today = new Date();
 
-      const filteredHistory = parsedHistory.filter((item) => {
-        const keyDate = new Date(
-          item.key.substring(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
-        );
-        return keyDate >= today;
-      });
+      // const filteredHistory = parsedHistory.filter((item) => {
+      //   const keyDate = new Date(
+      //     item.key.substring(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
+      //   );
+      //   return keyDate >= today;
+      // });
 
-      setHistory(filteredHistory);
+      setHistory(parsedHistory);
     }
   }, []);
 
@@ -44,15 +44,21 @@ export default function FlightInputLayout() {
       <div className="mt-2">
         <FlightInfo addFlight={addResponse} />
       </div>
-      <div className="flex text-lg font-bold mt-8">{t("recent_view_list")}</div>
-      <div className="mt-2">
+      <div className="flex text-lg font-bold mt-8 border-b-2">
+        {t("recent_view_list")}
+      </div>
+      <div>
         <section className="">
           {history.length > 0 ? (
             <div>
               <FlightHistoryLayout history={history} onConfirm={addResponse} />
             </div>
           ) : (
-            <></>
+            <>
+              <div>
+                <p>{t("no_search_history")}</p>
+              </div>
+            </>
           )}
         </section>
       </div>
