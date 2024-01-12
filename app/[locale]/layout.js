@@ -38,7 +38,7 @@ export default function RootLayout({ children, params }) {
         `}
         </Script>
       </>
-      <body>
+      <body className="select-none">
         <NextIntlClientProvider
           messages={messages}
           locale={locale}
