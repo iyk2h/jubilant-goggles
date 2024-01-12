@@ -64,7 +64,7 @@ export default function FlightInputLayout() {
         </div>
         <section className="">
           {history.length > 0 ? (
-            <div>
+            <div className="mb-20">
               <RecentViews
                 history={history}
                 onConfirm={addResponse}
@@ -73,7 +73,7 @@ export default function FlightInputLayout() {
             </div>
           ) : (
             <>
-              <div>
+              <div className="mb-20">
                 <p>{t("no_search_history")}</p>
               </div>
             </>

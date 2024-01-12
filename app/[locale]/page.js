@@ -96,7 +96,7 @@ export default function Home() {
         </div>
       </div>
       {airportInfos.length !== 0 ? (
-        <>
+        <div className="mb-20">
           {airportInfos.map((info, index) => (
             <div
               id={`view_detail_${index}`}
@@ -148,7 +148,7 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </>
+        </div>
       ) : (
         <>
           <div className="py-8 y-2 text-center text-base bg-gray-100 rounded-xl">
