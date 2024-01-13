@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { LoadingIcon } from "@/app/utils/icon/Icon";
 import { useTranslations } from "next-intl";
+import { useAirportInfosValue } from "../../AirportProvider";
 
 export default function Nap(param) {
   const t = useTranslations("Result");
@@ -22,7 +23,6 @@ export default function Nap(param) {
       const apiUrl = `/api/nap/${key}`;
       const { data } = await axios.get(apiUrl);
       setArport(data.airport);
-      console.log(JSON.parse(airport));
     } catch (error) {
       console.log(error);
     } finally {
@@ -30,9 +30,18 @@ export default function Nap(param) {
     }
   };
 
+  const airportInfos = useAirportInfosValue();
+
   useEffect(() => {
-    getAirportInfo();
-  }, []);
+    if (airportInfos && airportInfos.length === 0) {
+      getAirportInfo();
+    } else {
+      setArport(airportInfos);
+      setLoadings(false);
+    }
+  }, [airportInfos]);
+
+  useEffect(() => {}, []);
 
   return (
     <>
