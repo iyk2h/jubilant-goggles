@@ -21,7 +21,8 @@
     "duplicate_travel": "중복된 여행입니다. 다시 확인해주세요.",
     "select": "선택",
     "no_flights_msg_1": "여행을 위해 추가한 비행이 없어요.",
-    "no_flights_msg_2": "검색해서 비행을 추가해보세요!"
+    "no_flights_msg_2": "검색해서 비행을 추가해보세요!",
+    "failed_nap_tips": "낮잠 추천을 하는 데 실패했습니다. 나중에 다시 시도해주세요."
   },
   "AddFlight": {
     "add_flight": "비행 추가",
@@ -47,6 +48,10 @@
     "wake_up": "기상!",
     "arrival": "도착!",
     "no_coffee_msg_1": "출발 국가 기준",
-    "no_coffee_msg_2": " 부터 커피는 피하세요!"
+    "no_coffee_msg_2": " 부터 커피는 피하세요!",
+    "title": "낮잠 추천",
+    "not_result_msg_1": "낮잠 추천을 가져오는 데 실패했습니다.",
+    "not_result_msg_2": "나중에 다시 시도해주세요.",
+    "go_home": "홈으로 돌아가기"
   }
 }

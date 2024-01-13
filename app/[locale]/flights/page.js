@@ -10,6 +10,9 @@ import { useAirportInfosActions } from "../AirportProvider";
 import { CloseIcon, LoadingIcon, SearchIcon } from "../../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 
+import axios from "axios";
+const crypto = require("crypto");
+
 export default function Flights() {
   const t = useTranslations("Flights");
   const router = useRouter();
@@ -45,9 +48,20 @@ export default function Flights() {
       flights.map((info) => getAirportInfos(info.key, info.response))
     );
 
-    const key = `${airport[0].departureInfo.datetime}_${airport
-      .map((info) => info.arrivalInfo.city)
-      .join(" -> ")}_${airport[flights.length - 1].arrivalInfo.city}`;
+    const hashValue = (originalValue) => {
+      const hashed = crypto
+        .createHash("sha256")
+        .update(originalValue)
+        .digest("hex");
+      return hashed;
+    };
+
+    const title = `${airport[0].departureInfo.datetime}_${
+      airport[0].departureInfo.city
+    } -> ${airport[airport.length - 1].arrivalInfo.city}`;
+
+    const beforKey = `${flights.map((info) => info.key).join("_")}`;
+    const key = hashValue(beforKey);
 
     if (hasDuplicate(airportInfos, key)) {
       alert(t("duplicate_travel"));
@@ -55,44 +69,38 @@ export default function Flights() {
       return;
     }
 
-    setAirportInfo(airport);
+    try {
+      const apiUrl = `/api/nap/${key}`;
+      const requestData = {
+        key,
+        title,
+        airport,
+      };
+      await axios.post(apiUrl, requestData);
+    } catch (error) {
+      alert(t("failed_nap_tips"));
+      return;
+    }
 
-    const newHistory = [...airportInfos, { key, airport }];
+    // setAirportInfo(airport);
+
+    const newHistory = [...airportInfos, { key, title }];
 
     const sortedHistory = newHistory.sort((a, b) => {
-      if (a.key < b.key) return -1;
-      if (a.key > b.key) return 1;
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
       return 0;
     });
 
-    localStorage.setItem("airportInfos", JSON.stringify(sortedHistory));
+    localStorage.setItem("nap_results", JSON.stringify(sortedHistory));
     setAirportInfos(sortedHistory);
-    router.replace("/nap");
+    router.replace(`/nap/${key}`);
   };
 
   useEffect(() => {
-    const storedAirports = localStorage.getItem("airportInfos");
+    const storedAirports = localStorage.getItem("nap_results");
     if (storedAirports) {
       setAirportInfos(JSON.parse(storedAirports));
-    }
-  }, []);
-
-  const [history, setHistory] = useState([]);
-
-  useEffect(() => {
-    const storedHistory = localStorage.getItem("flightHistory");
-    if (storedHistory) {
-      const parsedHistory = JSON.parse(storedHistory);
-      const today = new Date();
-
-      const filteredHistory = parsedHistory.filter((item) => {
-        const keyDate = new Date(
-          item.key.substring(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3")
-        );
-        return keyDate >= today;
-      });
-
-      setHistory(filteredHistory);
     }
   }, []);
 

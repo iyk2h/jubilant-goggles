@@ -17,7 +17,7 @@ export default function Home() {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
 
   useEffect(() => {
-    const storedAirports = localStorage.getItem("airportInfos");
+    const storedAirports = localStorage.getItem("nap_results");
     const afterToday = [];
 
     if (storedAirports) {
@@ -39,12 +39,11 @@ export default function Home() {
   const { setAirportInfo } = useAirportInfosActions();
 
   const clickHandle = (param) => {
-    setAirportInfo(param);
-    router.push("/nap");
+    router.push(`/nap/${param}`);
   };
 
   const deleteAirportHistory = (key) => {
-    const storedAirports = localStorage.getItem("airportInfos");
+    const storedAirports = localStorage.getItem("nap_results");
 
     if (storedAirports) {
       const parsedAirports = JSON.parse(storedAirports);
@@ -52,7 +51,7 @@ export default function Home() {
         (airportInfo) => airportInfo.key !== key
       );
 
-      localStorage.setItem("airportInfos", JSON.stringify(updatedAirports));
+      localStorage.setItem("nap_results", JSON.stringify(updatedAirports));
       setAirports(updatedAirports);
     }
   };
@@ -107,11 +106,11 @@ export default function Home() {
               <div className="flex justify-between shadow-xl rounded-xl bg-gray-100 hover:bg-gray-300">
                 <div
                   className=" w-full p-4 rounded-l-xl"
-                  onClick={() => clickHandle(info.airport)}
+                  onClick={() => clickHandle(info.key)}
                 >
-                  {info.key.split("_")[2]}
+                  {info.title.split("_")[1]}
                   <br />
-                  {formatStrS(info.key.split("_")[0], local)}
+                  {formatStrS(info.title.split("_")[0], local)}
                 </div>
                 <div
                   className="p-2 pt-3 rounded-r-xl"

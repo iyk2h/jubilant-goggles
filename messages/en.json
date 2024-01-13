@@ -21,7 +21,8 @@
     "duplicate_travel": "Duplicate travel. Please check again.",
     "select": "Select",
     "no_flights_msg_1": "No added flights for your travel.",
-    "no_flights_msg_2": "Search and add a flight here!"
+    "no_flights_msg_2": "Search and add a flight here!",
+    "failed_nap_tips": "Failed to get nap tips. Please try again later."
   },
   "AddFlight": {
     "add_flight": "Add Flight",
@@ -47,6 +48,10 @@
     "wake_up": "Wake Up!",
     "arrival": "Arrival!",
     "no_coffee_msg_1": "Avoid coffee from ",
-    "no_coffee_msg_2": "based on the departure time zone!"
+    "no_coffee_msg_2": "based on the departure time zone!",
+    "title": "Nap Tips",
+    "not_result_msg_1": "Failed to get nap tips.",
+    "not_result_msg_2": "Please try again later.",
+    "go_home": "Back to Home"
   }
 }

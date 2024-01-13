@@ -40,9 +40,7 @@ const FlightInfo = ({ addFlight }) => {
   };
 
   const getFlightInfo = async () => {
-    const key = `${removeHyphens(
-      departureDate
-    )}_${airlineCode}_${flightNumber}`;
+    const key = `${removeHyphens(departureDate)}_${airlineCode}${flightNumber}`;
     setKey(key);
 
     if (responses[key]) {
