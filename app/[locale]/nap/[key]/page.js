@@ -17,7 +17,6 @@ export default function Nap(param) {
   const [loadings, setLoadings] = useState(true);
 
   const getAirportInfo = async () => {
-    setLoadings(true);
     const key = param.params.key;
     try {
       const apiUrl = `/api/nap/${key}`;
