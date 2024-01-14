@@ -8,6 +8,15 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
+
+  // 한영 변환 기능
+  const toggleLocale = () => {
+    const newLocale = locale === "ko" ? "en" : "ko";
+    const newPathname = pathname.replace(locale, newLocale);
+    router.replace(newPathname);
+    router.refresh();
+  };
+
   return (
     <div className="myHeader flex justify-center py-2 text-2xl mb-4 font-bold">
       <header className="flex w-full items-center">
