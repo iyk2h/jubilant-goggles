@@ -1,8 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function ShareLayout({ value, state = false, close }) {
+  const t = useTranslations("Share");
   let [isOpen, setIsOpen] = useState(state);
+  const [isCopied, setIsCopied] = useState(false);
 
   function closeModal() {
     try {
@@ -14,6 +17,28 @@ export default function ShareLayout({ value, state = false, close }) {
   function openModal() {
     setIsOpen(true);
   }
+
+  const [url, setUrl] = useState(``);
+
+  useEffect(() => {
+    const baseUrl = window.location.origin;
+    setUrl(`${baseUrl}/nap/${value}`);
+  }, [value]);
+
+  const copyToClipboard = () => {
+    const textField = document.createElement("textarea");
+    textField.value = url;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand("copy");
+    textField.remove();
+
+    setIsCopied(true);
+
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000);
+  };
 
   return (
     <>
@@ -47,14 +72,29 @@ export default function ShareLayout({ value, state = false, close }) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    SNS 공유하기
+                    {t("title")}
                   </Dialog.Title>
                   <div className="flex gap-2 mt-2">
-                    <p className="text-sm text-gray-500">링크 복사</p>
                     <p className="text-sm text-gray-500">Kakao Talk</p>
                     <p className="text-sm text-gray-500">Facebook</p>
                     <p className="text-sm text-gray-500">Twitter</p>
                   </div>
+                  <div className="flex gap-2 bg-gray-300 p-2 my-2 rounded-lg">
+                    <p className="flex justify-center items-center w-3/4">
+                      <input
+                        className="w-full bg-gray-300 p-1"
+                        value={url}
+                        readOnly
+                      />
+                    </p>
+                    <p
+                      className="flex justify-center items-center w-fit bg-gray-500 text-white rounded-full p-2 px-5 cursor-pointer hover:bg-gray-400"
+                      onClick={copyToClipboard}
+                    >
+                      {t("copy")}
+                    </p>
+                  </div>
+                  {isCopied && t("copyDone")}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
