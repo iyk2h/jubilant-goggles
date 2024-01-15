@@ -9,7 +9,8 @@
     "addTravel": "여행 추가",
     "deleteAll": "모든 여행을 삭제하시겠습니까?",
     "delete": "삭제",
-    "close": "닫기"
+    "close": "닫기",
+    "share": "공유"
   },
   "Flights": {
     "flights": "선택한 비행 목록",
@@ -52,6 +53,7 @@
     "title": "낮잠 추천",
     "not_result_msg_1": "낮잠 추천을 가져오는 데 실패했습니다.",
     "not_result_msg_2": "나중에 다시 시도해주세요.",
-    "go_home": "홈으로 돌아가기"
+    "go_home": "홈으로 돌아가기",
+    "share": "낮잠 추천 공유"
   }
 }

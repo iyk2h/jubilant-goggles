@@ -9,7 +9,8 @@
     "addTravel": "Add a Travel",
     "deleteAll": "Are you sure you want to delete the all travel?",
     "delete": "Delete",
-    "close": "Close"
+    "close": "Close",
+    "share": "Share"
   },
   "Flights": {
     "flights": "Seleted Flights",
@@ -52,6 +53,7 @@
     "title": "Nap Tips",
     "not_result_msg_1": "Failed to get nap tips.",
     "not_result_msg_2": "Please try again later.",
-    "go_home": "Back to Home"
+    "go_home": "Back to Home",
+    "share": "Share My Nap Tips"
   }
 }

@@ -8,6 +8,8 @@ import axios from "axios";
 import { LoadingIcon } from "@/app/utils/icon/Icon";
 import { useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
+import ShareLayout from "@/app/components/ShareLayout";
+import MyButton from "@/app/components/MyButton";
 
 export default function Nap(param) {
   const t = useTranslations("Result");
@@ -15,9 +17,9 @@ export default function Nap(param) {
 
   const [airport, setArport] = useState([]);
   const [loadings, setLoadings] = useState(true);
+  const key = param.params.key;
 
   const getAirportInfo = async () => {
-    const key = param.params.key;
     try {
       const apiUrl = `/api/nap/${key}`;
       const { data } = await axios.get(apiUrl);
@@ -27,6 +29,17 @@ export default function Nap(param) {
     } finally {
       setLoadings(false);
     }
+  };
+
+  let [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+    console.log(isModalOpen);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const airportInfos = useAirportInfosValue();
@@ -70,9 +83,15 @@ export default function Nap(param) {
                 </div>
               </>
             ) : (
-              <>
+              <div className=" mb-20">
                 <RecommendNap airportInfos={airport} />
-              </>
+                <div className="flex justify-end">
+                  <MyButton onClick={openModal} text={t("share")} />
+                  {isModalOpen && (
+                    <ShareLayout value={key} state={true} close={closeModal} />
+                  )}
+                </div>
+              </div>
             )}
           </>
         )}

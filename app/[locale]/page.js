@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAirportInfosActions } from "./AirportProvider";
 import { formatStrS, nowDate, formatDate } from "../utils/DateUtils";
 import { useTranslations, useLocale } from "next-intl";
+import ShareLayout from "../components/ShareLayout";
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -77,6 +78,18 @@ export default function Home() {
     };
   }, [dropdownRef, openDropdownIndex]);
 
+  let [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [value, setValue] = useState();
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <div className="text-2xl font-bold">{t("mytravels")}</div>
@@ -127,6 +140,16 @@ export default function Home() {
                           aria-labelledby="options-menu"
                         >
                           <div
+                            onClick={() => {
+                              openModal();
+                              setValue(info.key);
+                            }}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b-2"
+                            role="menuitem"
+                          >
+                            {t("share")}
+                          </div>
+                          <div
                             onClick={() => handleSelect(info.key)}
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b-2"
                             role="menuitem"
@@ -155,6 +178,9 @@ export default function Home() {
             <p>{t("guide_msg_2")}</p>
           </div>
         </>
+      )}
+      {isModalOpen && (
+        <ShareLayout value={value} state={true} close={closeModal} />
       )}
     </div>
   );

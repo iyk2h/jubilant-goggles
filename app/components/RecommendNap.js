@@ -144,7 +144,7 @@ const RecommendNap = ({ airportInfos }) => {
 
   return (
     <>
-      <div className="mt-5 mb-20">
+      <div className="mt-5">
         {recommendNapItems.map((info, index) => (
           <RecommendNapLayout
             key={index}
