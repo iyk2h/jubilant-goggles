@@ -39,7 +39,9 @@
     "recent_view_list": "Recent Views",
     "result": "Result",
     "no_search_history": "No search history.",
-    "only_en_num_msg": "Only English letters and numbers are allowed for flight numbers."
+    "only_en_num_msg": "Only English letters and numbers are allowed for flight numbers.",
+    "next": "next",
+    "pre": "Previous"
   },
   "Result": {
     "departure_country_time": "Departure Time Zone",

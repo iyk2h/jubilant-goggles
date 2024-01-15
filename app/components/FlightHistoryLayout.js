@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FlightInfoDisplay from "./FlightInfoLayout";
 import MyButton from "./MyButton";
+import { useTranslations } from "next-intl";
 
 const FlightHistoryLayout = ({
   history,
@@ -8,6 +9,7 @@ const FlightHistoryLayout = ({
   onClickTitle,
   hover = true,
 }) => {
+  const t = useTranslations("AddFlight");
   const gap = 4;
 
   const [visibleItems, setVisibleItems] = useState(0);
@@ -38,14 +40,14 @@ const FlightHistoryLayout = ({
       <div className="flex justify-between">
         {showPreviousButton ? (
           <div className="flex items-start">
-            <MyButton text={"이전"} onClick={loadLessItems} />
+            <MyButton text={t("pre")} onClick={loadLessItems} />
           </div>
         ) : (
           <div></div>
         )}
         {showNextButton ? (
           <div className="flex items-end">
-            <MyButton text={"다음"} onClick={loadMoreItems} />
+            <MyButton text={t("next")} onClick={loadMoreItems} />
           </div>
         ) : (
           <div></div>
