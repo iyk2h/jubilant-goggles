@@ -88,7 +88,7 @@ export default function ShareLayout({ value, state = false, close }) {
                       />
                     </p>
                     <p
-                      className="flex justify-center items-center w-fit bg-gray-500 text-white rounded-full p-2 px-5 cursor-pointer hover:bg-gray-400"
+                      className="flex justify-center items-center w-1/4 bg-gray-500 text-white rounded-full p-2 px-5 cursor-pointer hover:bg-gray-400"
                       onClick={copyToClipboard}
                     >
                       {t("copy")}
