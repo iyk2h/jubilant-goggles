@@ -12,8 +12,8 @@ export async function generateMetadata({ params }) {
   const title = params.locale === "ko" ? "시차해결사" : "LagLess";
   const description =
     params.locale === "ko"
-      ? "시차 문제를 해결하세요! 여행 중에 최적의 낮잠 시간을 추천받아 시차를 최소화하세요."
-      : "Solve jet lag! Receive recommendations for the optimal nap time during your travels to minimize the effects of jet lag.";
+      ? "여행 중에 최적의 낮잠 시간을 추천받아 시차를 최소화하세요."
+      : "Receive recommendations for the optimal nap time during your travels to minimize the effects of jet lag.";
   return {
     metadataBase: new URL("https://sky-nap-guide.vercel.app/"),
     title: title,
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       images: ["/thumbnail.jpg"],
     },
+    site_name: title,
   };
 }
 
@@ -66,6 +67,13 @@ export default function RootLayout({ children, params }) {
       </body>
       <KakaoScript />
       <GoogleTagManager gtmId="GTM-TFZ2VB2Q" />
+      <Script>
+        {`
+        window.onload = function () {
+          window.scrollTo(0, 1);
+        };
+      `}
+      </Script>
     </html>
   );
 }
