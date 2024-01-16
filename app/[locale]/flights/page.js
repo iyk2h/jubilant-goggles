@@ -49,7 +49,7 @@ export default function Flights() {
     );
 
     const hashValue = (originalValue) => {
-      const hashed = murmurhash.v3(originalValue);
+      const hashed = murmurhash.v3(originalValue).toString();
       return hashed;
     };
 

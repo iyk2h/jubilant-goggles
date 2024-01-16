@@ -38,20 +38,20 @@ export default function Nap(param) {
 
   const addMyTravel = () => {
     const storedAirports = localStorage.getItem("nap_results");
-    const parsedAirports = JSON.parse(storedAirports);
-    console.log(title);
-    if (parsedAirports) {
-      const newHistory = [...parsedAirports, { key, title }];
-
-      const sortedHistory = newHistory.sort((a, b) => {
-        if (a.title < b.title) return -1;
-        if (a.title > b.title) return 1;
-        return 0;
-      });
-      localStorage.setItem("nap_results", JSON.stringify(sortedHistory));
-    } else {
-      localStorage.setItem("nap_results", JSON.stringify([{ key, title }]));
+    let parsedAirports = [];
+    if (storedAirports !== null) {
+      parsedAirports = JSON.parse(storedAirports);
     }
+
+    const newHistory = [...parsedAirports, { key, title }];
+
+    const sortedHistory = newHistory.sort((a, b) => {
+      if (a.title < b.title) return -1;
+      if (a.title > b.title) return 1;
+      return 0;
+    });
+
+    localStorage.setItem("nap_results", JSON.stringify(sortedHistory));
 
     setIsAdded(true);
     setIsContain(true);
