@@ -15,12 +15,12 @@ export async function generateMetadata({ params }) {
       ? "여행 중에 최적의 낮잠 시간을 추천받아 시차를 최소화하세요."
       : "Receive recommendations for the optimal nap time during your travels to minimize the effects of jet lag.";
   return {
-    metadataBase: new URL("https://sky-nap-guide.vercel.app/"),
-    title: title,
-    description: description,
     openGraph: {
+      metadataBase: new URL("https://sky-nap-guide.vercel.app/"),
+      title: title,
+      description: description,
       images: ["/thumbnail.jpg"],
-      site_name: title,
+      siteName: title,
     },
   };
 }
