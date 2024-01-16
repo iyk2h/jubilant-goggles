@@ -67,13 +67,6 @@ export default function RootLayout({ children, params }) {
       </body>
       <KakaoScript />
       <GoogleTagManager gtmId="GTM-TFZ2VB2Q" />
-      <Script>
-        {`
-        window.onload = function () {
-          window.scrollTo(0, 1);
-        };
-      `}
-      </Script>
     </html>
   );
 }
