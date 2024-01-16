@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import KakaoShareButton from "./KakaoShareButton";
 
 export default function ShareLayout({ value, state = false, close }) {
   const t = useTranslations("Share");
@@ -75,7 +76,10 @@ export default function ShareLayout({ value, state = false, close }) {
                     {t("title")}
                   </Dialog.Title>
                   <div className="flex gap-2 mt-2">
-                    <p className="text-sm text-gray-500">Kakao Talk</p>
+                    <p className="text-sm text-gray-500">
+                      <KakaoShareButton url={url} />
+                      Kakao Talk
+                    </p>
                     <p className="text-sm text-gray-500">Facebook</p>
                     <p className="text-sm text-gray-500">Twitter</p>
                   </div>

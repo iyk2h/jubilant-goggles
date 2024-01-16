@@ -6,6 +6,7 @@ import Script from "next/script";
 import { useLocale, NextIntlClientProvider, useMessages } from "next-intl";
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
+import KakaoScript from "../components/KakaoScript";
 
 export async function generateMetadata({ params }) {
   const title = params.locale === "ko" ? "시차해결사" : "LagLess";
@@ -63,6 +64,7 @@ export default function RootLayout({ children, params }) {
           </AirportInfosProvider>
         </NextIntlClientProvider>
       </body>
+      <KakaoScript />
       <GoogleTagManager gtmId="GTM-TFZ2VB2Q" />
     </html>
   );
