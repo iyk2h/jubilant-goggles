@@ -11,7 +11,7 @@ import { CloseIcon, LoadingIcon, SearchIcon } from "../../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 
 import axios from "axios";
-const crypto = require("crypto");
+const murmurhash = require("murmurhash");
 
 export default function Flights() {
   const t = useTranslations("Flights");
@@ -49,10 +49,7 @@ export default function Flights() {
     );
 
     const hashValue = (originalValue) => {
-      const hashed = crypto
-        .createHash("sha256")
-        .update(originalValue)
-        .digest("hex");
+      const hashed = murmurhash.v3(originalValue);
       return hashed;
     };
 
