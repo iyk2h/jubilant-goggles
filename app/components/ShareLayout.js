@@ -76,27 +76,27 @@ export default function ShareLayout({ value, state = false, close }) {
                     {t("title")}
                   </Dialog.Title>
                   <div className="flex gap-2 mt-2">
-                    <p className="text-sm text-gray-500">
+                    <div className="text-sm text-gray-500">
                       <KakaoShareButton url={url} />
                       Kakao Talk
-                    </p>
-                    <p className="text-sm text-gray-500">Facebook</p>
-                    <p className="text-sm text-gray-500">Twitter</p>
+                    </div>
+                    <div className="text-sm text-gray-500">Facebook</div>
+                    <div className="text-sm text-gray-500">Twitter</div>
                   </div>
                   <div className="flex gap-2 bg-gray-300 p-2 my-2 rounded-lg">
-                    <p className="flex justify-center items-center w-3/4">
+                    <div className="flex justify-center items-center w-3/4">
                       <input
                         className="w-full bg-gray-300 p-1"
                         value={url}
                         readOnly
                       />
-                    </p>
-                    <p
+                    </div>
+                    <div
                       className="flex justify-center items-center w-1/4 bg-gray-500 text-white rounded-full p-2 px-5 cursor-pointer hover:bg-gray-400"
                       onClick={copyToClipboard}
                     >
                       {t("copy")}
-                    </p>
+                    </div>
                   </div>
                   {isCopied && t("copyDone")}
                 </Dialog.Panel>

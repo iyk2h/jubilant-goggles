@@ -1,8 +1,7 @@
+import Image from "next/image";
 import React, { useEffect } from "react";
 
 const KakaoShareButton = ({ url }) => {
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { Kakao } = window;
@@ -22,13 +21,16 @@ const KakaoShareButton = ({ url }) => {
   };
 
   return (
-    <div onClick={handleShareToKakao}>
-      <a id="kakaotalk-sharing-btn" href="javascript:;">
-        <img
-          src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-          alt="카카오톡 공유 보내기 버튼"
-        />
-      </a>
+    <div
+      className="flex justify-center items-center"
+      onClick={handleShareToKakao}
+    >
+      <Image
+        width={50}
+        height={50}
+        src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+        alt="카카오톡 공유 보내기 버튼"
+      />
     </div>
   );
 };
