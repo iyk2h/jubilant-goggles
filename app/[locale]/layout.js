@@ -20,8 +20,8 @@ export async function generateMetadata({ params }) {
     description: description,
     openGraph: {
       images: ["/thumbnail.jpg"],
+      site_name: title,
     },
-    site_name: title,
   };
 }
 
@@ -48,6 +48,10 @@ export default function RootLayout({ children, params }) {
           gtag('js', new Date());
         
           gtag('config', 'G-DESYR520TS');
+
+          window.onload = function () {
+            window.scrollTo(0, 1);
+          };
         `}
         </Script>
       </>
