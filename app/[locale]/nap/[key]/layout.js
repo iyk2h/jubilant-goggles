@@ -6,7 +6,7 @@ export async function generateMetadata({ params }) {
       : "Share the nap time recommended through LagLess. Minimize jet lag together during our travels.";
   return {
     metadataBase: new URL(
-      `https://sky-nap-guide.vercel.app/${params.locale}/nap`
+      `https://sky-nap-guide.vercel.app/${params.locale}/nap/`
     ),
     openGraph: {
       title: title,
