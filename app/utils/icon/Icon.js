@@ -80,6 +80,10 @@ export function MenuIcon() {
   return <Image width={25} height={25} src="/icons8-menu.png" alt="menu" />;
 }
 
+export function Menu3Icon() {
+  return <Image width={25} height={25} src="/icons8-menu-3.png" alt="menu-3" />;
+}
+
 export function DropdownIcon() {
   return (
     <Image width={30} height={30} src="/icons8-dropdown.png" alt="dropdown" />

@@ -1,6 +1,9 @@
 {
   "Head": {
-    "title": "LagLess"
+    "title": "LagLess",
+    "menu": "Menu",
+    "language": "Language",
+    "feedback": "Feedback"
   },
   "Home": {
     "guide_msg_1": "Get customized nap recommendations",

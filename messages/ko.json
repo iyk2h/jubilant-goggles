@@ -1,6 +1,9 @@
 {
   "Head": {
-    "title": "시차해결사"
+    "title": "시차해결사",
+    "menu": "메뉴",
+    "language": "언어 선택",
+    "feedback": "피드백"
   },
   "Home": {
     "guide_msg_1": "지금 여행을 추가하여",
