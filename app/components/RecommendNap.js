@@ -8,10 +8,15 @@ import {
   AirplaneArrivalIcon,
 } from "../utils/icon/Icon";
 import RecommendNapLayout from "./RecommendNapLayout";
-import { formatDate, getDiffTime, formatDateString } from "../utils/DateUtils";
+import {
+  formatDate,
+  getDiffTime,
+  formatDateString,
+  formatStrS,
+} from "../utils/DateUtils";
 import { useTranslations, useLocale } from "next-intl";
 
-const RecommendNap = ({ airportInfos }) => {
+const RecommendNap = ({ title, airportInfos }) => {
   const t = useTranslations("Result");
   const locale = useLocale();
 
@@ -145,6 +150,12 @@ const RecommendNap = ({ airportInfos }) => {
   return (
     <>
       <div className="mt-5">
+        <div className="flex justify-between items-center">
+          <div>{title.split("_")[1]}</div>
+          <div className="text-sm">
+            {formatStrS(title.split("_")[0], locale)}
+          </div>
+        </div>
         {recommendNapItems.map((info, index) => (
           <RecommendNapLayout
             key={index}

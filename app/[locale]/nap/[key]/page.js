@@ -121,7 +121,7 @@ export default function Nap(param) {
               </>
             ) : (
               <div className=" mb-20">
-                <RecommendNap airportInfos={airport} />
+                <RecommendNap title={title} airportInfos={airport} />
                 <div className="flex justify-between">
                   {isContain ? (
                     <div className="flex justify-center items-center pl-3">
