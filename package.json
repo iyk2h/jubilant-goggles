@@ -20,6 +20,7 @@
     "murmurhash": "^2.0.1",
     "next": "14.0.3",
     "next-intl": "^3.4.1",
+    "next-share": "^0.27.0",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18",

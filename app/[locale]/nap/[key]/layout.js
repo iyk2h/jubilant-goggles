@@ -14,6 +14,16 @@ export async function generateMetadata({ params }) {
       images: ["../../thumbnail.jpg"],
       siteName: title,
     },
+    twitter: {
+      cardType: "summary_large_image",
+      site: "@LagLess",
+      title: title,
+      description: description,
+      image: {
+        url: "https://sky-nap-guide.vercel.app/thumbnail.jpg",
+        alt: "Twitter image",
+      },
+    },
   };
 }
 

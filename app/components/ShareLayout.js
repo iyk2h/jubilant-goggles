@@ -3,6 +3,19 @@ import { Fragment, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import KakaoShareButton from "./KakaoShareButton";
 
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  LineShareButton,
+  LineIcon,
+  RedditShareButton,
+  RedditIcon,
+  PinterestShareButton,
+  PinterestIcon,
+} from "next-share";
+
 export default function ShareLayout({ value, state = false, close }) {
   const t = useTranslations("Share");
   let [isOpen, setIsOpen] = useState(state);
@@ -75,24 +88,43 @@ export default function ShareLayout({ value, state = false, close }) {
                   >
                     {t("title")}
                   </Dialog.Title>
-                  <div className="flex gap-2 mt-2">
-                    <div className="text-sm text-gray-500">
+                  <div className="flex gap-1 mt-2 text-center text-xs text-gray-500 overflow-x-auto">
+                    <div className=" mx-1">
                       <KakaoShareButton url={url} />
-                      Kakao Talk
+                      <div>Kakao</div>
                     </div>
-                    <div className="text-sm text-gray-500">Facebook</div>
-                    <div className="text-sm text-gray-500">Twitter</div>
+
+                    <LineShareButton url={url}>
+                      <LineIcon size={50} round className="mx-1" />
+                      <div>Line</div>
+                    </LineShareButton>
+
+                    <FacebookShareButton url={url} hashtag={"#LagLess"}>
+                      <FacebookIcon size={50} round className="mx-1" />
+                      <div>Facebook</div>
+                    </FacebookShareButton>
+
+                    <TwitterShareButton url={url}>
+                      <TwitterIcon size={50} round className="mx-1" />
+                      <div>Twitter</div>
+                    </TwitterShareButton>
+
+                    <RedditShareButton url={url}>
+                      <RedditIcon size={50} round className="mx-1" />
+                      <div>Reddit</div>
+                    </RedditShareButton>
+
+                    <PinterestShareButton url={url}>
+                      <PinterestIcon size={50} round className="mx-1" />
+                      <div>Pinterest</div>
+                    </PinterestShareButton>
                   </div>
-                  <div className="flex gap-2 bg-gray-300 p-2 my-2 rounded-lg">
+                  <div className="flex gap-2 border-2 border-gray-300 p-2 my-2 rounded-lg">
                     <div className="flex justify-center items-center w-3/4">
-                      <input
-                        className="w-full bg-gray-300 p-1"
-                        value={url}
-                        readOnly
-                      />
+                      <input className="w-full  p-1" value={url} readOnly />
                     </div>
                     <div
-                      className="flex justify-center items-center w-1/4 bg-gray-500 text-white rounded-full p-2 px-5 cursor-pointer hover:bg-gray-400"
+                      className="flex justify-center items-center w-1/4 bg-black text-white rounded-full p-2 px-5 cursor-pointer hover:bg-gray-500"
                       onClick={copyToClipboard}
                     >
                       {t("copy")}
