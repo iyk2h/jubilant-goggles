@@ -50,6 +50,7 @@ export default function RootLayout({ children, params }) {
           gtag('config', 'G-DESYR520TS');
         `}
         </Script>
+        <title>{params.locale === "ko" ? "시차해결사" : "LagLess"}</title>
       </>
       <body className="select-none">
         <NextIntlClientProvider
