@@ -65,7 +65,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
             <div className="flex justify-between border-b-2">
               <div className="px-10 py-7">Menu</div>
               <div
-                className="flex justify-center items-center px-4 cursor-pointer"
+                className="flex justify-center items-center px-4 pr-6 cursor-pointer"
                 onClick={handleSidebarClose}
               >
                 <CloseIcon />
