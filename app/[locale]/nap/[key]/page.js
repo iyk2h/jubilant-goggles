@@ -87,7 +87,8 @@ export default function Nap(param) {
     if (airportInfos && airportInfos.length === 0) {
       getAirportInfo();
     } else {
-      setArport(airportInfos);
+      setArport(airportInfos.airport);
+      setTitle(airportInfos.title);
       setLoadings(false);
     }
   }, [airportInfos]);

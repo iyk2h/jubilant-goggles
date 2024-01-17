@@ -79,7 +79,7 @@ export default function Flights() {
       return;
     }
 
-    setAirportInfo(airport);
+    setAirportInfo({ airport, title });
 
     const newHistory = [...airportInfos, { key, title }];
 
