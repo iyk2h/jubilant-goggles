@@ -22,10 +22,10 @@ export const getDiffTime = (diff) => {
 
 export const formatDateString = (dateTime, locale) => {
   if (locale !== "ko") {
-    return dateTime.toFormat("LLL dd, h:mm a");
+    return dateTime.toFormat("LLL dd, h:mm a (ZZZZ)");
   }
   return dateTime
-    .toFormat("M월 d일, a h:mm")
+    .toFormat("M월 d일, a h:mm (ZZZZ)")
     .replace("AM", "오전")
     .replace("PM", "오후");
 };
