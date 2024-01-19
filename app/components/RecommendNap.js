@@ -75,6 +75,9 @@ const RecommendNap = ({ title, airportInfos }) => {
           }
         }
 
+        startNap = Math.round(startNap / 10) * 10;
+        endNap = Math.floor(endNap / 10) * 10;
+
         if (index === 0) {
           setStopCaffein(
             formatDateString(
