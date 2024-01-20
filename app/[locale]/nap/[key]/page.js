@@ -37,7 +37,7 @@ export default function Nap(param) {
   };
 
   const addMyTravel = () => {
-    const storedAirports = localStorage.getItem("nap_results");
+    const storedAirports = localStorage.getItem("nap_tips");
     let parsedAirports = [];
     if (storedAirports !== null) {
       parsedAirports = JSON.parse(storedAirports);
@@ -51,7 +51,7 @@ export default function Nap(param) {
       return 0;
     });
 
-    localStorage.setItem("nap_results", JSON.stringify(sortedHistory));
+    localStorage.setItem("nap_tips", JSON.stringify(sortedHistory));
 
     setIsAdded(true);
     setIsContain(true);
@@ -62,7 +62,7 @@ export default function Nap(param) {
   };
 
   useEffect(() => {
-    const storedAirports = localStorage.getItem("nap_results");
+    const storedAirports = localStorage.getItem("nap_tips");
     if (storedAirports) {
       const parsedAirports = JSON.parse(storedAirports);
       const isKeyExist = parsedAirports.some((airport) => airport.key === key);

@@ -18,7 +18,7 @@ export default function Home() {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
 
   useEffect(() => {
-    const storedAirports = localStorage.getItem("nap_results");
+    const storedAirports = localStorage.getItem("nap_tips");
     const afterToday = [];
 
     if (storedAirports) {
@@ -44,7 +44,7 @@ export default function Home() {
   };
 
   const deleteAirportHistory = (key) => {
-    const storedAirports = localStorage.getItem("nap_results");
+    const storedAirports = localStorage.getItem("nap_tips");
 
     if (storedAirports) {
       const parsedAirports = JSON.parse(storedAirports);
@@ -52,7 +52,7 @@ export default function Home() {
         (airportInfo) => airportInfo.key !== key
       );
 
-      localStorage.setItem("nap_results", JSON.stringify(updatedAirports));
+      localStorage.setItem("nap_tips", JSON.stringify(updatedAirports));
       setAirports(updatedAirports);
     }
   };

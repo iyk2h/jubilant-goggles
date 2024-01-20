@@ -1,17 +1,17 @@
-import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
 
-const getNap = async (key) => {
-  return await kv.get(key);
+const redis = new Redis({
+  url: "https://us1-eager-sole-40017.upstash.io",
+  token: process.env.NEXT_PUBLIC_UPSTASH_TOKEN,
+});
+
+export const getNap = async (key) => {
+  return await redis.get(key);
 };
 
-const setNap = async (key, val) => {
-  const returnVal = await kv.get(key);
+export const setNap = async (key, val) => {
+  const returnVal = await redis.get(key);
   if (returnVal === null) {
-    await kv.set(key, JSON.stringify(val));
+    await redis.set(key, JSON.stringify(val));
   }
-};
-
-module.exports = {
-  getNap,
-  setNap,
 };
