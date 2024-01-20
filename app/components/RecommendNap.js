@@ -274,7 +274,7 @@ const RecommendNap = ({ title, airportInfos }) => {
               onClick={() => setPreFlightFlag(true)}
             >
               <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 bg-slate-200 hover:bg-white rounded-full shadow-lg">
-                {airportInfos[0].departureInfo.city}
+                {airportInfos[0].departureInfo.city} {t("sleep_tips_msg")}
               </span>
             </div>
 
@@ -314,7 +314,8 @@ const RecommendNap = ({ title, airportInfos }) => {
               onClick={() => setAfterFlightFlag(true)}
             >
               <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 bg-slate-200 hover:bg-white rounded-full shadow-lg">
-                {airportInfos[airportInfos.length - 1].arrivalInfo.city}
+                {airportInfos[airportInfos.length - 1].arrivalInfo.city}{" "}
+                {t("sleep_tips_msg")}
               </span>
             </div>
 
