@@ -6,7 +6,6 @@ import {
   NoCoffee,
   AirplaneDepartIcon,
   AirplaneArrivalIcon,
-  CloseIcon,
 } from "../utils/icon/Icon";
 import RecommendNapLayout from "./RecommendNapLayout";
 import {
@@ -21,8 +20,6 @@ import RecommendSleepLayout from "./RecommendSleepLayout";
 const RecommendNap = ({ title, airportInfos }) => {
   const t = useTranslations("Result");
   const locale = useLocale();
-
-  const [stopCaffein, setStopCaffein] = useState();
 
   const [recommendNapItems, setRecommendNapItems] = useState([]);
   const [departSleep, setDepartSleep] = useState([]);
@@ -276,11 +273,8 @@ const RecommendNap = ({ title, airportInfos }) => {
               className="flex justify-center items-center mt-3"
               onClick={() => setPreFlightFlag(true)}
             >
-              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full shadow-lg">
+              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 bg-slate-200 hover:bg-white rounded-full shadow-lg">
                 {airportInfos[0].departureInfo.city}
-                <div className="flex justify-center items-center">
-                  <CloseIcon />
-                </div>
               </span>
             </div>
 
@@ -319,11 +313,8 @@ const RecommendNap = ({ title, airportInfos }) => {
               className="flex justify-center items-center mt-3"
               onClick={() => setAfterFlightFlag(true)}
             >
-              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full shadow-lg">
+              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 bg-slate-200 hover:bg-white rounded-full shadow-lg">
                 {airportInfos[airportInfos.length - 1].arrivalInfo.city}
-                <div className="flex justify-center items-center">
-                  <CloseIcon />
-                </div>
               </span>
             </div>
 
