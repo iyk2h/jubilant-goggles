@@ -118,26 +118,27 @@ const RecommendNap = ({ title, airportInfos }) => {
             icon: <WakeUpIcon />,
           });
 
+          let stopCaffein = "";
           if (
             wakeup >
             departDateForm.plus({ minutes: startNap }).minus({ hours: 8 })
           ) {
-            setStopCaffein(formatDateString(wakeup, locale));
+            stopCaffein = formatDateString(wakeup, locale);
           } else {
-            setStopCaffein(
-              formatDateString(
-                departDateForm.plus({ minutes: startNap }).minus({ hours: 8 }),
-                locale
-              )
+            stopCaffein = formatDateString(
+              departDateForm.plus({ minutes: startNap }).minus({ hours: 8 }),
+              locale
             );
           }
-          dpSleepItem.push({
-            departDateTime: stopCaffein,
-            departDescription: "",
-            arrivalDateTime: t("no_coffee_msg"),
-            arrivalDescription: "",
-            icon: <NoCoffee />,
-          });
+          if (stopCaffein != "") {
+            dpSleepItem.push({
+              departDateTime: stopCaffein,
+              departDescription: "",
+              arrivalDateTime: t("no_coffee_msg"),
+              arrivalDescription: "",
+              icon: <NoCoffee />,
+            });
+          }
 
           setDepartSleep([
             { info: { city: airportInfos[0].departureInfo.city }, dpSleepItem },
