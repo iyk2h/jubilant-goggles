@@ -85,12 +85,63 @@ const RecommendNap = ({ title, airportInfos }) => {
         endNap = Math.floor(endNap / 10) * 10;
 
         if (index === 0) {
-          setStopCaffein(
-            formatDateString(
-              departDateForm.plus({ minutes: startNap }).minus({ hours: 8 }),
-              locale
-            )
-          );
+          // pre flight sleep tips
+          let dpSleepItem = [];
+
+          const dt = formatDate(airportInfos[0].departureInfo);
+          let sleep = dt.startOf("day");
+          let wakeup = dt.startOf("day").plus({ hours: 9 });
+
+          // 07 : 00 < dt < 13:00
+          // d-day
+          if (dt.hour > 7 && dt.hour < 13) {
+            // wakeup : dt - 4h
+            wakeup = dt.minus({ hours: 4 });
+            // sleep : 24:00 - ( (09:00 - wakeup) / 2 )
+            const t = Math.round((9 - wakeup.hour) / 2);
+            sleep = sleep.minus({ hours: t });
+          }
+
+          dpSleepItem.push({
+            departDateTime: formatDateString(sleep, locale),
+            departDescription: t("sleep"),
+            arrivalDateTime: "",
+            arrivalDescription: "",
+            icon: <SleepIcon />,
+          });
+
+          dpSleepItem.push({
+            departDateTime: formatDateString(wakeup, locale),
+            departDescription: t("wake_up"),
+            arrivalDateTime: "",
+            arrivalDescription: "",
+            icon: <WakeUpIcon />,
+          });
+
+          if (
+            wakeup >
+            departDateForm.plus({ minutes: startNap }).minus({ hours: 8 })
+          ) {
+            setStopCaffein(formatDateString(wakeup, locale));
+          } else {
+            setStopCaffein(
+              formatDateString(
+                departDateForm.plus({ minutes: startNap }).minus({ hours: 8 }),
+                locale
+              )
+            );
+          }
+          dpSleepItem.push({
+            departDateTime: stopCaffein,
+            departDescription: "",
+            arrivalDateTime: t("no_coffee_msg"),
+            arrivalDescription: "",
+            icon: <NoCoffee />,
+          });
+
+          setDepartSleep([
+            { info: { city: airportInfos[0].departureInfo.city }, dpSleepItem },
+          ]);
         }
 
         const departNapStart = formatDateString(
@@ -154,57 +205,7 @@ const RecommendNap = ({ title, airportInfos }) => {
 
       setRecommendNapItems(items);
 
-      const dpSleep = [];
-      let dpSleepItem = [];
-
-      const dt = formatDate(airportInfos[0].departureInfo);
-      let sleep = dt.startOf("day");
-      let wakeup = dt.startOf("day").plus({ hours: 9 });
-
-      // 07 : 00 < dt < 13:00
-      // d-day
-      if (dt.hour > 7 && dt.hour < 13) {
-        // wakeup : dt - 4h
-        wakeup = dt.minus({ hours: 4 });
-        // sleep : 24:00 - ( (09:00 - wakeup) / 2 )
-        const t = Math.round((9 - wakeup.hour) / 2);
-        sleep = sleep.minus({ hours: t });
-      }
-
-      dpSleepItem.push({
-        departDateTime: formatDateString(sleep, locale),
-        departDescription: t("sleep"),
-        arrivalDateTime: "",
-        arrivalDescription: "",
-        icon: <SleepIcon />,
-      });
-
-      dpSleepItem.push({
-        departDateTime: formatDateString(wakeup, locale),
-        departDescription: t("wake_up"),
-        arrivalDateTime: "",
-        arrivalDescription: "",
-        icon: <WakeUpIcon />,
-      });
-
-      if (wakeup > stopCaffein) {
-        setStopCaffein(formatDateString(wakeup, locale));
-      }
-      dpSleepItem.push({
-        departDateTime: stopCaffein,
-        // t("no_coffee_msg_2")
-        departDescription: "",
-        arrivalDateTime: t("no_coffee_msg"),
-        arrivalDescription: "",
-        icon: <NoCoffee />,
-      });
-
-      setDepartSleep([
-        { info: { city: airportInfos[0].departureInfo.city }, dpSleepItem },
-      ]);
-
       // recommend arrival sleep
-      const arSleep = [];
       let arSleepItem = [];
 
       const ar = formatDate(airportInfos[airportInfos.length - 1].arrivalInfo);
