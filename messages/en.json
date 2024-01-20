@@ -51,17 +51,19 @@
     "arrival_country_time": "Arrival Time Zone",
     "departure": "Departure",
     "nap": "Nap!",
+    "sleep": "Sleep!",
     "wake_up": "Wake Up!",
     "arrival": "Arrival!",
-    "no_coffee_msg_1": "Avoid coffee from ",
-    "no_coffee_msg_2": "based on the departure time zone!",
+    "no_coffee_msg": "Avoid coffee!",
     "title": "Nap Tips",
     "not_result_msg_1": "Failed to get nap tips.",
     "not_result_msg_2": "Please try again later.",
     "go_home": "Back to Home",
     "share": "Share My Nap Tips",
     "add_my_travels": "Add My Travels",
-    "added_my_travels": "Added to My Travels successfully."
+    "added_my_travels": "Added to My Travels successfully.",
+    "pre_travel_tips_msg": "Get Pre-Flights Sleep Tips",
+    "post_travel_tips_msg": "Get Post-Flights Sleep Tip"
   },
   "Share": {
     "title": "Share",

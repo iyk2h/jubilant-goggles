@@ -136,7 +136,7 @@ export default function Nap(param) {
                       />
                     </div>
                   )}
-                  <div className="flex items-end">
+                  <div className="flex items-end mt-5">
                     <MyButton onClick={openModal} text={t("share")} />
                     {isModalOpen && (
                       <ShareLayout

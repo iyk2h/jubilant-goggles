@@ -35,7 +35,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
           <ul
             aria-label="Activity feed"
             role="feed"
-            className="relative flex flex-col gap-5 py-12 left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
+            className="relative flex flex-col gap-3 py-12 left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
           >
             {recommendItems.map((item, index) => (
               <li key={index} role="article" className="flex gap-2 mt-5">

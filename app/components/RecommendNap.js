@@ -6,6 +6,7 @@ import {
   NoCoffee,
   AirplaneDepartIcon,
   AirplaneArrivalIcon,
+  CloseIcon,
 } from "../utils/icon/Icon";
 import RecommendNapLayout from "./RecommendNapLayout";
 import {
@@ -15,6 +16,7 @@ import {
   formatStrS,
 } from "../utils/DateUtils";
 import { useTranslations, useLocale } from "next-intl";
+import RecommendSleepLayout from "./RecommendSleepLayout";
 
 const RecommendNap = ({ title, airportInfos }) => {
   const t = useTranslations("Result");
@@ -23,9 +25,13 @@ const RecommendNap = ({ title, airportInfos }) => {
   const [stopCaffein, setStopCaffein] = useState();
 
   const [recommendNapItems, setRecommendNapItems] = useState([]);
+  const [departSleep, setDepartSleep] = useState([]);
+  const [arrivalSleep, setArrivalSleep] = useState([]);
 
   useEffect(() => {
     if (airportInfos) {
+      /// recommend nap
+
       const items = [];
 
       airportInfos.map((airportInfo, index) => {
@@ -147,8 +153,101 @@ const RecommendNap = ({ title, airportInfos }) => {
       });
 
       setRecommendNapItems(items);
+
+      const dpSleep = [];
+      let dpSleepItem = [];
+
+      const dt = formatDate(airportInfos[0].departureInfo);
+      let sleep = dt.startOf("day");
+      let wakeup = dt.startOf("day").plus({ hours: 9 });
+
+      // 07 : 00 < dt < 13:00
+      // d-day
+      if (dt.hour > 7 && dt.hour < 13) {
+        // wakeup : dt - 4h
+        wakeup = dt.minus({ hours: 4 });
+        // sleep : 24:00 - ( (09:00 - wakeup) / 2 )
+        const t = Math.round((9 - wakeup.hour) / 2);
+        sleep = sleep.minus({ hours: t });
+      }
+
+      dpSleepItem.push({
+        departDateTime: formatDateString(sleep, locale),
+        departDescription: t("sleep"),
+        arrivalDateTime: "",
+        arrivalDescription: "",
+        icon: <SleepIcon />,
+      });
+
+      dpSleepItem.push({
+        departDateTime: formatDateString(wakeup, locale),
+        departDescription: t("wake_up"),
+        arrivalDateTime: "",
+        arrivalDescription: "",
+        icon: <WakeUpIcon />,
+      });
+
+      if (wakeup > stopCaffein) {
+        setStopCaffein(formatDateString(wakeup, locale));
+      }
+      dpSleepItem.push({
+        departDateTime: stopCaffein,
+        // t("no_coffee_msg_2")
+        departDescription: "",
+        arrivalDateTime: t("no_coffee_msg"),
+        arrivalDescription: "",
+        icon: <NoCoffee />,
+      });
+
+      setDepartSleep([
+        { info: { city: airportInfos[0].departureInfo.city }, dpSleepItem },
+      ]);
+
+      // recommend arrival sleep
+      const arSleep = [];
+      let arSleepItem = [];
+
+      const ar = formatDate(airportInfos[airportInfos.length - 1].arrivalInfo);
+      let arsleept = ar.plus({ days: 1 }).startOf("day");
+      let arwakeupt = ar.plus({ days: 1 }).startOf("day").plus({ hours: 9 });
+
+      if (ar.hour >= 22 || ar.hour < 6) {
+        arsleept.minus({ hours: 2 });
+      } else if (ar.hour >= 6 && ar.hour < 14) {
+        arsleept.minus({ hours: 3 });
+      } else {
+        arsleept.minus({ hours: 4 });
+      }
+
+      arSleepItem.push({
+        departDateTime: "",
+        departDescription: "",
+        arrivalDateTime: formatDateString(arsleept, locale),
+        arrivalDescription: t("sleep"),
+        icon: <SleepIcon />,
+      });
+
+      arSleepItem.push({
+        departDateTime: "",
+        departDescription: "",
+        arrivalDateTime: formatDateString(arwakeupt, locale),
+        arrivalDescription: t("wake_up"),
+        icon: <WakeUpIcon />,
+      });
+
+      setArrivalSleep([
+        {
+          info: {
+            city: airportInfos[airportInfos.length - 1].arrivalInfo.city,
+          },
+          arSleepItem,
+        },
+      ]);
     }
   }, [airportInfos]);
+
+  const [afterFlightFlag, setAfterFlightFlag] = useState(true);
+  const [preFlightFlag, setPreFlightFlag] = useState(true);
 
   return (
     <>
@@ -159,6 +258,41 @@ const RecommendNap = ({ title, airportInfos }) => {
             {formatStrS(title.split("_")[0], locale)}
           </div>
         </div>
+
+        {preFlightFlag ? (
+          <div className="flex justify-center items-center my-3">
+            <div
+              className="p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full  shadow-lg"
+              onClick={() => setPreFlightFlag(false)}
+            >
+              <span>{t("pre_travel_tips_msg")}</span>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div
+              className="flex justify-center items-center mt-3"
+              onClick={() => setPreFlightFlag(true)}
+            >
+              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full shadow-lg">
+                {airportInfos[0].departureInfo.city}
+                <div className="flex justify-center items-center">
+                  <CloseIcon />
+                </div>
+              </span>
+            </div>
+
+            {departSleep.map((info, index) => (
+              <RecommendSleepLayout
+                key={index}
+                idx={index}
+                info={info.info}
+                recommendItems={info.dpSleepItem}
+              />
+            ))}
+          </div>
+        )}
+
         {recommendNapItems.map((info, index) => (
           <RecommendNapLayout
             key={index}
@@ -167,23 +301,38 @@ const RecommendNap = ({ title, airportInfos }) => {
             recommendItems={info.recommendItems}
           />
         ))}
-        {stopCaffein && (
-          <div className="flex items-center my-2">
-            <div className="bg-slate-200 w-fit p-2 rounded-full m-2">
-              <NoCoffee />
+
+        {afterFlightFlag ? (
+          <div className="flex justify-center items-center my-3">
+            <div
+              className="p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full shadow-lg"
+              onClick={() => setAfterFlightFlag(false)}
+            >
+              <span>{t("post_travel_tips_msg")}</span>
             </div>
-            {locale === "ko" ? (
-              <span className="ml-2 text-sm">
-                {t("no_coffee_msg_1")}
-                <br />
-                {stopCaffein} {t("no_coffee_msg_2")}
+          </div>
+        ) : (
+          <div>
+            <div
+              className="flex justify-center items-center mt-3"
+              onClick={() => setAfterFlightFlag(true)}
+            >
+              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full shadow-lg">
+                {airportInfos[airportInfos.length - 1].arrivalInfo.city}
+                <div className="flex justify-center items-center">
+                  <CloseIcon />
+                </div>
               </span>
-            ) : (
-              <span className="ml-2 text-sm">
-                {t("no_coffee_msg_1")} {stopCaffein}
-                <br /> {t("no_coffee_msg_2")}
-              </span>
-            )}
+            </div>
+
+            {arrivalSleep.map((info, index) => (
+              <RecommendSleepLayout
+                key={index}
+                idx={index + 1}
+                info={info.info}
+                recommendItems={info.arSleepItem}
+              />
+            ))}
           </div>
         )}
       </div>
