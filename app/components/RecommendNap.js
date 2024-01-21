@@ -218,6 +218,25 @@ const RecommendNap = ({ title, airportInfos }) => {
         arsleept.minus({ hours: 4 });
       }
 
+      let stopCaffein = "";
+      const lastArrivalTime = formatDate(
+        airportInfos[airportInfos.length - 1].arrivalInfo
+      );
+      if (lastArrivalTime > arsleept.minus({ hours: 8 })) {
+        stopCaffein = formatDateString(lastArrivalTime, locale);
+      } else {
+        stopCaffein = formatDateString(arsleept.minus({ hours: 8 }), locale);
+      }
+      if (stopCaffein != "") {
+        arSleepItem.push({
+          departDateTime: t("no_coffee_msg"),
+          departDescription: "",
+          arrivalDateTime: stopCaffein,
+          arrivalDescription: "",
+          icon: <NoCoffee />,
+        });
+      }
+
       arSleepItem.push({
         departDateTime: "",
         departDescription: "",

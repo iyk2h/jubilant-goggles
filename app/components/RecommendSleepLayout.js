@@ -27,15 +27,15 @@ const RecommendSleepLayout = ({ idx, info, recommendItems }) => {
               <li key={index} role="article" className="flex gap-2 mt-5">
                 <div
                   className={`flex flex-col w-28 text-right ${
-                    index === 2 ? "font-bold" : ""
+                    index === 3 ? "font-bold" : ""
                   }`}
                 >
-                  <p className={`text-xs ${index === 2 ? "font-bold" : ""}`}>
+                  <p className={`text-xs ${index === 3 ? "font-bold" : ""}`}>
                     {item.departDateTime}
                   </p>
                   <h4
                     className={`text-base ${
-                      index === 2 ? "font-bold" : ""
+                      index === 3 ? "font-bold" : ""
                     } text-slate-700`}
                   >
                     {item.departDescription}
@@ -46,15 +46,15 @@ const RecommendSleepLayout = ({ idx, info, recommendItems }) => {
                 </span>
                 <div
                   className={`flex flex-col gap-0 w-28 ${
-                    index === 2 ? "font-bold" : ""
+                    index === 3 ? "font-bold" : ""
                   }`}
                 >
-                  <p className={`text-xs ${index === 2 ? "font-bold" : ""}`}>
+                  <p className={`text-xs ${index === 3 ? "font-bold" : ""}`}>
                     {item.arrivalDateTime}
                   </p>
                   <h4
                     className={`text-base ${
-                      index === 2 ? "font-bold" : ""
+                      index === 3 ? "font-bold" : ""
                     } text-slate-700`}
                   >
                     {item.arrivalDescription}
