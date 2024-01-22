@@ -7,6 +7,7 @@ import {
   CalendarsIcon,
   CloseIcon,
   EnterIcon,
+  SearchIcon,
 } from "../utils/icon/Icon";
 import { useRouter } from "next/navigation";
 import {
@@ -198,8 +199,11 @@ const SearchFlight = ({
           </div>
         ) : (
           <div className="flex bg-gray-100 w-full rounded-lg">
+            <div className="flex justify-center items-center p-2">
+              <SearchIcon />
+            </div>
             <input
-              className={`${nanum_Gothic_Coding.className} bg-gray-100 p-1 pl-2 my-1 ml-2 w-full font-bold rounded-lg outline-gray-400 focus:ring-0`}
+              className={`${nanum_Gothic_Coding.className} bg-gray-100 p-1 my-1 w-full font-bold rounded-lg outline-gray-400 focus:ring-0`}
               value={query}
               onChange={handleInputChange}
               onKeyDown={handleEnterPress}

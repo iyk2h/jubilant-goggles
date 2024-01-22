@@ -7,7 +7,7 @@ import { getAirportInfos } from "../../api/airportInfo/AirportInfo";
 import FlightHistoryLayout from "../../components/FlightHistoryLayout";
 import MyButton from "../../components/MyButton";
 import { useAirportInfosActions } from "../AirportProvider";
-import { CloseIcon, LoadingIcon, SearchIcon } from "../../utils/icon/Icon";
+import { CloseIcon, LoadingIcon } from "../../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 
 import axios from "axios";
@@ -101,11 +101,11 @@ export default function Flights() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (flights.length === 0) {
-  //     router.replace("/flights/input");
-  //   }
-  // }, [flights]);
+  useEffect(() => {
+    if (flights.length === 0) {
+      router.replace("/flights/input");
+    }
+  }, [flights]);
 
   return (
     <div className="">
@@ -122,13 +122,12 @@ export default function Flights() {
       </div>
       {flights.length <= 3 && (
         <div
-          className="flex gap-2 bg-gray-100 rounded-xl p-2 px-2 mt-1 mb-2 cursor-pointer shadow-lg hover:bg-gray-300"
+          className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 px-2 mt-2 mb-2 cursor-pointer hover:bg-gray-200 hover:text-black"
           onClick={() => {
             router.push("/flights/input");
           }}
         >
-          <SearchIcon />
-          <p className="text-gray-600">{t("search_flight")}</p>
+          <p className="">{t("search_flight")}</p>
         </div>
       )}
       <>

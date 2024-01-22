@@ -18,7 +18,7 @@
   "Flights": {
     "flights": "선택한 비행 목록",
     "myflights": "나의 비행",
-    "search_flight": "비행 검색 및 추가",
+    "search_flight": "경로 추가",
     "cancel": "다시 입력",
     "done": "낮잠 정보 받기",
     "empty_flight": "비행을 추가해 주세요.",
