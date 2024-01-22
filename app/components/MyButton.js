@@ -37,6 +37,7 @@ export default function MyButton({ text, type, onClick }) {
 
         .MyButton_default:hover {
           background-color: #d1d5db;
+          border: 3px solid #d1d5db;
           color: black;
         }
 

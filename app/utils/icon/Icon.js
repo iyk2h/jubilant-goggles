@@ -122,3 +122,7 @@ export function SearchIcon() {
 export function CloseIcon() {
   return <Image width={17} height={17} src="/icons8-close.png" alt="close" />;
 }
+
+export function ShareIcon() {
+  return <Image width={17} height={17} src="/icons8-share.png" alt="share" />;
+}

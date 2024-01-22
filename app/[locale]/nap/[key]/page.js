@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { LoadingIcon } from "@/app/utils/icon/Icon";
+import { CloseIcon, LoadingIcon, ShareIcon } from "@/app/utils/icon/Icon";
 import { useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
@@ -74,7 +74,6 @@ export default function Nap(param) {
 
   const openModal = () => {
     setIsModalOpen(true);
-    console.log(isModalOpen);
   };
 
   const closeModal = () => {
@@ -95,7 +94,27 @@ export default function Nap(param) {
 
   return (
     <>
-      <div className="text-2xl font-bold">{t("title")}</div>
+      <div className="flex justify-between items-center">
+        <div className="text-2xl font-bold">{t("title")}</div>
+        <div className="flex gap-1">
+          <div
+            className="flex p-2 bg-gray-200 cursor-pointer rounded-full hover:bg-gray-300"
+            onClick={openModal}
+            text={t("share")}
+          >
+            <ShareIcon />
+            {isModalOpen && (
+              <ShareLayout value={key} state={true} close={closeModal} />
+            )}
+          </div>
+          <div
+            className="flex p-2 bg-gray-200 cursor-pointer rounded-full hover:bg-gray-300"
+            onClick={() => router.push("/")}
+          >
+            <CloseIcon />
+          </div>
+        </div>
+      </div>
       <section className="">
         {loadings ? (
           <div className="flex justify-center items-center py-5">
@@ -123,31 +142,26 @@ export default function Nap(param) {
             ) : (
               <div className=" mb-20">
                 <RecommendNap title={title} airportInfos={airport} />
-                <div className="flex justify-between">
+                <div className="flex w-full justify-center items-center my-2 mb-4">
                   {isContain ? (
                     <div className="flex justify-center items-center pl-3">
                       {isAdded && t("added_my_travels")}
                     </div>
                   ) : (
-                    <div className="flex items-start">
+                    <div className="flex">
                       <MyButton
                         text={t("add_my_travels")}
                         onClick={addMyTravel}
                       />
                     </div>
                   )}
-                  <div className="flex items-end mt-5">
-                    <MyButton onClick={openModal} text={t("share")} />
-                    {isModalOpen && (
-                      <ShareLayout
-                        value={key}
-                        state={true}
-                        close={closeModal}
-                      />
-                    )}
-                  </div>
                 </div>
-                <div className="flex justify-between"></div>
+                <div
+                  className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 cursor-pointer hover:bg-gray-200 hover:text-black"
+                  onClick={() => router.push("/")}
+                >
+                  {t("go_home")}
+                </div>
               </div>
             )}
           </>
