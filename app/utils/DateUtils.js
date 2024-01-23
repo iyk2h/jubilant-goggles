@@ -59,3 +59,20 @@ export const formatFromCrawl = (input) => {
     "M/d/yyyy, h:mm:ss a"
   );
 };
+
+export const formatAirportDate = (input, locale) => {
+  const cleanedString = input.replace(",", "");
+  const [time, ampm, month, day] = cleanedString.split(/\s+/);
+  const year = 2024;
+
+  const dateTime = formatFromCrawl(`${month}/${day}/${year}, ${time} ${ampm}`);
+  if (locale !== "ko") {
+    return DateTime.fromFormat(dateTime, "M/d/yyyy, h:mm:ss a").toFormat(
+      "LLL dd, h:mm a"
+    );
+  }
+  return DateTime.fromFormat(dateTime, "M/d/yyyy, h:mm:ss a")
+    .toFormat("M월 d일, a h:mm")
+    .replace("AM", "오전")
+    .replace("PM", "오후");
+};

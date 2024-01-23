@@ -1,6 +1,9 @@
 import React from "react";
 import { CloseIcon } from "../utils/icon/Icon";
 
+import { formatAirportDate } from "../utils/DateUtils";
+import { useLocale } from "next-intl";
+
 const RecentViewsLayout = ({
   flightInfo,
   onConfirm,
@@ -10,6 +13,8 @@ const RecentViewsLayout = ({
 }) => {
   const { departureAirportCode, departureTime, arrivalAirportCode } =
     flightInfo;
+
+  const locale = useLocale();
 
   return (
     <div
@@ -28,7 +33,9 @@ const RecentViewsLayout = ({
                 <p className="text-base">{arrivalAirportCode}</p>
               </div>
               <div className="text-right">
-                <p className="text-sm mt-1">{departureTime}</p>
+                <p className="text-sm mt-1">
+                  {formatAirportDate(departureTime, locale)}
+                </p>
               </div>
             </div>
           </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { formatAirportDate } from "../utils/DateUtils";
+import { useLocale } from "next-intl";
 
 const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
   const {
@@ -9,6 +11,8 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
     arrivalCity,
     arrivalTime,
   } = flightInfo;
+
+  const locale = useLocale();
 
   return (
     <div
@@ -21,7 +25,9 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
         <div className="text-center w-2/5">
           <p className="text-2xl">{departureAirportCode}</p>
           <p className="text-xs">{departureCity}</p>
-          <p className="text-sm mt-1">{departureTime}</p>
+          <p className="text-sm mt-1">
+            {formatAirportDate(departureTime, locale)}
+          </p>
         </div>
         <div className="text-center w-1/5">
           <p className="text-xl mt-4"> ✈︎ </p>
@@ -29,7 +35,9 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
         <div className="text-center w-2/5">
           <p className="text-2xl">{arrivalAirportCode}</p>
           <p className="text-xs">{arrivalCity}</p>
-          <p className="text-sm mt-1">{arrivalTime}</p>
+          <p className="text-sm mt-1">
+            {formatAirportDate(arrivalTime, locale)}
+          </p>
         </div>
         {text && (
           <div className="flex items-center rotate-180 mr-1">{text}</div>
