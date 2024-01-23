@@ -264,9 +264,6 @@ const RecommendNap = ({ title, airportInfos }) => {
     }
   }, [airportInfos]);
 
-  const [afterFlightFlag, setAfterFlightFlag] = useState(true);
-  const [preFlightFlag, setPreFlightFlag] = useState(true);
-
   return (
     <>
       <div className="mt-5">
@@ -277,37 +274,19 @@ const RecommendNap = ({ title, airportInfos }) => {
           </div>
         </div>
 
-        {preFlightFlag ? (
-          <div className="flex justify-center items-center my-3">
-            <div
-              className="p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full  shadow-lg"
-              onClick={() => setPreFlightFlag(false)}
-            >
-              <span>{t("pre_travel_tips_msg")}</span>
-            </div>
-          </div>
-        ) : (
-          <div>
-            <div
-              className="flex justify-center items-center mt-3"
-              onClick={() => setPreFlightFlag(true)}
-            >
-              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 bg-slate-200 hover:bg-white rounded-full shadow-lg">
-                {airportInfos[0].departureInfo.city} {t("sleep_tips_msg")}
-              </span>
-            </div>
+        {/* <span>
+          {airportInfos[0].departureInfo.city} {t("sleep_tips_msg")}
+        </span> */}
+        {departSleep.map((info, index) => (
+          <RecommendSleepLayout
+            key={index}
+            idx={index}
+            info={`${info.info.city} ${t("sleep_tips_msg")}`}
+            recommendItems={info.dpSleepItem}
+          />
+        ))}
 
-            {departSleep.map((info, index) => (
-              <RecommendSleepLayout
-                key={index}
-                idx={index}
-                info={info.info}
-                recommendItems={info.dpSleepItem}
-              />
-            ))}
-          </div>
-        )}
-
+        {/* <span>비행 중 낮잠 정보</span> */}
         {recommendNapItems.map((info, index) => (
           <RecommendNapLayout
             key={index}
@@ -317,37 +296,18 @@ const RecommendNap = ({ title, airportInfos }) => {
           />
         ))}
 
-        {afterFlightFlag ? (
-          <div className="flex justify-center items-center my-3">
-            <div
-              className="p-2 px-4 border-2 border-slate-200 hover:bg-slate-200 rounded-full shadow-lg"
-              onClick={() => setAfterFlightFlag(false)}
-            >
-              <span>{t("post_travel_tips_msg")}</span>
-            </div>
-          </div>
-        ) : (
-          <div>
-            <div
-              className="flex justify-center items-center mt-3"
-              onClick={() => setAfterFlightFlag(true)}
-            >
-              <span className="flex gap-2 p-2 px-4 border-2 border-slate-200 bg-slate-200 hover:bg-white rounded-full shadow-lg">
-                {airportInfos[airportInfos.length - 1].arrivalInfo.city}{" "}
-                {t("sleep_tips_msg")}
-              </span>
-            </div>
-
-            {arrivalSleep.map((info, index) => (
-              <RecommendSleepLayout
-                key={index}
-                idx={index + 1}
-                info={info.info}
-                recommendItems={info.arSleepItem}
-              />
-            ))}
-          </div>
-        )}
+        {/* <span>
+          
+        </span> */}
+        {arrivalSleep.map((info, index) => (
+          <RecommendSleepLayout
+            key={index}
+            idx={airportInfos.length}
+            info={`${airportInfos[airportInfos.length - 1].arrivalInfo.city}
+            ${t("sleep_tips_msg")}`}
+            recommendItems={info.arSleepItem}
+          />
+        ))}
       </div>
     </>
   );

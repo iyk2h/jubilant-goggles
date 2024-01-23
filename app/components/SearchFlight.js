@@ -182,12 +182,12 @@ const SearchFlight = ({
         className={`flex gap-2 mt-1 ${
           code !== "" && num !== "" && departureDate !== ""
             ? ""
-            : "bg-gray-100 rounded-xl"
+            : "bg-left-bg rounded-xl"
         }`}
       >
         {!focusFlag ? (
           <div
-            className="flex bg-gray-200 w-fit p-1 px-2 my-1 rounded-lg shadow-lg hover:bg-gray-300 cursor-pointer"
+            className="flex bg-right-bg w-fit p-1 px-2 ml-2 my-1 rounded-lg shadow-lg hover:bg-left-bg cursor-pointer"
             onClick={() => {
               setDepartureDate("");
               setDateFocus(false);
@@ -198,12 +198,12 @@ const SearchFlight = ({
             {num}
           </div>
         ) : (
-          <div className="flex bg-gray-100 w-full rounded-lg">
+          <div className="flex bg-left-bg w-full rounded-lg">
             <div className="flex justify-center items-center p-2">
               <SearchIcon />
             </div>
             <input
-              className={`${nanum_Gothic_Coding.className} bg-gray-100 p-1 my-1 w-full font-bold rounded-lg outline-gray-400 focus:ring-0`}
+              className={`${nanum_Gothic_Coding.className} bg-left-bg p-1 my-1 w-full font-bold rounded-lg outline-gray-400 focus:ring-0`}
               value={query}
               onChange={handleInputChange}
               onKeyDown={handleEnterPress}
@@ -228,7 +228,7 @@ const SearchFlight = ({
         {departureDate === "" ? (
           <input
             className={`text-base  rounded-lg px-2 py-1 m-1 appearance-none  outline-gray-400 focus:ring-0 ${
-              focusFlag ? "w-4 bg-gray-100" : "bg-gray-200 cursor-pointer"
+              focusFlag ? "w-4 bg-left-bg" : "bg-left-bg cursor-pointer"
             }`}
             placeholder={t("date")}
             value={departureDate}
@@ -238,7 +238,7 @@ const SearchFlight = ({
           />
         ) : (
           <div
-            className="flex items-center bg-gray-200 px-2 p-1 my-1 shadow-lg rounded-lg hover:bg-gray-300 cursor-pointer"
+            className="flex items-center bg-right-bg px-2 p-1 my-1 shadow-lg rounded-lg hover:bg-left-bg cursor-pointer"
             onClick={() => {
               setDepartureDate("");
               setDateFocus(true);
@@ -257,8 +257,8 @@ const SearchFlight = ({
               {matchingValues.map((item, index) => (
                 <li
                   key={index}
-                  className={`flex justify-between border-b-2 rounded-lg cursor-pointer hover:bg-gray-200 ${
-                    index === 0 ? "bg-gray-100" : ""
+                  className={`flex justify-between border-b-2 rounded-lg cursor-pointer hover:bg-right-bg ${
+                    index === 0 ? "bg-left-bg" : ""
                   }`}
                   onClick={() => handleClick(item.iata, num)}
                 >
@@ -322,7 +322,7 @@ const SearchFlight = ({
         <div>
           <ul className="max-h-60 overflow-y-auto border border-gray-300 p-2 rounded-lg shadow-lg">
             <li
-              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-gray-200 bg-gray-100
+              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-right-bg bg-left-bg
               }`}
               onClick={() => setDepartureDate(today)}
             >
@@ -337,7 +337,7 @@ const SearchFlight = ({
               </div>
             </li>
             <li
-              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-gray-200
+              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-right-bg
               }`}
               onClick={() => {
                 setDepartureDate(tomorrow);
@@ -366,7 +366,7 @@ const SearchFlight = ({
                   </div>
                   <div className="">
                     <input
-                      className={`text-base rounded-lg px-2 mx-2 bg-gray-100 appearance-none cursor-pointer hover:bg-200`}
+                      className={`text-base rounded-lg px-2 mx-2 bg-left-bg appearance-none cursor-pointer hover:bg-right-bg`}
                       type="date"
                       placeholder="test"
                       value={today}

@@ -126,3 +126,7 @@ export function CloseIcon() {
 export function ShareIcon() {
   return <Image width={17} height={17} src="/icons8-share.png" alt="share" />;
 }
+
+export function HomeIcon() {
+  return <Image width={17} height={17} src="/icons8-home.png" alt="home" />;
+}

@@ -13,8 +13,8 @@ const RecentViewsLayout = ({
 
   return (
     <div
-      className={`bg-gray-100 rounded-xl shadow-lg ${
-        hover ? "hover:bg-gray-300 cursor-pointer" : ""
+      className={`bg-right-bg rounded-xl  p-1 shadow-lg ${
+        hover ? "hover:bg-left-bg cursor-pointer" : ""
       }`}
     >
       <div>

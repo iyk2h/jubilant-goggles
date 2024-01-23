@@ -3,12 +3,12 @@ import { useTranslations } from "next-intl";
 const RecommendNapLayout = ({ idx, info, recommendItems }) => {
   const t = useTranslations("Result");
 
-  const bg_l = idx % 2 === 0 ? "bg-slate-200" : "bg-slate-100";
-  const bg_r = idx % 2 === 0 ? "bg-slate-100" : "bg-slate-200";
+  const bg_l = idx % 2 === 0 ? "bg-left-bg" : "bg-right-bg";
+  const bg_r = idx % 2 === 0 ? "bg-right-bg" : "bg-left-bg";
 
   return (
     <>
-      <div className="mt-1">
+      <div className="mt-1 text-custom-text-color">
         <div className="flex items-center justify-center relative">
           <div
             className={`absolute left-0 ${bg_l} h-full w-1/2 z-0 flex items-center justify-center rounded-l-xl`}
@@ -54,12 +54,12 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
                   <h4
                     className={`text-base ${
                       index === 1 || index === 2 ? "font-bold" : ""
-                    } text-slate-700`}
+                    } `}
                   >
                     {item.departDescription}
                   </h4>
                 </div>
-                <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-slate-200 text-slate-700 ring-2 ring-white">
+                <span className="flex items-center z-10 justify-center w-10 h-10 rounded-full bg-right-bg ring-2 ring-white">
                   <p className="">{item.icon}</p>
                 </span>
                 <div
@@ -77,7 +77,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
                   <h4
                     className={`text-base ${
                       index === 1 || index === 2 ? "font-bold" : ""
-                    } text-slate-700`}
+                    } `}
                   >
                     {item.arrivalDescription}
                   </h4>

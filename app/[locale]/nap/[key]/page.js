@@ -5,7 +5,12 @@ import { useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { CloseIcon, LoadingIcon, ShareIcon } from "@/app/utils/icon/Icon";
+import {
+  CloseIcon,
+  HomeIcon,
+  LoadingIcon,
+  ShareIcon,
+} from "@/app/utils/icon/Icon";
 import { useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
@@ -98,20 +103,10 @@ export default function Nap(param) {
         <div className="text-2xl font-bold">{t("title")}</div>
         <div className="flex gap-1">
           <div
-            className="flex p-2 bg-gray-200 cursor-pointer rounded-full hover:bg-gray-300"
-            onClick={openModal}
-            text={t("share")}
-          >
-            <ShareIcon />
-            {isModalOpen && (
-              <ShareLayout value={key} state={true} close={closeModal} />
-            )}
-          </div>
-          <div
-            className="flex p-2 bg-gray-200 cursor-pointer rounded-full hover:bg-gray-300"
+            className="flex p-2 border-2 cursor-pointer rounded-full hover:bg-left-bg"
             onClick={() => router.push("/")}
           >
-            <CloseIcon />
+            <HomeIcon />
           </div>
         </div>
       </div>
@@ -127,22 +122,22 @@ export default function Nap(param) {
             {airport.length === 0 ? (
               <>
                 <div>
-                  <div className="py-8 mt-7 text-center text-base bg-gray-100 rounded-xl">
+                  <div className="py-8 mt-7 text-center text-base bg-right-bg rounded-xl">
                     <p>{t("not_result_msg_1")}</p>
                     <p>{t("not_result_msg_2")}</p>
                   </div>
-                  <div
+                  {/* <div
                     className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 my-3 cursor-pointer hover:bg-gray-200 hover:text-black"
                     onClick={() => router.push("/")}
                   >
                     {t("go_home")}
-                  </div>
+                  </div> */}
                 </div>
               </>
             ) : (
               <div className=" mb-20">
                 <RecommendNap title={title} airportInfos={airport} />
-                <div className="flex w-full justify-center items-center my-2 mb-4">
+                <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
                   {isContain ? (
                     <div className="flex justify-center items-center pl-3">
                       {isAdded && t("added_my_travels")}
@@ -151,16 +146,33 @@ export default function Nap(param) {
                     <div className="flex">
                       <MyButton
                         text={t("add_my_travels")}
+                        type={"positive"}
                         onClick={addMyTravel}
                       />
                     </div>
                   )}
                 </div>
-                <div
-                  className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 cursor-pointer hover:bg-gray-200 hover:text-black"
-                  onClick={() => router.push("/")}
-                >
-                  {t("go_home")}
+                <div className="flex w-full justify-between items-center my-2 mb-4 gap-2">
+                  <MyButton
+                    text={
+                      <div className="flex justify-center items-center gap-1">
+                        <HomeIcon /> {t("go_home")}
+                      </div>
+                    }
+                    onClick={() => router.push("/")}
+                  />
+                  <MyButton
+                    text={
+                      <div className="flex justify-center items-center gap-1">
+                        <ShareIcon />
+                        {t("share")}
+                      </div>
+                    }
+                    onClick={openModal}
+                  />
+                  {isModalOpen && (
+                    <ShareLayout value={key} state={true} close={closeModal} />
+                  )}
                 </div>
               </div>
             )}

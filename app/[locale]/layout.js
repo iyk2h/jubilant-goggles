@@ -59,7 +59,7 @@ export default function RootLayout({ children, params }) {
           timeZone="Asia/Seoul"
         >
           <AirportInfosProvider>
-            <div className="container">
+            <div className="container text-custom-text-color">
               <MyHeader headText={t("title")} />
               {children}
             </div>

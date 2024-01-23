@@ -31,24 +31,23 @@ export default function MyButton({ text, type, onClick }) {
         }
 
         .MyButton_default {
-          border: 3px solid #f3f4f6;
+          background-color: #f6f6f6;
           color: black;
         }
 
         .MyButton_default:hover {
-          background-color: #d1d5db;
-          border: 3px solid #d1d5db;
-          color: black;
+          // background-color: #f8f0e5;
+          // color: #102c57;
         }
 
         .MyButton_positive {
-          background-color: #00695c;
-          color: white;
+          background-color: #102c57;
+          color: #f8f0e5;
         }
 
         .MyButton_positive:hover {
-          background-color: #004d40;
-          color: white;
+          background-color: #f8f0e5;
+          color: #102c57;
         }
 
         .MyButton_negative {

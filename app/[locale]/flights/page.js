@@ -122,7 +122,7 @@ export default function Flights() {
       </div>
       {flights.length <= 3 && (
         <div
-          className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 px-2 mt-2 mb-2 cursor-pointer hover:bg-gray-200 hover:text-black"
+          className="flex justify-center w-full bg-custom-third shadow-lg rounded-xl p-2 px-2 mt-2 mb-2 cursor-pointer hover:bg-left-bg hover:text-custom-text-color"
           onClick={() => {
             router.push("/flights/input");
           }}
@@ -158,12 +158,16 @@ export default function Flights() {
                     <MyButton text={t("cancel")} onClick={resetFlights} />
                   </div>
                   <div className="flex items-end">
-                    <MyButton text={t("done")} onClick={confirmHandle} />
+                    <MyButton
+                      text={t("done")}
+                      type={"positive"}
+                      onClick={confirmHandle}
+                    />
                   </div>
                 </div>
               ) : (
                 <div>
-                  <div className="py-8 mt-7 text-center text-base bg-gray-100 rounded-xl">
+                  <div className="py-8 mt-7 text-center text-base bg-right-bg rounded-xl">
                     <p>{t("no_flights_msg_1")}</p>
                     <p>{t("no_flights_msg_2")}</p>
                   </div>

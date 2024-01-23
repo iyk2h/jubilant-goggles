@@ -96,7 +96,7 @@ export default function Home() {
       <div className="flex justify-between my-2 mb-6">
         <div
           id="add_flight"
-          className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 cursor-pointer hover:bg-gray-200 hover:text-black"
+          className="flex justify-center w-full bg-custom-third  shadow-lg rounded-xl p-2 cursor-pointer hover:bg-left-bg hover:text-black"
           onClick={() => router.push("/flights")}
         >
           <div
@@ -116,7 +116,7 @@ export default function Home() {
               className="relative inline-block text-left pb-2 w-full text-base cursor-pointer"
               ref={dropdownRef}
             >
-              <div className="flex justify-between shadow-xl rounded-xl bg-gray-100 hover:bg-gray-300">
+              <div className="flex justify-between shadow-xl rounded-xl bg-right-bg hover:bg-left-bg">
                 <div
                   className=" w-full p-4 rounded-l-xl"
                   onClick={() => clickHandle(info.key)}
@@ -173,7 +173,7 @@ export default function Home() {
         </div>
       ) : (
         <>
-          <div className="py-8 y-2 text-center text-base bg-gray-100 rounded-xl">
+          <div className="py-8 y-2 text-center text-base bg-right-bg rounded-xl">
             <p>{t("guide_msg_1")}</p>
             <p>{t("guide_msg_2")}</p>
           </div>
