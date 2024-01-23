@@ -52,8 +52,8 @@ export function PlusIcon({ id }) {
   return (
     <Image
       id={id}
-      width={25}
-      height={25}
+      width={19}
+      height={19}
       src="/icons8-plus-math.png"
       alt="plus-math"
     />

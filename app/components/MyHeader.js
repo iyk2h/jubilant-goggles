@@ -60,7 +60,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
           <div
             className={`${
               isSidebarOpen ? "translate-x-0" : "-translate-x-full w-0 "
-            } fixed h-screen z-20 top-0 -ml-4 bg-white overflow-y-auto ease-in-out transition-all duration-300`}
+            } fixed h-screen z-20 top-0 -ml-4 bg-custom-third overflow-y-auto ease-in-out transition-all duration-300`}
           >
             <div className="flex justify-between border-b-2">
               <div className="px-10 py-7">Menu</div>

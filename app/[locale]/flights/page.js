@@ -7,7 +7,7 @@ import { getAirportInfos } from "../../api/airportInfo/AirportInfo";
 import FlightHistoryLayout from "../../components/FlightHistoryLayout";
 import MyButton from "../../components/MyButton";
 import { useAirportInfosActions } from "../AirportProvider";
-import { CloseIcon, LoadingIcon } from "../../utils/icon/Icon";
+import { CloseIcon, LoadingIcon, PlusIcon } from "../../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 
 import axios from "axios";
@@ -61,8 +61,7 @@ export default function Flights() {
     const key = hashValue(beforKey);
 
     if (hasDuplicate(airportInfos, key)) {
-      alert(t("duplicate_travel"));
-      setLoadings(false);
+      router.replace(`/nap/${key}`);
       return;
     }
 
@@ -112,7 +111,7 @@ export default function Flights() {
       <div className="flex justify-between items-center">
         <div className="text-2xl font-bold">{t("myflights")}</div>
         <div
-          className="flex p-1 mx-1 cursor-pointer rounded-full hover:bg-gray-200"
+          className="flex p-1 mx-1 cursor-pointer rounded-full border-2 border-left-bg hover:bg-left-bg"
           onClick={() => {
             router.back();
           }}
@@ -120,16 +119,6 @@ export default function Flights() {
           <CloseIcon />
         </div>
       </div>
-      {flights.length <= 3 && (
-        <div
-          className="flex justify-center w-full bg-custom-third shadow-lg rounded-xl p-2 px-2 mt-2 mb-2 cursor-pointer hover:bg-left-bg hover:text-custom-text-color"
-          onClick={() => {
-            router.push("/flights/input");
-          }}
-        >
-          <p className="">{t("search_flight")}</p>
-        </div>
-      )}
       <>
         <section>
           {flights.length > 0 && (
@@ -143,6 +132,22 @@ export default function Flights() {
             </div>
           )}
         </section>
+        {flights.length <= 3 && (
+          <div className="flex justify-center w-full">
+            <MyButton
+              text={
+                <div
+                  className="flex justify-center items-center gap-1"
+                  onClick={() => {
+                    router.push("/flights/input");
+                  }}
+                >
+                  <PlusIcon /> {t("search_flight")}
+                </div>
+              }
+            />
+          </div>
+        )}
         <section className="">
           {loadings ? (
             <div className="flex justify-center items-center py-5">

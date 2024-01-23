@@ -1,5 +1,5 @@
 import React from "react";
-import { CloseIcon } from "../utils/icon/Icon";
+import { AirplaneDepartIcon, CloseIcon } from "../utils/icon/Icon";
 
 import { formatAirportDate } from "../utils/DateUtils";
 import { useLocale } from "next-intl";
@@ -29,7 +29,9 @@ const RecentViewsLayout = ({
             <div className="flex justify-between">
               <div className="flex gap-2 justify-center">
                 <p className="text-base">{departureAirportCode}</p>
-                <p className="flex justify-center items-center text-xs ">✈︎</p>
+                <div className="flex justify-center items-center w-1/5">
+                  <AirplaneDepartIcon />
+                </div>
                 <p className="text-base">{arrivalAirportCode}</p>
               </div>
               <div className="text-right">

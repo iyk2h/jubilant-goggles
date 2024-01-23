@@ -26,38 +26,18 @@ const RecommendSleepLayout = ({ idx, info, recommendItems }) => {
           >
             {recommendItems.map((item, index) => (
               <li key={index} role="article" className="flex gap-2 mt-5">
-                <div
-                  className={`flex flex-col w-28 text-right ${
-                    index === 3 ? "font-bold" : ""
-                  }`}
-                >
-                  <p className={`text-xs ${index === 3 ? "font-bold" : ""}`}>
-                    {item.departDateTime}
-                  </p>
-                  <h4
-                    className={`text-base ${index === 3 ? "font-bold" : ""} `}
-                  >
-                    {item.departDescription}
-                  </h4>
+                <div className={`flex flex-col w-28 text-right`}>
+                  <p className={`text-xs`}>{item.departDateTime}</p>
+                  <h4 className={`text-base `}>{item.departDescription}</h4>
                 </div>
                 <span
-                  className={`flex items-center z-10 justify-center w-10 h-10 rounded-full ${bg_l}  ring-2 ring-white`}
+                  className={`flex items-center z-10 justify-center w-10 h-10 rounded-full ${bg_l}  ring-2 ring-custom-third`}
                 >
                   <p className="">{item.icon}</p>
                 </span>
-                <div
-                  className={`flex flex-col gap-0 w-28 ${
-                    index === 3 ? "font-bold" : ""
-                  }`}
-                >
-                  <p className={`text-xs ${index === 3 ? "font-bold" : ""}`}>
-                    {item.arrivalDateTime}
-                  </p>
-                  <h4
-                    className={`text-base ${index === 3 ? "font-bold" : ""} `}
-                  >
-                    {item.arrivalDescription}
-                  </h4>
+                <div className={`flex flex-col gap-0 w-28`}>
+                  <p className={`text-xs`}>{item.arrivalDateTime}</p>
+                  <h4 className={`text-base `}>{item.arrivalDescription}</h4>
                 </div>
               </li>
             ))}

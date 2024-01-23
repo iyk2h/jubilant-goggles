@@ -1,6 +1,7 @@
 import React from "react";
 import { formatAirportDate } from "../utils/DateUtils";
 import { useLocale } from "next-intl";
+import { AirplaneDepartIcon } from "../utils/icon/Icon";
 
 const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
   const {
@@ -29,8 +30,10 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
             {formatAirportDate(departureTime, locale)}
           </p>
         </div>
-        <div className="text-center w-1/5">
-          <p className="text-xl mt-4"> ✈︎ </p>
+        <div className="flex justify-center items-center w-1/5">
+          <p className="pb-2">
+            <AirplaneDepartIcon />
+          </p>
         </div>
         <div className="text-center w-2/5">
           <p className="text-2xl">{arrivalAirportCode}</p>

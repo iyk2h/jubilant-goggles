@@ -169,7 +169,7 @@ const SearchFlight = ({
           {!dateFocus ? t("add_flight") : t("date")}
         </div>
         <div
-          className="flex p-1 mx-1 cursor-pointer rounded-full hover:bg-gray-200"
+          className="flex p-1 mx-1 cursor-pointer rounded-full border-2 border-left-bg hover:bg-left-bg"
           onClick={() => {
             router.back();
           }}

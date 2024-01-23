@@ -26,7 +26,7 @@ export default function Loading() {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          background-color: #fff; /* Adjust background color as needed */
+          background-color: #f8f0e5; /* Adjust background color as needed */
           color: #000; /* Adjust text color as needed */
           padding: 20px;
           border-radius: 8px;

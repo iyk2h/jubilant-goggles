@@ -96,7 +96,7 @@ export default function Home() {
       <div className="flex justify-between my-2 mb-6">
         <div
           id="add_flight"
-          className="flex justify-center w-full bg-custom-third  shadow-lg rounded-xl p-2 cursor-pointer hover:bg-left-bg hover:text-black"
+          className="flex justify-center w-full bg-custom-text-color text-custom-third  shadow-lg rounded-xl p-2 cursor-pointer hover:bg-left-bg hover:text-black"
           onClick={() => router.push("/flights")}
         >
           <div
@@ -132,7 +132,7 @@ export default function Home() {
                   <MenuIcon />
                   {openDropdownIndex !== null &&
                     openDropdownIndex === index && (
-                      <div className="absolute origin-top-right z-10 right-2 mt-2 w-18 rounded-lg shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="absolute origin-top-right z-10 right-2 mt-2 w-18 rounded-lg shadow-2xl bg-custom-third ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div
                           className="py-1"
                           role="menu"
@@ -144,21 +144,21 @@ export default function Home() {
                               openModal();
                               setValue(info.key);
                             }}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b-2"
+                            className="block px-4 py-2 text-sm text-custom-text-color hover:bg-left-bg border-b-2"
                             role="menuitem"
                           >
                             {t("share")}
                           </div>
                           <div
                             onClick={() => handleSelect(info.key)}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b-2"
+                            className="block px-4 py-2 text-sm text-custom-text-color hover:bg-left-bg border-b-2"
                             role="menuitem"
                           >
                             <div className="flex gap-1">{t("delete")}</div>
                           </div>
                           <div
                             onClick={() => setOpenDropdownIndex(null)}
-                            className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900`}
+                            className={`block px-4 py-2 text-sm text-custom-text-color hover:bg-left-bg`}
                             role="menuitem"
                           >
                             <div className="flex gap-1">{t("close")}</div>

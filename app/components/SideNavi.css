@@ -39,7 +39,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  background-color: #eadbc8;
   /* border-color: rgba(236, 72, 153, var(--tw-border-opacity)); */
   color: rgba(31, 41, 55, var(--tw-text-opacity));
 }
@@ -81,7 +81,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  /* background-color: #eadbc8; */
   /* border-color: rgba(236, 72, 153, var(--tw-border-opacity)); */
   color: rgba(31, 41, 55, var(--tw-text-opacity));
 }
@@ -107,7 +107,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  background-color: #eadbc8;
   color: rgba(31, 41, 55, var(--tw-text-opacity));
 }
 .side-navigation-panel
@@ -139,7 +139,7 @@
   --tw-border-opacity: 1;
   --tw-bg-opacity: 1;
   --tw-text-opacity: 1;
-  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+  background-color: #eadbc8;
   color: rgba(31, 41, 55, var(--tw-text-opacity));
 }
 .table {
@@ -211,7 +211,7 @@
   --tw-shadow: 0 0 #0000;
   --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
   --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
+  --tw-ring-offset-color: #f8f0e5;
   --tw-ring-color: rgba(59, 130, 246, 0.5);
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
