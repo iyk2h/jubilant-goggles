@@ -150,8 +150,15 @@ const SearchFlight = ({
 
   useEffect(() => {
     flightNumRef.current.focus();
-    const touchEvent = new TouchEvent("touchstart");
-    window.dispatchEvent(touchEvent);
+    const handleTouchStart = () => {
+      flightNumRef.current.focus();
+    };
+
+    document.addEventListener("touchstart", handleTouchStart);
+
+    return () => {
+      document.removeEventListener("touchstart", handleTouchStart);
+    };
   }, []);
 
   useEffect(() => {
