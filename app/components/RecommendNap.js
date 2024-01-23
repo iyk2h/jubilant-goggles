@@ -232,7 +232,7 @@ const RecommendNap = ({ title, airportInfos }) => {
           departDateTime: t("no_coffee_msg"),
           departDescription: "",
           arrivalDateTime: stopCaffein,
-          arrivalDescription: "",
+          arrivalDescription: "ㅤ",
           icon: <NoCoffee />,
         });
       }
