@@ -130,7 +130,7 @@ const FlightInfo = ({ addFlight }) => {
                     ))}
                   </div>
                 ) : (
-                  <ul className="max-h-40 overflow-y-auto border border-gray-300 p-2 rounded-lg">
+                  <ul className="max-h-40 overflow-y-auto border border-gray-300 p-2 rounded-lg mt-2">
                     <div className="text-center">
                       <p className="text-center text-base">{error}</p>
                     </div>
