@@ -26,7 +26,7 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
         <div className="text-center w-2/5">
           <p className="text-2xl">{departureAirportCode}</p>
           <p className="text-xs">{departureCity}</p>
-          <p className="text-sm mt-1">
+          <p className="text-xs mt-1">
             {formatAirportDate(departureTime, locale)}
           </p>
         </div>
@@ -38,7 +38,7 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
         <div className="text-center w-2/5">
           <p className="text-2xl">{arrivalAirportCode}</p>
           <p className="text-xs">{arrivalCity}</p>
-          <p className="text-sm mt-1">
+          <p className="text-xs mt-1">
             {formatAirportDate(arrivalTime, locale)}
           </p>
         </div>

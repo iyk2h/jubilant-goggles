@@ -29,13 +29,13 @@ const RecentViewsLayout = ({
             <div className="flex justify-between">
               <div className="flex gap-2 justify-center">
                 <p className="text-base">{departureAirportCode}</p>
-                <div className="flex justify-center items-center w-1/5">
+                <div className="flex justify-center items-center w-1/6">
                   <AirplaneDepartIcon />
                 </div>
                 <p className="text-base">{arrivalAirportCode}</p>
               </div>
-              <div className="text-right">
-                <p className="text-sm mt-1">
+              <div className="flex justify-center items-center text-right">
+                <p className="text-xs mt-1">
                   {formatAirportDate(departureTime, locale)}
                 </p>
               </div>

@@ -31,7 +31,7 @@
   "AddFlight": {
     "add_flight": "비행 추가",
     "date": "출발 날짜",
-    "flightNum": "항공편(Flight Numbers)",
+    "flightNum": "항공편",
     "notFound_air_info_1": "비행 정보가 없습니다.",
     "notFound_air_info_2": "날짜와 항공편을 다시 확인해주세요.",
     "search_new_air_info": "비행 조회",
