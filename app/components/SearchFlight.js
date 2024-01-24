@@ -41,6 +41,7 @@ const SearchFlight = ({
   const [flag, setFlag] = useState(true);
   const dateInputRef = useRef(null);
   const flightNumRef = useRef(null);
+  const dateChoiceRef = useRef(null);
 
   const [query, setQuery] = useState("");
 
@@ -357,8 +358,9 @@ const SearchFlight = ({
               </div>
             </li>
             <li
-              className={`flex items-center justify-between border-b-2 rounded-lg
+              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-right-bg
               }`}
+              onClick={() => dateChoiceRef.current.focus()}
             >
               <div className=" flex">
                 <div className="p-2 flex justify-center items-center">
@@ -370,7 +372,7 @@ const SearchFlight = ({
                   </div>
                   <div className="">
                     <input
-                      className={`text-base rounded-lg px-2 mx-2 bg-left-bg appearance-none cursor-pointer hover:bg-right-bg`}
+                      className={`text-base rounded-lg mx-2 mb-1 bg-transparent appearance-none outline-none`}
                       type="date"
                       placeholder="test"
                       value={today}
@@ -380,6 +382,7 @@ const SearchFlight = ({
                           setDepartureDate(e.target.value);
                         }
                       }}
+                      ref={dateChoiceRef}
                     />
                   </div>
                 </div>
