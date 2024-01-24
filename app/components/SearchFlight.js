@@ -14,6 +14,7 @@ import {
   getDateForCalender,
   removeHyphens,
   getTomorrowDateForCalender,
+  getManthStartDateForCalender,
 } from "../utils/DateUtils";
 import { useTranslations } from "next-intl";
 
@@ -46,7 +47,10 @@ const SearchFlight = ({
   const [query, setQuery] = useState("");
 
   const today = getDateForCalender();
-  const tomorrow = getTomorrowDateForCalender;
+  const tomorrow = getTomorrowDateForCalender();
+  const [selectedDate, setSelectedDate] = useState(
+    getManthStartDateForCalender()
+  );
 
   const inputQuery = (input) => {
     setQuery(input);
@@ -152,6 +156,7 @@ const SearchFlight = ({
   useEffect(() => {
     setTimeout(() => {
       flightNumRef.current.focus();
+      setDepartureDate("");
     }, 100);
   }, []);
 
@@ -375,10 +380,11 @@ const SearchFlight = ({
                       className={`text-base rounded-lg mx-2 mb-1 bg-transparent appearance-none outline-none`}
                       type="date"
                       placeholder="test"
-                      value={today}
+                      value={selectedDate}
                       min={today}
                       onChange={(e) => {
                         if (code !== "" && num !== "") {
+                          setSelectedDate(e.target.value);
                           setDepartureDate(e.target.value);
                         }
                       }}
