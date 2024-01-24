@@ -16,7 +16,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
             <div className="rotate-90 origin-center pt-20 text-7xl text-custom-third text-center whitespace-nowrap">
               {info.departCity}
             </div>
-            <div className="absolute z-1 text-xs font-bold top-0 mt-8 ml-10">
+            <div className="absolute z-1 text-xs font-bold top-0 mt-8 text-right">
               {t("departure_country_time")}
             </div>
           </div>
@@ -27,7 +27,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
             <div className="rotate-90 origin-center pb-20 text-7xl text-custom-third whitespace-nowrap">
               {info.arrivalCity}
             </div>
-            <div className="absolute z-1 text-xs font-bold top-0 mt-8 mr-10">
+            <div className="absolute z-1 text-xs font-bold top-0 mt-8 text-left">
               {t("arrival_country_time")}
             </div>
           </div>
