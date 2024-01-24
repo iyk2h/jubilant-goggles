@@ -25,7 +25,7 @@ const RecommendSleepLayout = ({ idx, info, recommendItems }) => {
             className="relative flex flex-col gap-2 py-4 left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
           >
             {recommendItems.map((item, index) => (
-              <li key={index} role="article" className="flex gap-2 mt-5">
+              <li key={index} role="article" className="flex gap-2 mt-3">
                 <div className={`flex flex-col w-28 text-right`}>
                   <p className={`text-xs`}>{item.departDateTime}</p>
                   <h4 className={`text-base `}>{item.departDescription}</h4>

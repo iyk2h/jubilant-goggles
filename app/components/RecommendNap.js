@@ -266,27 +266,31 @@ const RecommendNap = ({ title, airportInfos }) => {
 
   return (
     <>
-      <div className="mt-5">
-        <div className="flex justify-between items-center">
+      <div className="mt-2">
+        <div className="flex justify-between items-center border-b-2 border-right-bg">
           <div>{title.split("_")[1]}</div>
           <div className="text-sm">
             {formatStrS(title.split("_")[0], locale)}
           </div>
         </div>
 
-        {/* <span>
-          {airportInfos[0].departureInfo.city} {t("sleep_tips_msg")}
-        </span> */}
+        <div className="mt-2 font-bold text-lg">
+          <span>
+            {airportInfos[0].departureInfo.city} {t("sleep_tips_msg")}
+          </span>
+        </div>
         {departSleep.map((info, index) => (
           <RecommendSleepLayout
             key={index}
             idx={index}
-            info={`${info.info.city} ${t("sleep_tips_msg")}`}
+            // info={`${info.info.city} ${t("sleep_tips_msg")}`}
             recommendItems={info.dpSleepItem}
           />
         ))}
 
-        {/* <span>비행 중 낮잠 정보</span> */}
+        <div className="mt-2 font-bold text-lg">
+          <span>{t("sleep_in_flights_tips_msg")}</span>
+        </div>
         {recommendNapItems.map((info, index) => (
           <RecommendNapLayout
             key={index}
@@ -296,15 +300,18 @@ const RecommendNap = ({ title, airportInfos }) => {
           />
         ))}
 
-        {/* <span>
-          
-        </span> */}
+        <div className="mt-2 font-bold text-lg">
+          <span>
+            {airportInfos[airportInfos.length - 1].arrivalInfo.city}
+            {t("sleep_tips_msg")}
+          </span>
+        </div>
         {arrivalSleep.map((info, index) => (
           <RecommendSleepLayout
             key={index}
             idx={airportInfos.length}
-            info={`${airportInfos[airportInfos.length - 1].arrivalInfo.city}
-            ${t("sleep_tips_msg")}`}
+            // info={`${airportInfos[airportInfos.length - 1].arrivalInfo.city}
+            // ${t("sleep_tips_msg")}`}
             recommendItems={info.arSleepItem}
           />
         ))}

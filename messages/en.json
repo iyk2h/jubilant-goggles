@@ -64,7 +64,8 @@
     "added_my_travels": "Added to My Travels successfully.",
     "pre_travel_tips_msg": "Get Pre-Flights Sleep Tips",
     "post_travel_tips_msg": "Get Post-Flights Sleep Tips",
-    "sleep_tips_msg": "Sleep Tips"
+    "sleep_tips_msg": " Sleep Tips",
+    "sleep_in_flights_tips_msg": "In-flight Sleep Tips"
   },
   "Share": {
     "title": "Share",

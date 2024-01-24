@@ -64,7 +64,8 @@
     "added_my_travels": "내 여행에 추가 되었습니다.",
     "pre_travel_tips_msg": "비행 전 취침 정보 추천받기",
     "post_travel_tips_msg": "비행 후 취침 정보 추천받기",
-    "sleep_tips_msg": "취침 정보"
+    "sleep_tips_msg": " 취침 정보",
+    "sleep_in_flights_tips_msg": "비행 중 취침 정보"
   },
   "Share": {
     "title": "공유하기",
