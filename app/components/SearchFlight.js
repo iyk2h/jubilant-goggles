@@ -149,16 +149,9 @@ const SearchFlight = ({
   };
 
   useEffect(() => {
-    flightNumRef.current.focus();
-    const handleTouchStart = () => {
+    setTimeout(() => {
       flightNumRef.current.focus();
-    };
-
-    document.addEventListener("touchstart", handleTouchStart);
-
-    return () => {
-      document.removeEventListener("touchstart", handleTouchStart);
-    };
+    }, 100);
   }, []);
 
   useEffect(() => {
@@ -212,7 +205,9 @@ const SearchFlight = ({
               <SearchIcon />
             </div>
             <input
-              className={`${nanum_Gothic_Coding.className} bg-left-bg p-1 my-1 w-full font-bold rounded-lg outline-gray-400 focus:ring-0`}
+              type="text"
+              autoFocus={true}
+              className={`${nanum_Gothic_Coding.className} bg-left-bg p-1 pl-2 my-1 w-full font-bold rounded-lg outline-gray-400 focus:ring-0`}
               value={query}
               onChange={handleInputChange}
               onKeyDown={handleEnterPress}
