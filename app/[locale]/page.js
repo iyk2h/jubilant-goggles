@@ -118,8 +118,8 @@ export default function Home() {
               onClick={() => clickHandle(info.key)}
             >
               <div className="flex justify-between shadow-xl rounded-xl bg-right-bg hover:bg-left-bg">
-                <div className=" w-full p-4 rounded-l-xl">
-                  <div className="flex justify-between">
+                <div className=" w-full pl-4 pr-2 pt-2 pb-3 rounded-l-xl">
+                  <div className="flex justify-between items-center">
                     <p className="font-bold">{info.title.split("_")[1]}</p>
                     <div
                       className="rounded-full p-1 hover:bg-right-bg"

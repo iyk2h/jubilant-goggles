@@ -24,8 +24,8 @@ const RecentViewsLayout = ({
     >
       <div>
         <div className="flex justify-between" onClick={onConfirm}>
-          <div className="px-3 py-1 w-full">
-            <div className="flex justify-between">
+          <div className="pl-3 pr-1 pt-1 pb-2 w-full">
+            <div className="flex justify-between items-center">
               <p className="text-xl">{flight_num}</p>
               <div
                 className="flex rounded-full p-1.5 hover:bg-right-bg"

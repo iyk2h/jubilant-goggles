@@ -17,7 +17,7 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
 
   return (
     <div
-      className={`bg-right-bg rounded-xl  p-1 shadow-lg ${
+      className={`bg-right-bg rounded-xl p-1 pb-2 shadow-lg ${
         hover ? "hover:bg-left-bg cursor-pointer" : ""
       }`}
       onClick={onConfirm}

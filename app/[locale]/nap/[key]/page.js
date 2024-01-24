@@ -103,7 +103,7 @@ export default function Nap(param) {
         <div className="text-2xl font-bold">{t("title")}</div>
         <div className="flex gap-1">
           <div
-            className="flex p-2 border-2 border-left-bg cursor-pointer rounded-full hover:bg-left-bg"
+            className="flex p-1 mx-1 border-2 border-left-bg cursor-pointer rounded-full hover:bg-left-bg"
             onClick={() => router.push("/")}
           >
             <HomeIcon />

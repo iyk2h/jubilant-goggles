@@ -62,12 +62,12 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
               isSidebarOpen ? "translate-x-0" : "-translate-x-full w-0 "
             } fixed h-screen z-20 top-0 -ml-4 bg-custom-third overflow-y-auto ease-in-out transition-all duration-300`}
           >
-            <div className="flex justify-between border-b-2">
+            <div
+              className="flex justify-between border-b-2 cursor-pointer"
+              onClick={handleSidebarClose}
+            >
               <div className="px-10 py-7">Menu</div>
-              <div
-                className="flex justify-center items-center px-4 pr-6 cursor-pointer"
-                onClick={handleSidebarClose}
-              >
+              <div className="flex justify-center items-center px-4 pr-6">
                 <CloseIcon />
               </div>
             </div>

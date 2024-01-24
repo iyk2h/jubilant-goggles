@@ -47,7 +47,7 @@ export default function MyButton({ text, type, onClick }) {
         }
 
         .MyButton_positive:hover {
-          background-color: #f8f0e5;
+          background-color: #eadbc8;
           color: #102c57;
         }
 
