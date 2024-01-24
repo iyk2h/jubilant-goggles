@@ -28,7 +28,7 @@ const RecentViewsLayout = ({
             <div className="flex justify-between">
               <p className="text-xl">{flight_num}</p>
               <div
-                className="obserber p-1 cursor-pointer rounded-full border-2 border-left-bg hover:bg-right-bg"
+                className="flex rounded-full p-1.5 hover:bg-right-bg"
                 onClick={(e) => {
                   e.stopPropagation();
                   onRemove();
@@ -37,7 +37,7 @@ const RecentViewsLayout = ({
                 <CloseIcon />
               </div>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-betwen">
               <div className="flex gap-2">
                 <p className="text-base">{departureAirportCode}</p>
                 <div className="flex justify-center items-center w-1/6">

@@ -31,13 +31,13 @@ export default function MyButton({ text, type, onClick }) {
         }
 
         .MyButton_default {
-          border: 1px solid #eadbc8;
-          // background-color: #f6f6f6;
+          // border: 1px solid #eadbc8;
+          background-color: #eadbc8;
           // color: black;
         }
 
         .MyButton_default:hover {
-          // background-color: #f8f0e5;
+          background-color: #f8f0e5;
           // color: #102c57;
         }
 

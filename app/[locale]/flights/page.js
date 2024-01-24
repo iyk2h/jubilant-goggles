@@ -133,7 +133,7 @@ export default function Flights() {
           )}
         </section>
         {flights.length <= 3 && (
-          <div className="flex justify-center w-full">
+          <div className="flex justify-center w-full mt-1">
             <MyButton
               text={
                 <div className="flex justify-center items-center gap-1">

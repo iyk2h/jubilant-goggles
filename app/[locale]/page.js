@@ -115,21 +115,25 @@ export default function Home() {
               key={index}
               className="relative inline-block text-left pb-2 w-full text-base cursor-pointer"
               ref={dropdownRef}
+              onClick={() => clickHandle(info.key)}
             >
               <div className="flex justify-between shadow-xl rounded-xl bg-right-bg hover:bg-left-bg">
-                <div
-                  className=" w-full p-4 rounded-l-xl"
-                  onClick={() => clickHandle(info.key)}
-                >
-                  {info.title.split("_")[1]}
-                  <br />
+                <div className=" w-full p-4 rounded-l-xl">
+                  <div className="flex justify-between">
+                    <p className="font-bold">{info.title.split("_")[1]}</p>
+                    <div
+                      className="rounded-full p-1 hover:bg-right-bg"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleDropdown(index);
+                      }}
+                    >
+                      <MenuIcon />
+                    </div>
+                  </div>
                   {formatStrS(info.title.split("_")[0], local)}
                 </div>
-                <div
-                  className="p-2 pt-3 rounded-r-xl"
-                  onClick={() => toggleDropdown(index)}
-                >
-                  <MenuIcon />
+                <div>
                   {openDropdownIndex !== null &&
                     openDropdownIndex === index && (
                       <div className="absolute origin-top-right z-10 right-2 mt-2 w-18 rounded-lg shadow-2xl bg-custom-third ring-1 ring-black ring-opacity-5 focus:outline-none">
