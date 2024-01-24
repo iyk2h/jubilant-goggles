@@ -23,9 +23,20 @@ const RecentViewsLayout = ({
       }`}
     >
       <div>
-        <div className="flex justify-between">
-          <div className="px-3 py-1 w-full" onClick={onConfirm}>
-            <p className="text-xl">{flight_num}</p>
+        <div className="flex justify-between" onClick={onConfirm}>
+          <div className="px-3 py-1 w-full">
+            <div className="flex justify-between">
+              <p className="text-xl">{flight_num}</p>
+              <div
+                className="obserber p-1 cursor-pointer rounded-full border-2 border-left-bg hover:bg-right-bg"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onRemove();
+                }}
+              >
+                <CloseIcon />
+              </div>
+            </div>
             <div className="flex justify-between">
               <div className="flex gap-2">
                 <p className="text-base">{departureAirportCode}</p>
@@ -40,9 +51,6 @@ const RecentViewsLayout = ({
                 </p>
               </div>
             </div>
-          </div>
-          <div className="p-2 pt-3 rounded-r-xl" onClick={onRemove}>
-            <CloseIcon />
           </div>
         </div>
       </div>
