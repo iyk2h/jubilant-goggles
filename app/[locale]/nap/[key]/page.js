@@ -159,7 +159,13 @@ export default function Nap(param) {
                         <HomeIcon /> {t("go_home")}
                       </div>
                     }
-                    onClick={() => router.push("/")}
+                    onClick={() => {
+                      router.push("/");
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth",
+                      });
+                    }}
                   />
                   <MyButton
                     text={
