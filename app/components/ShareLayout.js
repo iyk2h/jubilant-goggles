@@ -130,7 +130,7 @@ export default function ShareLayout({ value, state = false, close }) {
                       {t("copy")}
                     </div>
                   </div>
-                  {isCopied && t("copyDone")}
+                  <div className="text-center">{isCopied && t("copyDone")}</div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

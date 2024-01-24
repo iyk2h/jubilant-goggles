@@ -144,7 +144,8 @@ export default function Home() {
                           aria-labelledby="options-menu"
                         >
                           <div
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               openModal();
                               setValue(info.key);
                             }}
@@ -154,14 +155,20 @@ export default function Home() {
                             {t("share")}
                           </div>
                           <div
-                            onClick={() => handleSelect(info.key)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSelect(info.key);
+                            }}
                             className="block px-4 py-2 text-sm text-custom-text-color hover:bg-left-bg border-b-2"
                             role="menuitem"
                           >
                             <div className="flex gap-1">{t("delete")}</div>
                           </div>
                           <div
-                            onClick={() => setOpenDropdownIndex(null)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setOpenDropdownIndex(null);
+                            }}
                             className={`block px-4 py-2 text-sm text-custom-text-color hover:bg-left-bg`}
                             role="menuitem"
                           >
