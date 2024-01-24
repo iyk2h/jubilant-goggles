@@ -22,7 +22,7 @@ const FlightInfoLayout = ({ flightInfo, onConfirm, text, hover }) => {
       }`}
       onClick={onConfirm}
     >
-      <div className="flex justify-center">
+      <div className="flex justify-center py-1">
         <div className="text-center w-2/5">
           <p className="text-2xl">{departureAirportCode}</p>
           <p className="text-xs">{departureCity}</p>

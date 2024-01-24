@@ -27,7 +27,7 @@ const RecentViewsLayout = ({
           <div className="px-3 py-1 w-full" onClick={onConfirm}>
             <p className="text-xl">{flight_num}</p>
             <div className="flex justify-between">
-              <div className="flex gap-2 justify-center">
+              <div className="flex gap-2">
                 <p className="text-base">{departureAirportCode}</p>
                 <div className="flex justify-center items-center w-1/6">
                   <AirplaneDepartIcon />

@@ -136,15 +136,13 @@ export default function Flights() {
           <div className="flex justify-center w-full">
             <MyButton
               text={
-                <div
-                  className="flex justify-center items-center gap-1"
-                  onClick={() => {
-                    router.push("/flights/input");
-                  }}
-                >
+                <div className="flex justify-center items-center gap-1">
                   <PlusIcon /> {t("search_flight")}
                 </div>
               }
+              onClick={() => {
+                router.push("/flights/input");
+              }}
             />
           </div>
         )}
