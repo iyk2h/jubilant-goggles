@@ -6,7 +6,10 @@ const redis = new Redis({
 });
 
 export const getNap = async (key) => {
-  return await redis.get(key);
+  const exists = await redis.exists(key);
+  if (exists) {
+    return await redis.get(key);
+  }
 };
 
 export const setNap = async (key, val) => {
