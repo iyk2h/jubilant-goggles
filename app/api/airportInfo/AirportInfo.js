@@ -1,5 +1,5 @@
 const { formatStrS, formatFromCrawl } = require("@/app/utils/DateUtils");
-const airportInfo = require("airport-info");
+import { getAirportInfo } from "./getAirportInfo";
 
 const cache = {};
 
@@ -32,7 +32,7 @@ const createAirportInfoWithDateTime = async (
   }
 
   try {
-    const airportInfo = await getAirportInfo(airportCode);
+    const airportInfo = await getAirportInfo(city, airportCode);
     const infoWithDateTime = {
       city,
       timezone: airportInfo.timezone,
@@ -51,8 +51,6 @@ const createAirportInfoWithDateTime = async (
     throw error;
   }
 };
-
-const getAirportInfo = (code) => airportInfo.getAirportInfo(code);
 
 const parseDateTimeWithTimezone = (date, timeString, timezone) => {
   const cleanedString = timeString.replace(",", "");
