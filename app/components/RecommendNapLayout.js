@@ -11,7 +11,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
       <div className="mt-1 text-custom-text-color">
         <div className="flex items-center justify-center relative">
           <div
-            className={`absolute left-0 ${bg_l} h-full w-1/2 z-0 flex items-center justify-center rounded-l-xl`}
+            className={`absolute left-0 ${bg_l} h-full w-1/2 z-0 flex items-center justify-center rounded-l-xl overflow-hidden`}
           >
             <div className="rotate-90 origin-center pt-20 text-7xl text-custom-third text-center whitespace-nowrap">
               {info.departCity}
@@ -22,7 +22,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
           </div>
 
           <div
-            className={`absolute right-0 ${bg_r} h-full w-1/2 z-0 flex items-center justify-center rounded-r-xl`}
+            className={`absolute right-0 ${bg_r} h-full w-1/2 z-0 flex items-center justify-center rounded-r-xl overflow-hidden`}
           >
             <div className="rotate-90 origin-center pb-20 text-7xl text-custom-third whitespace-nowrap">
               {info.arrivalCity}
