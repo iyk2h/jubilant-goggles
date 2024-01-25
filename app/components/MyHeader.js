@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { CloseIcon, Menu3Icon } from "../utils/icon/Icon";
+import { ChatIcon, CloseIcon, Menu3Icon } from "../utils/icon/Icon";
 import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 
@@ -128,6 +128,20 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
           onClick={() => router.push(`/${locale}`)}
         >
           {headText}
+        </div>
+
+        <div
+          className="head_btn_right cursor-pointer"
+          onClick={() => {
+            window.open(
+              "https://docs.google.com/forms/d/e/1FAIpQLScDXl1lx5x0NBHFuPxjsp7fQC4M_A8ha-Z8XJdzIP3XahA6GA/viewform?usp=sf_link",
+              "_blank"
+            );
+          }}
+        >
+          <div className="px-4 py-5">
+            <ChatIcon />
+          </div>
         </div>
       </header>
 
