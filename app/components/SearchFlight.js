@@ -367,7 +367,7 @@ const SearchFlight = ({
               </div>
             </li>
             <li
-              className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-right-bg
+              className={` border-b-2 rounded-lg cursor-pointer hover:bg-right-bg
               }`}
               onClick={() => setCalendarFlag(!calendarFlag)}
             >
@@ -377,43 +377,42 @@ const SearchFlight = ({
                 </div>
                 <div className="mx-2">
                   <div>{t("pick_from_calendar")}</div>
-                  <div>
-                    <div className="absolute ">
-                      <DatePicker
-                        clearIcon
-                        calendarType="gregory"
-                        calendarIcon={null}
-                        format={"yyyy-MM-dd"}
-                        onChange={(e) => {
-                          const year = e.getFullYear();
-                          const month = String(e.getMonth() + 1).padStart(
-                            2,
-                            "0"
-                          );
-                          const day = String(e.getDate()).padStart(2, "0");
-
-                          const parseDateString = `${year}-${month}-${day}`;
-
-                          if (code !== "" && num !== "") {
-                            setDepartureDate(parseDateString);
-                            setSelectedDate(parseDateString);
-                          }
-                        }}
-                        value={selectedDate}
-                        isOpen={calendarFlag}
-                        minDate={new Date(today)}
-                        onClick={(e) => {
-                          if ("react-calendar" !== e.target.classList[0]) {
-                            e.stopPropagation();
-                          }
-                        }}
-                        onCalendarClose={() => {
-                          setCalendarFlag(false);
-                        }}
-                      />
-                    </div>
-                  </div>
+                  <div>{selectedDate}</div>
                 </div>
+              </div>
+              <div className={` ${calendarFlag ? "absolute " : "hidden"}`}>
+                <DatePicker
+                  clearIcon
+                  calendarType="gregory"
+                  calendarIcon={null}
+                  format={"yyyy-MM-dd"}
+                  onChange={(e) => {
+                    const year = e.getFullYear();
+                    const month = String(e.getMonth() + 1).padStart(2, "0");
+                    const day = String(e.getDate()).padStart(2, "0");
+
+                    const parseDateString = `${year}-${month}-${day}`;
+
+                    if (code !== "" && num !== "") {
+                      setDepartureDate(parseDateString);
+                      setSelectedDate(parseDateString);
+                    }
+                  }}
+                  value={selectedDate}
+                  isOpen={calendarFlag}
+                  minDate={new Date(today)}
+                  onClick={(e) => {
+                    console.log(e.target.classList[0]);
+                    if ("react-calendar" !== e.target.classList[0]) {
+                      e.stopPropagation();
+                    } else {
+                      setCalendarFlag(false);
+                    }
+                  }}
+                  onCalendarClose={() => {
+                    setCalendarFlag(false);
+                  }}
+                />
               </div>
             </li>
           </ul>
