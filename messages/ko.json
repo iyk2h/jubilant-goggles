@@ -44,7 +44,8 @@
     "no_search_history": "검색 기록이 없습니다.",
     "only_en_num_msg": "항공편은 영문과 숫자만 입력 가능합니다.",
     "next": "다음",
-    "pre": "이전"
+    "pre": "이전",
+    "pick_from_calendar": "달력에서 선택"
   },
   "Result": {
     "departure_country_time": "출발국가 시간",

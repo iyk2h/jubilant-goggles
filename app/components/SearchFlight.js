@@ -20,6 +20,10 @@ import { useTranslations } from "next-intl";
 
 import { Nanum_Gothic_Coding } from "next/font/google";
 
+import DatePicker from "react-date-picker";
+import "./DatePicker.css";
+import "./Calendar.css";
+
 const nanum_Gothic_Coding = Nanum_Gothic_Coding({
   weight: "700",
   subsets: ["latin"],
@@ -42,7 +46,6 @@ const SearchFlight = ({
   const [flag, setFlag] = useState(true);
   const dateInputRef = useRef(null);
   const flightNumRef = useRef(null);
-  const dateChoiceRef = useRef(null);
 
   const [query, setQuery] = useState("");
 
@@ -169,6 +172,7 @@ const SearchFlight = ({
   const router = useRouter();
 
   const [dateFocus, setDateFocus] = useState(false);
+  const [calendarFlag, setCalendarFlag] = useState(false);
 
   return (
     <div>
@@ -365,31 +369,45 @@ const SearchFlight = ({
             <li
               className={`flex items-center justify-between border-b-2 rounded-lg cursor-pointer hover:bg-right-bg
               }`}
-              onClick={() => dateChoiceRef.current.focus()}
+              onClick={() => setCalendarFlag(!calendarFlag)}
             >
               <div className=" flex">
                 <div className="p-2 flex justify-center items-center">
                   <CalendarsIcon />
                 </div>
-                <div className="">
-                  <div className="flex items-cente mx-2 mt-1">
-                    Pick from Calendar
-                  </div>
-                  <div className="">
-                    <input
-                      className={`text-base rounded-lg mx-2 mb-1 bg-transparent appearance-none outline-none`}
-                      type="date"
-                      placeholder="test"
-                      value={selectedDate}
-                      min={today}
-                      onChange={(e) => {
-                        if (code !== "" && num !== "") {
-                          setSelectedDate(e.target.value);
-                          setDepartureDate(e.target.value);
-                        }
-                      }}
-                      ref={dateChoiceRef}
-                    />
+                <div className="mx-2">
+                  <div>{t("pick_from_calendar")}</div>
+                  <div>
+                    <div className="absolute">
+                      <DatePicker
+                        clearIcon
+                        calendarType="gregory"
+                        calendarIcon={null}
+                        format={"yyyy-MM-dd"}
+                        onChange={(e) => {
+                          const year = e.getFullYear();
+                          const month = String(e.getMonth() + 1).padStart(
+                            2,
+                            "0"
+                          );
+                          const day = String(e.getDate()).padStart(2, "0");
+
+                          const parseDateString = `${year}-${month}-${day}`;
+
+                          if (code !== "" && num !== "") {
+                            setDepartureDate(parseDateString);
+                            setSelectedDate(parseDateString);
+                          }
+                        }}
+                        value={selectedDate}
+                        isOpen={calendarFlag}
+                        minDate={new Date(today)}
+                        onClick={(e) => e.stopPropagation()}
+                        onCalendarClose={() => {
+                          setCalendarFlag(false);
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

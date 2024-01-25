@@ -44,7 +44,8 @@
     "no_search_history": "No search history.",
     "only_en_num_msg": "Only English letters and numbers are allowed for flight numbers.",
     "next": "next",
-    "pre": "Previous"
+    "pre": "Previous",
+    "pick_from_calendar": "Pick from Calendar"
   },
   "Result": {
     "departure_country_time": "Departure Time Zone",

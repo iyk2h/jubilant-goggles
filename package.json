@@ -23,6 +23,7 @@
     "next-share": "^0.27.0",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
+    "react-date-picker": "^10.6.0",
     "react-dom": "^18",
     "react-minimal-side-navigation": "^1.9.2",
     "react-router-dom": "^6.20.1",
