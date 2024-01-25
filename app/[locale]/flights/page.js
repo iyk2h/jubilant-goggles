@@ -133,8 +133,12 @@ export default function Flights() {
           )}
         </section>
         {flights.length <= 3 && (
-          <div className="flex justify-center w-full mt-1">
+          <div
+            id="add_another_flight"
+            className="flex justify-center w-full mt-1"
+          >
             <MyButton
+              id="add_another_flight_icon"
               text={
                 <div className="flex justify-center items-center gap-1">
                   <PlusIcon /> {t("search_flight")}
@@ -160,8 +164,9 @@ export default function Flights() {
                   <div className="flex items-start">
                     <MyButton text={t("cancel")} onClick={resetFlights} />
                   </div>
-                  <div className="flex items-end">
+                  <div id="flights_view_result" className="flex items-end">
                     <MyButton
+                      id="flights_view_result_button"
                       text={t("done")}
                       type={"positive"}
                       onClick={confirmHandle}

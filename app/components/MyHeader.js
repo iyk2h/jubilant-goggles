@@ -51,10 +51,11 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
           ></div>
 
           <div
+            id="menu_side"
             className="px-4 py-5 cursor-pointer"
             onClick={handleSidebarToggle}
           >
-            <Menu3Icon />
+            <Menu3Icon id={"menu_side_icon"} />
           </div>
 
           <div
@@ -124,6 +125,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         </div>
 
         <div
+          id="head_text"
           className="head_text py-5 cursor-pointer"
           onClick={() => router.push(`/${locale}`)}
         >
@@ -131,6 +133,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         </div>
 
         <div
+          id="feedback"
           className="head_btn_right cursor-pointer"
           onClick={() => {
             window.open(
@@ -140,7 +143,7 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
           }}
         >
           <div className="px-4 py-5">
-            <ChatIcon />
+            <ChatIcon id={"feedback_icon"} />
           </div>
         </div>
       </header>

@@ -124,6 +124,7 @@ export default function ShareLayout({ value, state = false, close }) {
                       <input className="w-full  p-1" value={url} readOnly />
                     </div>
                     <div
+                      id="copylink"
                       className="flex justify-center items-center w-1/4 bg-black text-white rounded-full p-2 px-5 cursor-pointer hover:bg-gray-500"
                       onClick={copyToClipboard}
                     >

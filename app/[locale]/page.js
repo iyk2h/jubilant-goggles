@@ -95,15 +95,15 @@ export default function Home() {
       <div className="text-2xl font-bold">{t("mytravels")}</div>
       <div className="flex justify-between my-2 mb-6">
         <div
-          id="add_flight"
+          id="add_travel"
           className="flex justify-center w-full bg-custom-text-color text-custom-third  shadow-lg rounded-xl p-2 cursor-pointer hover:bg-left-bg hover:text-black"
           onClick={() => router.push("/flights")}
         >
           <div
-            id="add_flight_icons"
+            id="add_travel_icons"
             className="flex justify-normal items-center"
           >
-            <div id="add_flight_msg">{t("addTravel")}</div>
+            <div id="add_travel_msg">{t("addTravel")}</div>
           </div>
         </div>
       </div>
@@ -118,17 +118,26 @@ export default function Home() {
               onClick={() => clickHandle(info.key)}
             >
               <div className="flex justify-between shadow-xl rounded-xl bg-right-bg hover:bg-left-bg">
-                <div className=" w-full pl-4 pr-2 pt-2 pb-3 rounded-l-xl">
+                <div
+                  id={`view_detail_item_${index}`}
+                  className=" w-full pl-4 pr-2 pt-2 pb-3 rounded-l-xl"
+                >
                   <div className="flex justify-between items-center">
-                    <p className="font-bold">{info.title.split("_")[1]}</p>
+                    <p
+                      id={`view_detail_item_title_${index}`}
+                      className="font-bold w-full"
+                    >
+                      {info.title.split("_")[1]}
+                    </p>
                     <div
+                      id={`home_results_menu_${index}`}
                       className="rounded-full p-1 hover:bg-right-bg"
                       onClick={(e) => {
                         e.stopPropagation();
                         toggleDropdown(index);
                       }}
                     >
-                      <MenuIcon />
+                      <MenuIcon id={`home_results_menu_icon_${index}`} />
                     </div>
                   </div>
                   {formatStrS(info.title.split("_")[0], local)}
@@ -144,6 +153,7 @@ export default function Home() {
                           aria-labelledby="options-menu"
                         >
                           <div
+                            id={`share_click_${index}`}
                             onClick={(e) => {
                               e.stopPropagation();
                               openModal();
@@ -155,6 +165,7 @@ export default function Home() {
                             {t("share")}
                           </div>
                           <div
+                            id={`home_result_delete_${index}`}
                             onClick={(e) => {
                               e.stopPropagation();
                               handleSelect(info.key);
@@ -162,7 +173,12 @@ export default function Home() {
                             className="block px-4 py-2 text-sm text-custom-text-color hover:bg-left-bg border-b-2"
                             role="menuitem"
                           >
-                            <div className="flex gap-1">{t("delete")}</div>
+                            <div
+                              id={`home_result_delete_text_${index}`}
+                              className="flex gap-1"
+                            >
+                              {t("delete")}
+                            </div>
                           </div>
                           <div
                             onClick={(e) => {

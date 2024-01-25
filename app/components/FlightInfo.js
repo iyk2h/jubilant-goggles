@@ -115,8 +115,13 @@ const FlightInfo = ({ addFlight }) => {
                       <div className="py-2" key={index}>
                         {flightInfo && (
                           <FlightInfoLayout
+                            index={index}
                             hover={true}
-                            text={<BackIcon />}
+                            text={
+                              <BackIcon
+                                id={`select_search_flight_right_date_c_icon${index}`}
+                              />
+                            }
                             flightInfo={flightInfo}
                             onConfirm={() => {
                               addFlight(

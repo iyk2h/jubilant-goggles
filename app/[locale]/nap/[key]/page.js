@@ -168,9 +168,13 @@ export default function Nap(param) {
                     }}
                   />
                   <MyButton
+                    id="nap_result_share_button"
                     text={
-                      <div className="flex justify-center items-center gap-1">
-                        <ShareIcon />
+                      <div
+                        id="nap_result_share_button_div"
+                        className="flex justify-center items-center gap-1"
+                      >
+                        <ShareIcon id="nap_result_share_icon" />
                         {t("share")}
                       </div>
                     }

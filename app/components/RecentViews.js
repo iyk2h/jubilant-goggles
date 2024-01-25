@@ -29,6 +29,7 @@ const RecentViews = ({
       {history.slice(visibleItems, visibleItems + gap).map((info, index) => (
         <div className="py-2" key={index}>
           <RecentViewsLayout
+            index={index}
             flightInfo={info.response}
             onConfirm={() => onConfirm(info.key, info.response)}
             text={onClickTitle}

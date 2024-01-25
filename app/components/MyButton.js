@@ -1,6 +1,6 @@
 "use client";
 
-export default function MyButton({ text, type, onClick }) {
+export default function MyButton({ id, text, type, onClick }) {
   const btnType = ["positive", "negative", "loading"].includes(type)
     ? type
     : "default";
@@ -8,6 +8,7 @@ export default function MyButton({ text, type, onClick }) {
   return (
     <div>
       <button
+        id={id}
         className={[
           "MyButton",
           `MyButton_${btnType}`,
