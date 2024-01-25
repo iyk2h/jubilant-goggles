@@ -1,3 +1,14 @@
+.react-calendar::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5); /* 반투명한 배경색으로 설정 */
+  z-index: -1;
+}
+
 .react-calendar {
   width: 350px;
   max-width: 100%;
@@ -5,6 +16,8 @@
   border: 1px solid #102c57;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
+  border-radius: 15px;
+  overflow: hidden;
 }
 
 .react-calendar--doubleView {
@@ -43,7 +56,7 @@
 .react-calendar__navigation {
   display: flex;
   height: 44px;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
 }
 
 .react-calendar__navigation button {
@@ -67,6 +80,7 @@
   font: inherit;
   font-size: 0.75em;
   font-weight: bold;
+  cursor: default;
 }
 
 .react-calendar__month-view__weekdays__weekday {

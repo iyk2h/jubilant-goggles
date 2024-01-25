@@ -378,7 +378,7 @@ const SearchFlight = ({
                 <div className="mx-2">
                   <div>{t("pick_from_calendar")}</div>
                   <div>
-                    <div className="absolute">
+                    <div className="absolute ">
                       <DatePicker
                         clearIcon
                         calendarType="gregory"
@@ -402,7 +402,11 @@ const SearchFlight = ({
                         value={selectedDate}
                         isOpen={calendarFlag}
                         minDate={new Date(today)}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => {
+                          if ("react-calendar" !== e.target.classList[0]) {
+                            e.stopPropagation();
+                          }
+                        }}
                         onCalendarClose={() => {
                           setCalendarFlag(false);
                         }}
