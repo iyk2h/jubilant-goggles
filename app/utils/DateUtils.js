@@ -13,6 +13,15 @@ export const formatDate = (info) => {
   );
 };
 
+export const formatDateForUTC_0 = (info) => {
+  return DateTime.fromFormat(info.datetime, "M/d/yyyy, h:mm:ss a")
+    .setZone(info.timezone, {
+      keepLocalTime: true,
+    })
+    .toUTC(0)
+    .toISO();
+};
+
 export const getDiffTime = (diff) => {
   return {
     // hours: diff.toFormat("hh"),

@@ -15,6 +15,11 @@ import { useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
 import MyButton from "@/app/components/MyButton";
+import {
+  findAllByDate,
+  save,
+} from "@/app/api/mailing/repository/mailingRepository";
+import { formatDateForUTC_0 } from "@/app/utils/DateUtils";
 
 export default function Nap(param) {
   const t = useTranslations("Result");
@@ -39,6 +44,20 @@ export default function Nap(param) {
     } finally {
       setLoadings(false);
     }
+  };
+
+  const addEmail = async () => {
+    const value = {
+      code: key,
+      state: "todo",
+      email: "test@gmail.com",
+      departureDate: formatDateForUTC_0(airport[0].departureInfo),
+    };
+    await save({ input: value });
+  };
+
+  const addEmail2 = async () => {
+    await findAllByDate({ date: formatDateForUTC_0(airport[0].departureInfo) });
   };
 
   const addMyTravel = () => {
@@ -188,6 +207,20 @@ export default function Nap(param) {
             )}
           </>
         )}
+        <div
+          onClick={() => {
+            addEmail();
+          }}
+        >
+          test
+        </div>
+        <div
+          onClick={() => {
+            addEmail2();
+          }}
+        >
+          test2
+        </div>
       </section>
     </>
   );
