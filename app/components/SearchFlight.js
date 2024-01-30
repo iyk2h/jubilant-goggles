@@ -382,7 +382,7 @@ const SearchFlight = ({
               </div>
               <div className={` ${calendarFlag ? "absolute " : "hidden"}`}>
                 <DatePicker
-                  clearIcon
+                  clearIcon={null}
                   calendarType="gregory"
                   calendarIcon={null}
                   format={"yyyy-MM-dd"}
