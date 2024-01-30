@@ -65,7 +65,6 @@ export async function save({ input }) {
 }
 
 export async function findAllByDate({ date }) {
-  console.log(date);
   try {
     await connectToMongoDB();
 
@@ -87,7 +86,7 @@ export async function findAllByDate({ date }) {
     console.log("get mongo db list", result);
 
     // await collection.deleteMany({ email: "test@gmail.com" });
-    return JSON.stringify(result);
+    return result;
   } finally {
     await closeMongoDB();
   }
