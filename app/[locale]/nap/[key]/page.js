@@ -15,10 +15,7 @@ import { useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
 import MyButton from "@/app/components/MyButton";
-import {
-  findAllByDate,
-  save,
-} from "@/app/api/mailing/repository/mailingRepository";
+import { findAllByDate, save } from "@/app/api/mongoDB/repository";
 import { formatDateForUTC_0 } from "@/app/utils/DateUtils";
 
 export default function Nap(param) {
@@ -54,10 +51,6 @@ export default function Nap(param) {
       departureDate: formatDateForUTC_0(airport[0].departureInfo),
     };
     await save({ input: value });
-  };
-
-  const addEmail2 = async () => {
-    await findAllByDate({ date: formatDateForUTC_0(airport[0].departureInfo) });
   };
 
   const addMyTravel = () => {
@@ -213,13 +206,6 @@ export default function Nap(param) {
           }}
         >
           test
-        </div>
-        <div
-          onClick={() => {
-            addEmail2();
-          }}
-        >
-          test2
         </div>
       </section>
     </>
