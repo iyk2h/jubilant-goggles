@@ -66,11 +66,20 @@
     "pre_travel_tips_msg": "Get Pre-Flights Sleep Tips",
     "post_travel_tips_msg": "Get Post-Flights Sleep Tips",
     "sleep_tips_msg": " Sleep Tips",
-    "sleep_in_flights_tips_msg": "In-flight Sleep Tips"
+    "sleep_in_flights_tips_msg": "In-flight Sleep Tips",
+    "apply_reminder": "Reminder to Emails"
   },
   "Share": {
     "title": "Share",
     "copy": "Copy",
     "copyDone": "Link copied to clipboard"
+  },
+  "Email_Form": {
+    "confirm_msg": "The previously applied email will be deleted. Would you like to re-enter it?",
+    "confirm_email": "Please check the email format.",
+    "added_email": "Email has been added.",
+    "explanation": "Enter the email address where you want to receive reminders.",
+    "retry": "Retry",
+    "apply": "Apply"
   }
 }

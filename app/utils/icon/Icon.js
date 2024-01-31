@@ -203,3 +203,9 @@ export function HomeIcon({ id }) {
     <Image id={id} width={17} height={17} src="/icons8-home.png" alt="home" />
   );
 }
+
+export function MailIcon({ id }) {
+  return (
+    <Image id={id} width={19} height={19} src="/icons8-mail.png" alt="mail" />
+  );
+}

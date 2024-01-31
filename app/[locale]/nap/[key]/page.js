@@ -9,14 +9,16 @@ import {
   CloseIcon,
   HomeIcon,
   LoadingIcon,
+  MailIcon,
   ShareIcon,
 } from "@/app/utils/icon/Icon";
 import { useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
 import MyButton from "@/app/components/MyButton";
-import { findAllByDate, save } from "@/app/api/mongoDB/repository";
+import { findAllByDate, save, deleteBy } from "@/app/api/mongoDB/repository";
 import { formatDateForUTC_0 } from "@/app/utils/DateUtils";
+import EmailForm from "@/app/components/EmailForm";
 
 export default function Nap(param) {
   const t = useTranslations("Result");
@@ -43,14 +45,24 @@ export default function Nap(param) {
     }
   };
 
-  const addEmail = async () => {
+  const addEmail = async (email) => {
     const value = {
       code: key,
       state: "todo",
-      email: "test@gmail.com",
+      email: email,
       departureDate: formatDateForUTC_0(airport[0].departureInfo),
     };
     await save({ input: value });
+  };
+
+  const retryEmail = async (email) => {
+    const value = {
+      code: key,
+      state: "todo",
+      email: email,
+      departureDate: formatDateForUTC_0(airport[0].departureInfo),
+    };
+    await deleteBy({ input: value });
   };
 
   const addMyTravel = () => {
@@ -95,6 +107,16 @@ export default function Nap(param) {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  let [isEmailFormOpen, setIsEmailFormOpen] = useState(false);
+
+  const openEmailForm = () => {
+    setIsEmailFormOpen(true);
+  };
+
+  const closeEmailForm = () => {
+    setIsEmailFormOpen(false);
   };
 
   const airportInfos = useAirportInfosValue();
@@ -164,11 +186,12 @@ export default function Nap(param) {
                     </div>
                   )}
                 </div>
-                <div className="flex w-full justify-between items-center my-2 mb-4 gap-2">
+                <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
                   <MyButton
                     text={
-                      <div className="flex justify-center items-center gap-1">
-                        <HomeIcon /> {t("go_home")}
+                      <div className="flex justify-center items-center gap-1 p-1">
+                        <HomeIcon />
+                        {/* {t("go_home")} */}
                       </div>
                     }
                     onClick={() => {
@@ -184,10 +207,10 @@ export default function Nap(param) {
                     text={
                       <div
                         id="nap_result_share_button_div"
-                        className="flex justify-center items-center gap-1"
+                        className="flex justify-center items-center gap-1 p-1"
                       >
                         <ShareIcon id="nap_result_share_icon" />
-                        {t("share")}
+                        {/* {t("share")} */}
                       </div>
                     }
                     onClick={openModal}
@@ -195,18 +218,33 @@ export default function Nap(param) {
                   {isModalOpen && (
                     <ShareLayout value={key} state={true} close={closeModal} />
                   )}
+                  <MyButton
+                    id="nap_result_reminders"
+                    text={
+                      <div
+                        id="nap_result_remindersbutton_div"
+                        className="flex justify-center items-center gap-1"
+                      >
+                        <MailIcon id="nap_result_reminders_icon" />
+                        {t("apply_reminder")}
+                      </div>
+                    }
+                    onClick={openEmailForm}
+                  />
+                  {isEmailFormOpen && (
+                    <EmailForm
+                      value={key}
+                      state={true}
+                      close={closeEmailForm}
+                      addEmail={addEmail}
+                      retryEmail={retryEmail}
+                    />
+                  )}
                 </div>
               </div>
             )}
           </>
         )}
-        <div
-          onClick={() => {
-            addEmail();
-          }}
-        >
-          test
-        </div>
       </section>
     </>
   );

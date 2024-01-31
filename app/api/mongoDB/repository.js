@@ -27,8 +27,6 @@ async function closeMongoDB() {
 
 // Save function
 export async function save({ input }) {
-  console.log("input : ", input);
-
   try {
     await connectToMongoDB();
 
@@ -84,9 +82,26 @@ export async function findAllByDate({ date }) {
       .toArray();
 
     console.log("get mongo db list", result);
-
-    // await collection.deleteMany({ email: "test@gmail.com" });
     return result;
+  } finally {
+    await closeMongoDB();
+  }
+}
+export async function deleteBy({ input }) {
+  try {
+    await connectToMongoDB();
+
+    const db = client.db("mailingService");
+    const collection = db.collection("mailListWithCode");
+
+    const filter = {
+      code: input.code,
+      state: input.state,
+      email: input.email,
+      departureDate: input.departureDate,
+    };
+
+    const result = await collection.deleteMany(filter);
   } finally {
     await closeMongoDB();
   }
