@@ -34,13 +34,13 @@ export async function sendEmail({
     htmlPath = "./app/api/mailing/emailEnTemplete.html";
   }
 
-  const template = await fs.readFile(`${htmlPath}`, "utf-8");
+  // const template = await fs.readFile(`${htmlPath}`, "utf-8");
 
-  const htmlToSend = mustache.render(template, {
-    Departure_Time: departureDate_local_format,
-    Destination: destination,
-    code: code,
-  });
+  // const htmlToSend = mustache.render(template, {
+  //   Departure_Time: departureDate_local_format,
+  //   Destination: destination,
+  //   code: code,
+  // });
 
   const mailData = {
     from: {
@@ -49,7 +49,7 @@ export async function sendEmail({
     },
     to: email,
     subject: subject,
-    html: htmlToSend,
+    // html: htmlToSend,
   };
 
   try {
