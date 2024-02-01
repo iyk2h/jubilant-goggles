@@ -1,8 +1,8 @@
 "use server";
 
 import { createTransport } from "nodemailer";
-// import mustache from "mustache";
-// import fs from "fs/promises";
+import mustache from "mustache";
+import fs from "fs/promises";
 
 export async function sendEmail({
   email,
@@ -34,13 +34,13 @@ export async function sendEmail({
     htmlPath = "./app/api/mailing/emailEnTemplete.html";
   }
 
-  // const template = await fs.readFile(`${htmlPath}`, "utf-8");
+  const template = await fs.readFile(`${htmlPath}`, "utf-8");
 
-  // const htmlToSend = mustache.render(template, {
-  //   Departure_Time: departureDate_local_format,
-  //   Destination: destination,
-  //   code: code,
-  // });
+  const htmlToSend = mustache.render(template, {
+    Departure_Time: departureDate_local_format,
+    Destination: destination,
+    code: code,
+  });
 
   const mailData = {
     from: {

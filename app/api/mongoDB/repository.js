@@ -3,9 +3,7 @@
 const { DateTime } = require("luxon");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
-const id = process.env.NEXT_PUBLIC_MONGO_DB_ID;
-const key = process.env.NEXT_PUBLIC_MONGO_DB_KEY;
-const uri = `mongodb+srv://${id}:${key}@lagless.qiykr3r.mongodb.net/?retryWrites=true&w=majority`;
+const uri = process.env.MONGODB_URI;
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -70,9 +68,6 @@ export async function findAllByDate({ date }) {
     const collection = db.collection("mailListWithCode");
 
     const yesterday = DateTime.fromISO(date).startOf("day");
-
-    console.log("day", yesterday.toISO());
-    console.log("yester", yesterday.minus({ days: 1 }).toISO());
 
     const result = await collection
       .find({
