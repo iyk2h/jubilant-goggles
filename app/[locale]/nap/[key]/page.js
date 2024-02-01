@@ -12,17 +12,22 @@ import {
   MailIcon,
   ShareIcon,
 } from "@/app/utils/icon/Icon";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
 import MyButton from "@/app/components/MyButton";
 import { findAllByDate, save, deleteBy } from "@/app/api/mongoDB/repository";
-import { formatDateForUTC_0 } from "@/app/utils/DateUtils";
+import {
+  formatDate,
+  formatDateForUTC_0,
+  formatDateString,
+} from "@/app/utils/DateUtils";
 import EmailForm from "@/app/components/EmailForm";
 
 export default function Nap(param) {
   const t = useTranslations("Result");
   const router = useRouter();
+  const locale = useLocale();
 
   const [airport, setArport] = useState([]);
   const [loadings, setLoadings] = useState(true);
@@ -51,6 +56,12 @@ export default function Nap(param) {
       state: "todo",
       email: email,
       departureDate: formatDateForUTC_0(airport[0].departureInfo),
+      departureDate_local_format: formatDateString(
+        formatDate(airport[0].departureInfo),
+        locale
+      ),
+      locale: locale,
+      destination: airport[airport.length - 1].arrivalInfo.city,
     };
     await save({ input: value });
   };
@@ -61,6 +72,12 @@ export default function Nap(param) {
       state: "todo",
       email: email,
       departureDate: formatDateForUTC_0(airport[0].departureInfo),
+      departureDate_local_format: formatDateString(
+        formatDate(airport[0].departureInfo),
+        locale
+      ),
+      locale: locale,
+      destination: airport[airport.length - 1].arrivalInfo.city,
     };
     await deleteBy({ input: value });
   };

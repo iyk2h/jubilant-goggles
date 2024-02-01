@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .header h1 {
+        color: #333;
+        font-size: 24px;
+        margin: 0;
+      }
+
+      .content {
+        margin-bottom: 30px;
+      }
+
+      .content p {
+        margin: 0 0 10px;
+        line-height: 1.5;
+      }
+
+      .flight-info-container {
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .flight-info-content {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .flight-info-left,
+      .flight-info-right {
+        text-align: center;
+        width: 2/5;
+      }
+
+      .flight-info-code {
+        font-size: 24px;
+      }
+
+      .flight-info-city,
+      .flight-info-date {
+        font-size: 12px;
+      }
+
+      .flight-info-icon {
+        flex: justify-center;
+        /* items-center; */
+        width: 1/5;
+      }
+
+      .flight-info-text {
+        flex: items-center;
+        /* rotate-180;
+        mr-1; */
+      }
+
+      .footer {
+        text-align: center;
+      }
+
+      .footer p {
+        color: #999;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      /* Styling for the button */
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #f9cc56;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #0d1d7a;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>LagLess</h1>
+      </div>
+      <div class="content">
+        <!-- Image with a clickable link -->
+        <a href="https://www.lagless.site/">
+          <img
+            src="https://www.lagless.site/thumbnail.jpg"
+            alt="Description of the image"
+            style="max-width: 100%; height: auto"
+          />
+        </a>
+        <p><br /></p>
+        <h2>Hello 👋</h2>
+        <p>
+          Your trip to {{Destination}} starts on {{Departure_Time}}. Make travel
+          easier, and check your optimal schedule now. Also, check out our
+          services below and make the most of your trip.
+        </p>
+
+        <p>
+          <!-- Button style for the link -->
+          <a href="https://www.lagless.site/nap/{{code}}" class="button"
+            >Check your schedule</a
+          >
+          <br />
+        </p>
+      </div>
+      <div class="footer">
+        <p>
+          Wishing you a safe journey! Best wishes for a wonderful trip from the
+          LagLess team.
+          <br />
+          P.S. Have you packed your passport and travel essentials?
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

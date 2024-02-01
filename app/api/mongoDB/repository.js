@@ -71,6 +71,9 @@ export async function findAllByDate({ date }) {
 
     const yesterday = DateTime.fromISO(date).startOf("day");
 
+    console.log("day", yesterday.toISO());
+    console.log("yester", yesterday.minus({ days: 1 }).toISO());
+
     const result = await collection
       .find({
         departureDate: {
