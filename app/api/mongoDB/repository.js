@@ -2,6 +2,8 @@
 
 const { DateTime } = require("luxon");
 const { MongoClient, ServerApiVersion } = require("mongodb");
+import { nowDate } from "@/app/utils/DateUtils";
+import { sendEmail } from "../mailing/mailingService";
 
 const uri = process.env.MONGODB_URI;
 
@@ -38,6 +40,21 @@ export async function save({ input }) {
       departureDate: input.departureDate,
     };
 
+    const todayStart = nowDate().toUTC(0).startOf("day");
+    const todayEnd = nowDate().toUTC(0).endOf("day");
+    const departDate = DateTime.fromISO(input.departureDate).toUTC(0);
+
+    if (todayStart <= departDate && todayEnd >= departDate) {
+      await sendEmail({
+        email: input.email,
+        code: input.code,
+        locale: input.locale,
+        departureDate_local_format: input.departureDate_local_format,
+        destination: input.destination,
+      });
+      filter.state = "done";
+    }
+
     const update = {
       $setOnInsert: input, // 이 필드는 문서가 삽입될 때만 설정됩니다.
     };
@@ -53,31 +70,41 @@ export async function save({ input }) {
     } else {
       console.log("Document already exists");
     }
-
-    // await collection.deleteMany({ email: "test@gmail.com" });
   } finally {
     await closeMongoDB();
   }
 }
 
-export async function findAllByDate({ date }) {
+export async function findAllByCurDate() {
   try {
     await connectToMongoDB();
 
     const db = client.db("mailingService");
     const collection = db.collection("mailListWithCode");
 
-    const yesterday = DateTime.fromISO(date).startOf("day");
+    const date = nowDate().plus({ days: 1 }).toUTC(0).startOf("day");
+    const day = date.endOf("day");
 
     const result = await collection
       .find({
         departureDate: {
-          $lt: yesterday.toISO(), // 어제보다 이전
-          $gte: yesterday.minus({ days: 1 }).toISO(), // 오늘 00:00 이후
+          $lt: day.toISO(), // 내일 23:59:00 이전
+          $gte: date.toISO(), // 오늘 00:00 이후
         },
         state: "todo",
       })
       .toArray();
+
+    await collection.updateMany(
+      {
+        departureDate: {
+          $lt: day.toISO(),
+          $gte: day.minus({ days: 1 }).toISO(),
+        },
+        state: "todo",
+      },
+      { $set: { state: "done" } }
+    );
 
     console.log("get mongo db list", result);
     return result;
