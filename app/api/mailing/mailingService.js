@@ -1,8 +1,8 @@
 "use server";
 
 import { createTransport } from "nodemailer";
-import mustache from "mustache";
-import fs from "fs/promises";
+// import mustache from "mustache";
+// import fs from "fs/promises";
 
 export async function sendEmail({
   email,
@@ -11,7 +11,7 @@ export async function sendEmail({
   departureDate_local_format,
   destination,
 }) {
-  const { NEXT_PUBLIC_USER } = process.env;
+  const { NEXT_PUBLIC_USER, NEXT_PUBLIC_PASS } = process.env;
 
   const transporter = createTransport({
     host: "smtp.gmail.com",
@@ -19,7 +19,7 @@ export async function sendEmail({
     secure: true,
     auth: {
       user: NEXT_PUBLIC_USER,
-      pass: process.env.NEXT_PUBLIC_PASS,
+      pass: NEXT_PUBLIC_PASS,
     },
   });
 
