@@ -49,7 +49,7 @@ export async function sendEmail({
     },
     to: email,
     subject: subject,
-    // html: htmlToSend,
+    html: htmlToSend,
   };
 
   try {
