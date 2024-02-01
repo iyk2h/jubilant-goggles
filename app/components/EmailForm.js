@@ -123,6 +123,7 @@ export default function EmailForm({
                   ) : (
                     <div className="flex justify-end">
                       <MyButton
+                        id={"nap_result_reminders_button"}
                         text={t("apply")}
                         onClick={() => {
                           if (!validFlag) validEmail(email);
