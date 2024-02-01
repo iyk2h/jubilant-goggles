@@ -9,7 +9,7 @@ async function runSchedule() {
   const list = await findAllByDate({ date: date });
   console.log(date);
   list.map(async (item) => {
-    await sendEmail({
+    sendEmail({
       email: item.email,
       code: item.code,
       locale: item.locale,
