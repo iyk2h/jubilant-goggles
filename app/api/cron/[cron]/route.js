@@ -1,6 +1,6 @@
-const { findAllByDate } = require("../mongoDB/repository");
+const { findAllByDate } = require("../../mongoDB/repository");
 import { NextResponse } from "next/server";
-import { sendEmail } from "../mailing/mailingService";
+import { sendEmail } from "../../mailing/mailingService";
 import { nowDate } from "@/app/utils/DateUtils";
 
 async function runSchedule() {
