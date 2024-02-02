@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
-  CloseIcon,
   HomeIcon,
   LoadingIcon,
   MailIcon,
@@ -16,7 +15,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
 import MyButton from "@/app/components/MyButton";
-import { findAllByDate, save, deleteBy } from "@/app/api/mongoDB/repository";
+import { save, deleteBy } from "@/app/api/mongoDB/repository";
 import {
   formatDate,
   formatDateForUTC_0,
@@ -177,12 +176,6 @@ export default function Nap(param) {
                     <p>{t("not_result_msg_1")}</p>
                     <p>{t("not_result_msg_2")}</p>
                   </div>
-                  {/* <div
-                    className="flex justify-center w-full bg-black text-white shadow-lg rounded-xl p-2 my-3 cursor-pointer hover:bg-gray-200 hover:text-black"
-                    onClick={() => router.push("/")}
-                  >
-                    {t("go_home")}
-                  </div> */}
                 </div>
               </>
             ) : (
@@ -208,7 +201,6 @@ export default function Nap(param) {
                     text={
                       <div className="flex justify-center items-center gap-1 p-1">
                         <HomeIcon />
-                        {/* {t("go_home")} */}
                       </div>
                     }
                     onClick={() => {
@@ -227,7 +219,6 @@ export default function Nap(param) {
                         className="flex justify-center items-center gap-1 p-1"
                       >
                         <ShareIcon id="nap_result_share_icon" />
-                        {/* {t("share")} */}
                       </div>
                     }
                     onClick={openModal}
