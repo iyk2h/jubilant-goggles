@@ -55,7 +55,7 @@ export default function Flights() {
 
     const title = `${airport[0].departureInfo.datetime}_${
       airport[0].departureInfo.city
-    } -> ${airport[airport.length - 1].arrivalInfo.city}`;
+    } ✈︎ ${airport[airport.length - 1].arrivalInfo.city}`;
 
     const beforKey = `${flights.map((info) => info.key).join("_")}`;
     const key = hashValue(beforKey);
