@@ -86,17 +86,15 @@ const SearchFlight = ({
       setNum(query.slice(2));
     }
     setOnly_en_num_flag(false);
+    setOnly_num_flag(false);
   }, [query]);
 
   const [only_en_num_flag, setOnly_en_num_flag] = useState(false);
+  const [only_num_flag, setOnly_num_flag] = useState(false);
+  const [input_number_msg_flag, setInput_number_msg_flag] = useState(false);
 
   const handleInputChange = (event) => {
     let inputValue = event.target.value.trim();
-
-    const alphanumericRegex = /[^a-zA-Z0-9]/g;
-    const isCheckEnNum = !alphanumericRegex.test(inputValue);
-
-    setOnly_en_num_flag(!isCheckEnNum);
 
     let code = "";
     let num = "";
@@ -105,9 +103,16 @@ const SearchFlight = ({
       setFlag(false);
     }
 
+    const alphanumericRegex = /[^a-zA-Z0-9]/g;
+    const numRegex = /[^0-9]/g;
     if (inputValue.length <= 2) {
+      const isCheckEnNum = alphanumericRegex.test(inputValue);
+      setOnly_en_num_flag(isCheckEnNum);
       code = inputValue.replace(alphanumericRegex, "").toUpperCase();
     } else {
+      const isCheckNum = numRegex.test(inputValue.slice(2));
+      setOnly_num_flag(isCheckNum);
+
       code = inputValue
         .slice(0, 2)
         .replace(alphanumericRegex, "")
@@ -126,7 +131,7 @@ const SearchFlight = ({
   const handleEnterPress = (event) => {
     if (event.key === "Enter" || event.key === "Tab") {
       event.preventDefault();
-      if (query.length <= 2) {
+      if (query.length < 2) {
         if (matchingValues.length > 0) {
           inputQuery(matchingValues[0].iata);
         } else {
@@ -152,6 +157,12 @@ const SearchFlight = ({
       dateInputRef.current.focus();
       setFocusFlag(false);
       setDateFocus(true);
+    }
+    if (value.length === 2 && num === "") {
+      setInput_number_msg_flag(true);
+      setTimeout(() => {
+        setInput_number_msg_flag(false);
+      }, 2000);
     }
     inputQuery(value + num);
   };
@@ -263,6 +274,10 @@ const SearchFlight = ({
         )}
       </div>
       {only_en_num_flag && <p className="px-4">{t("only_en_num_msg")}</p>}
+      {only_num_flag && <p className="px-4">{t("only_num_msg")}</p>}
+      {input_number_msg_flag && (
+        <p className="px-4">{t("input_number_msg_flag")}</p>
+      )}
       <div className="flex items-center"></div>
       {focusFlag && query.length !== 0 && (
         <div>

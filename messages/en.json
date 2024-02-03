@@ -42,7 +42,9 @@
     "recent_view_list": "Recent Views",
     "result": "Result",
     "no_search_history": "No search history.",
-    "only_en_num_msg": "Only English letters and numbers are allowed for flight numbers.",
+    "only_en_num_msg": "Only English letters and numbers are allowed for flight codes.",
+    "only_num_msg": "Only numbers are allowed for flight numbers.",
+    "input_number_msg_flag": "Please enter the remaining flight number.",
     "next": "next",
     "pre": "Previous",
     "pick_from_calendar": "Pick from Calendar"
