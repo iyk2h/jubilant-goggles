@@ -13,6 +13,7 @@ import {
   getDiffTime,
   formatDateString,
   formatStrS,
+  getDiffTimeString,
 } from "../utils/DateUtils";
 import { useTranslations, useLocale } from "next-intl";
 import RecommendSleepLayout from "./RecommendSleepLayout";
@@ -39,6 +40,10 @@ const RecommendNap = ({ title, airportInfos }) => {
         const arrivalDateForm = formatDate(arrivalInfo);
 
         const flightTime = getDiffTime(arrivalDateForm.diff(departDateForm));
+        const flightTimeString = getDiffTimeString(
+          arrivalDateForm.diff(departDateForm),
+          locale
+        );
 
         const arrivalStartDateForm = arrivalDateForm.minus(flightTime);
         const departEndDateForm = departDateForm.plus(flightTime);
@@ -174,6 +179,7 @@ const RecommendNap = ({ title, airportInfos }) => {
         const info = {
           departCity: departureInfo.city,
           arrivalCity: arrivalInfo.city,
+          flightTime: flightTimeString,
         };
 
         const recommendItems = [];

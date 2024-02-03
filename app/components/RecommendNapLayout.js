@@ -22,6 +22,12 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
           </div>
 
           <div
+            className={`absolute top-2 w-1/2 z-10 flex items-center justify-center rounded-r-xl text-sm`}
+          >
+            {info.flightTime}
+          </div>
+
+          <div
             className={`absolute right-0 ${bg_r} h-full w-1/2 z-0 flex items-center justify-center rounded-r-xl overflow-hidden`}
           >
             <div className="rotate-90 origin-center pb-20 text-7xl text-custom-third whitespace-nowrap">
