@@ -144,6 +144,13 @@ export default function MyHeader({ headText, leftChild, rightChild }) {
         >
           <div className="px-4 py-5">
             <ChatIcon id={"feedback_icon"} />
+
+            <p
+              id="feedback_msg"
+              className="flex justify-center items-center text-xs"
+            >
+              Feedback
+            </p>
           </div>
         </div>
       </header>
