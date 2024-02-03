@@ -162,7 +162,7 @@ const SearchFlight = ({
       setInput_number_msg_flag(true);
       setTimeout(() => {
         setInput_number_msg_flag(false);
-      }, 2000);
+      }, 3000);
     }
     inputQuery(value + num);
   };
