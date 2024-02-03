@@ -51,6 +51,10 @@ export default function RootLayout({ children, params }) {
         `}
         </Script>
         <title>{params.locale === "ko" ? "시차해결사" : "LagLess"}</title>
+        <meta
+          name="google-site-verification"
+          content="9WPIm1Zfhh9O38DPyfq7G-ALerwlpvUhqMaz7ZHKs0o"
+        />
       </>
       <body className="select-none">
         <NextIntlClientProvider
