@@ -107,15 +107,8 @@ const RecommendNap = ({ title, airportInfos }) => {
             icon: <SleepIcon />,
           });
 
-          dpSleepItem.push({
-            departDateTime: formatDateString(wakeup, locale),
-            departDescription: t("wake_up"),
-            arrivalDateTime: "",
-            arrivalDescription: "",
-            icon: <WakeUpIcon />,
-          });
-
           let stopCaffein = "";
+          let wakeupTime = formatDateString(wakeup, locale);
           if (
             wakeup >
             departDateForm.plus({ minutes: startNap }).minus({ hours: 8 })
@@ -127,14 +120,33 @@ const RecommendNap = ({ title, airportInfos }) => {
               locale
             );
           }
+
           if (stopCaffein != "") {
-            dpSleepItem.push({
-              departDateTime: stopCaffein,
-              departDescription: "",
-              arrivalDateTime: t("no_coffee_msg"),
-              arrivalDescription: "",
-              icon: <NoCoffee />,
-            });
+            if (stopCaffein !== wakeupTime) {
+              dpSleepItem.push({
+                departDateTime: wakeupTime,
+                departDescription: t("wake_up"),
+                arrivalDateTime: "",
+                arrivalDescription: "",
+                icon: <WakeUpIcon />,
+              });
+
+              dpSleepItem.push({
+                departDateTime: stopCaffein,
+                departDescription: "",
+                arrivalDateTime: t("no_coffee_msg"),
+                arrivalDescription: "",
+                icon: <NoCoffee />,
+              });
+            } else {
+              dpSleepItem.push({
+                departDateTime: wakeupTime,
+                departDescription: t("wake_up"),
+                arrivalDateTime: t("no_coffee_msg"),
+                arrivalDescription: "",
+                icon: <WakeUpIcon />,
+              });
+            }
           }
 
           setDepartSleep([
