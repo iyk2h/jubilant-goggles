@@ -106,7 +106,7 @@ export async function findAllByCurDate() {
       { $set: { state: "done" } }
     );
 
-    console.log("get mongo db list", result);
+    console.log(date.toISO(), "get mongo db list", result);
     return result;
   } finally {
     await closeMongoDB();
