@@ -88,13 +88,13 @@ export default function Flights() {
       return 0;
     });
 
-    localStorage.setItem("nap_tips", JSON.stringify(sortedHistory));
+    localStorage.setItem("sleep_tips", JSON.stringify(sortedHistory));
     setAirportInfos(sortedHistory);
     router.replace(`/nap/${key}`);
   };
 
   useEffect(() => {
-    const storedAirports = localStorage.getItem("nap_tips");
+    const storedAirports = localStorage.getItem("sleep_tips");
     if (storedAirports) {
       setAirportInfos(JSON.parse(storedAirports));
     }
