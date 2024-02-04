@@ -179,6 +179,8 @@ const RecommendNap = ({ title, airportInfos }) => {
         const info = {
           departCity: departureInfo.city,
           arrivalCity: arrivalInfo.city,
+          departureAirportCode: departureInfo.airportCode,
+          arrivalAirportCode: arrivalInfo.airportCode,
           flightTime: flightTimeString,
         };
 

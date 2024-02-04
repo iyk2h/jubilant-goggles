@@ -38,24 +38,20 @@ export const getDiffTimeString = (diff, locale) => {
 
 export const formatDateString = (dateTime, locale) => {
   if (locale !== "ko") {
-    return dateTime.toFormat("LLL dd, h:mm a (ZZZZ)");
+    return dateTime.toFormat("LLL dd, hh:mm(ZZZZ)");
   }
-  return dateTime
-    .toFormat("M월 d일, a h:mm (ZZZZ)")
-    .replace("AM", "오전")
-    .replace("PM", "오후");
+  return dateTime.toFormat("M월 d일, hh:mm(ZZZZ)");
 };
 
 export const formatStrS = (input, locale) => {
   if (locale !== "ko") {
     return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a").toFormat(
-      "LLL dd, h:mm a"
+      "LLL dd, hh:mm"
     );
   }
-  return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a")
-    .toFormat("M월 d일, a h:mm")
-    .replace("AM", "오전")
-    .replace("PM", "오후");
+  return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a").toFormat(
+    "M월 d일, hh:mm"
+  );
 };
 
 export const nowDate = () => {
@@ -91,8 +87,5 @@ export const formatAirportDate = (input, locale) => {
       "LLL dd, h:mm a"
     );
   }
-  return DateTime.fromFormat(dateTime, "M/d/yyyy, h:mm:ss a")
-    .toFormat("M월 d일, a h:mm")
-    .replace("AM", "오전")
-    .replace("PM", "오후");
+  return formatStrS(dateTime, locale);
 };

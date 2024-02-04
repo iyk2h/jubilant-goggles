@@ -50,8 +50,8 @@
     "pick_from_calendar": "달력에서 선택"
   },
   "Result": {
-    "departure_country_time": "출발국가 시간",
-    "arrival_country_time": "도착국가 시간",
+    "departure_country_time": " 시간",
+    "arrival_country_time": " 시간",
     "departure": "출발",
     "nap": "낮잠",
     "sleep": "취침",

@@ -41,6 +41,7 @@ const createAirportInfoWithDateTime = async (
         timeString,
         airportInfo.timezone
       ),
+      airportCode,
     };
 
     cache[cacheKey] = infoWithDateTime;

@@ -22,22 +22,31 @@ const RecommendSleepLayout = ({ idx, info, recommendItems }) => {
           <ul
             aria-label="Activity feed"
             role="feed"
-            className="relative flex flex-col gap-2 py-4 left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
+            className="relative flex justify-center items-center flex-col gap-3 py-3 pb-8 w-full left-0 before:absolute before:top-0 before:left-[50%] before:h-full before:border before:border-dashed before:border-slate-100 after:absolute after:top-6 after:left-[50%] after:bottom-6 after:border after:border-slate-100"
           >
             {recommendItems.map((item, index) => (
-              <li key={index} role="article" className="flex gap-2 mt-3">
-                <div className={`flex flex-col w-28 text-right`}>
-                  <p className={`text-xs`}>{item.departDateTime}</p>
-                  <h4 className={`text-base `}>{item.departDescription}</h4>
+              <li key={index} role="article" className="flex gap-2 mt-5">
+                <div className={`flex flex-col w-28 text-right text-xs`}>
+                  <div
+                    className={`flex justify-end gap-2 text-sm whitespace-nowrap`}
+                  >
+                    <h4 className={`font-bold`}>{item.departDescription}</h4>
+                    {item.departDateTime.split(",")[0]}
+                  </div>
+
+                  {item.departDateTime.split(",")[1]}
                 </div>
                 <span
                   className={`flex items-center z-10 justify-center w-10 h-10 rounded-full ${bg_l}  ring-2 ring-custom-third`}
                 >
-                  <p className="">{item.icon}</p>
+                  <p className="`">{item.icon}</p>
                 </span>
-                <div className={`flex flex-col gap-0 w-28`}>
-                  <p className={`text-xs`}>{item.arrivalDateTime}</p>
-                  <h4 className={`text-base `}>{item.arrivalDescription}</h4>
+                <div className={`flex flex-col w-28 text-left text-xs`}>
+                  <div className={`flex justify-start gap-2 text-sm `}>
+                    {item.arrivalDateTime.split(",")[0]}
+                    <h4 className={` font-bold`}>{item.arrivalDescription}</h4>
+                  </div>
+                  {item.arrivalDateTime.split(",")[1]}
                 </div>
               </li>
             ))}

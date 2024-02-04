@@ -50,8 +50,8 @@
     "pick_from_calendar": "Pick from Calendar"
   },
   "Result": {
-    "departure_country_time": "Departure Time Zone",
-    "arrival_country_time": "Arrival Time Zone",
+    "departure_country_time": " Time",
+    "arrival_country_time": " Time",
     "departure": "Departure",
     "nap": "Nap",
     "sleep": "Sleep",
