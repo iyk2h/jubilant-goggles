@@ -1,9 +1,11 @@
-const { findAllByCurDate } = require("../../mongoDB/repository");
+const { findAllByDate } = require("../../mongoDB/repository");
 import { NextResponse } from "next/server";
 import { sendEmail } from "../../mailing/mailingService";
+import { nowDate } from "@/app/utils/DateUtils";
 
 async function runSchedule() {
-  const list = await findAllByCurDate();
+  const curDate = nowDate();
+  const list = await findAllByDate(curDate);
 
   for (const item of list) {
     await sendEmail({

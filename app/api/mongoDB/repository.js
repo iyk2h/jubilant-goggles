@@ -40,8 +40,10 @@ export async function save({ input }) {
       departureDate: input.departureDate,
     };
 
-    const todayStart = nowDate().toUTC(0).startOf("day");
-    const todayEnd = nowDate().toUTC(0).endOf("day");
+    const curDate = nowDate();
+
+    const todayStart = curDate.toUTC(0).startOf("day");
+    const todayEnd = curDate.toUTC(0).endOf("day");
     const departDate = DateTime.fromISO(input.departureDate).toUTC(0);
 
     if (todayStart <= departDate && todayEnd >= departDate) {
@@ -75,14 +77,14 @@ export async function save({ input }) {
   }
 }
 
-export async function findAllByCurDate() {
+export async function findAllByDate(curDate) {
   try {
     await connectToMongoDB();
 
     const db = client.db("mailingService");
     const collection = db.collection("mailListWithCode");
 
-    const date = nowDate().plus({ days: 1 }).toUTC(0).startOf("day");
+    const date = curDate.plus({ days: 1 }).toUTC(0).startOf("day");
 
     const result = await collection
       .find({
@@ -97,8 +99,8 @@ export async function findAllByCurDate() {
     await collection.updateMany(
       {
         departureDate: {
-          $lt: day.toISO(),
-          $gte: day.minus({ days: 1 }).toISO(),
+          $gte: date.toISO(), // 내일 00:00 이후
+          $lt: date.endOf("day").toISO(), // 내일 23:59:59 이전
         },
         state: "todo",
       },
@@ -107,7 +109,7 @@ export async function findAllByCurDate() {
 
     console.log(
       "cur: ",
-      nowDate().toISO(),
+      curDate.toISO(),
       "search date",
       date.toISO(),
       "get mongo db list",
