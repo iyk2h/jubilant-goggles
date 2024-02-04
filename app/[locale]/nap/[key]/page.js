@@ -13,6 +13,7 @@ import {
 } from "@/app/utils/icon/Icon";
 import { useLocale, useTranslations } from "next-intl";
 import { useAirportInfosValue } from "../../AirportProvider";
+import { useAirportInfosActions } from "../../AirportProvider";
 import ShareLayout from "@/app/components/ShareLayout";
 import MyButton from "@/app/components/MyButton";
 import { save, deleteBy } from "@/app/api/mongoDB/repository";
@@ -33,6 +34,8 @@ export default function Nap(param) {
   const [title, setTitle] = useState();
   const [isContain, setIsContain] = useState(false);
   const [isAdded, setIsAdded] = useState(false);
+
+  const { setAirportInfo } = useAirportInfosActions();
 
   const key = param.params.key;
 
@@ -139,10 +142,13 @@ export default function Nap(param) {
 
   useEffect(() => {
     if (airportInfos && airportInfos.length === 0) {
-      getAirportInfo();
+      if (airport.length === 0) {
+        getAirportInfo();
+      }
     } else {
       setArport(airportInfos.airport);
       setTitle(airportInfos.title);
+      setAirportInfo([]);
       setLoadings(false);
     }
   }, [airportInfos]);
