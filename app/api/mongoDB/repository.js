@@ -83,16 +83,12 @@ export async function findAllByCurDate() {
     const collection = db.collection("mailListWithCode");
 
     const date = nowDate().plus({ days: 1 }).toUTC(0).startOf("day");
-    const day = date.endOf("day");
-
-    console.log(date.toISO());
-    console.log(day.plus({ seconds: 0 }).toISO());
 
     const result = await collection
       .find({
         departureDate: {
           $gte: date.toISO(), // 내일 00:00 이후
-          $lt: day.plus({ seconds: -1 }).toISO(), // 내일 23:59:59 이전
+          $lt: date.endOf("day").toISO(), // 내일 23:59:59 이전
         },
         state: "todo",
       })
@@ -109,7 +105,14 @@ export async function findAllByCurDate() {
       { $set: { state: "done" } }
     );
 
-    console.log(nowDate().toISO(), "get mongo db list", result);
+    console.log(
+      "cur: ",
+      nowDate().toISO(),
+      "search date",
+      date.toISO(),
+      "get mongo db list",
+      result
+    );
     return result;
   } finally {
     await closeMongoDB();
