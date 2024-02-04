@@ -19,7 +19,7 @@
     "flights": "선택한 비행 목록",
     "myflights": "나의 비행",
     "search_flight": "항공편 추가",
-    "cancel": "다시 입력",
+    "cancel": "초기화",
     "done": "시차 해결하기",
     "empty_flight": "비행을 추가해 주세요.",
     "duplicate_travel": "중복된 여행입니다. 다시 확인해주세요.",
