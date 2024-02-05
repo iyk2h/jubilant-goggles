@@ -96,16 +96,16 @@ export async function findAllByDate(curDate) {
       })
       .toArray();
 
-    await collection.updateMany(
-      {
-        departureDate: {
-          $gte: date.toISO(), // 내일 00:00 이후
-          $lt: date.endOf("day").toISO(), // 내일 23:59:59 이전
-        },
-        state: "todo",
-      },
-      { $set: { state: "done" } }
-    );
+    // await collection.updateMany(
+    //   {
+    //     departureDate: {
+    //       $gte: date.toISO(), // 내일 00:00 이후
+    //       $lt: date.endOf("day").toISO(), // 내일 23:59:59 이전
+    //     },
+    //     state: "todo",
+    //   },
+    //   { $set: { state: "done" } }
+    // );
 
     console.log(
       "cur: ",

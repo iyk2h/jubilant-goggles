@@ -28,10 +28,10 @@ export async function sendEmail({
 
   if (locale === "ko") {
     subject = "내일 여정이 시작됩니다! LagLess와 함께하세요.";
-    htmlPath = "./public/emailForm/emailTempleteKO.html";
+    htmlPath = "public/emailForm/emailTempleteKO.html";
   } else {
     subject = "Your journey begins tomorrow! Join LagLess.";
-    htmlPath = "./public/emailForm/emailTempleteEN.html";
+    htmlPath = "public/emailForm/emailTempleteEN.html";
   }
 
   const template = await fs.readFile(`${htmlPath}`, "utf-8");
