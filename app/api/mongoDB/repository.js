@@ -96,17 +96,6 @@ export async function findAllByDate(curDate) {
       })
       .toArray();
 
-    // await collection.updateMany(
-    //   {
-    //     departureDate: {
-    //       $gte: date.toISO(), // 내일 00:00 이후
-    //       $lt: date.endOf("day").toISO(), // 내일 23:59:59 이전
-    //     },
-    //     state: "todo",
-    //   },
-    //   { $set: { state: "done" } }
-    // );
-
     console.log(
       "cur: ",
       curDate.toISO(),
@@ -120,6 +109,41 @@ export async function findAllByDate(curDate) {
     await closeMongoDB();
   }
 }
+
+export async function update({ input }) {
+  try {
+    await connectToMongoDB();
+
+    const db = client.db("mailingService");
+    const collection = db.collection("mailListWithCode");
+
+    const filter = {
+      code: input.code,
+      state: input.state,
+      email: input.email,
+      departureDate: input.departureDate,
+    };
+
+    const update = {
+      $set: { state: "done" }, // state 필드를 done으로 설정합니다.
+    };
+
+    const options = {
+      upsert: false, // 문서가 존재하지 않을 경우에는 삽입하지 않음.
+    };
+
+    const result = await collection.updateOne(filter, update, options);
+
+    if (result.upsertedCount > 0) {
+      console.log("Document inserted:", result.upsertedId._id);
+    } else {
+      console.log("Document updated");
+    }
+  } finally {
+    await closeMongoDB();
+  }
+}
+
 export async function deleteBy({ input }) {
   try {
     await connectToMongoDB();
