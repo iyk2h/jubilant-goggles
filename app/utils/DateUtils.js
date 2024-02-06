@@ -38,19 +38,19 @@ export const getDiffTimeString = (diff, locale) => {
 
 export const formatDateString = (dateTime, locale) => {
   if (locale !== "ko") {
-    return dateTime.toFormat("LLL dd, hh:mm(ZZZZ)");
+    return dateTime.toFormat("LLL dd, HH:mm(ZZZZ)");
   }
-  return dateTime.toFormat("M월 d일, hh:mm(ZZZZ)");
+  return dateTime.toFormat("M월 d일, HH:mm(ZZZZ)");
 };
 
 export const formatStrS = (input, locale) => {
   if (locale !== "ko") {
     return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a").toFormat(
-      "LLL dd, hh:mm"
+      "LLL dd, HH:mm"
     );
   }
   return DateTime.fromFormat(input, "M/d/yyyy, h:mm:ss a").toFormat(
-    "M월 d일, hh:mm"
+    "M월 d일, HH:mm"
   );
 };
 
