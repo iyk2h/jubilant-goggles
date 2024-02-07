@@ -2,8 +2,10 @@
 
 import RecommendNap from "../../../components/RecommendNap";
 import { useRouter } from "next/navigation";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import {
   HomeIcon,
@@ -109,6 +111,17 @@ export default function Nap(param) {
     }, 2000);
   };
 
+  const divRef = useRef(null);
+
+  const handleDownload = async () => {
+    if (!divRef.current) return;
+    const card = divRef.current;
+
+    domtoimage.toBlob(card).then((blob) => {
+      saveAs(blob, "schedule.png");
+    });
+  };
+
   useEffect(() => {
     const storedAirports = localStorage.getItem("sleep_tips");
     if (storedAirports) {
@@ -186,7 +199,9 @@ export default function Nap(param) {
               </>
             ) : (
               <div className=" mb-20">
-                <RecommendNap title={title} airportInfos={airport} />
+                <div ref={divRef} className=" bg-custom-third">
+                  <RecommendNap title={title} airportInfos={airport} />
+                </div>
                 <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
                   {isContain ? (
                     <div className="flex justify-center items-center pl-3">
@@ -254,6 +269,7 @@ export default function Nap(param) {
                       retryEmail={retryEmail}
                     />
                   )}
+                  <MyButton text={"Download"} onClick={handleDownload} />
                 </div>
               </div>
             )}

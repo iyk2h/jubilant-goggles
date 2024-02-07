@@ -2,54 +2,65 @@ import Image from "next/image";
 
 export function NoCoffee({ id }) {
   return (
-    <Image
+    <img
       id={id}
       width={30}
       height={30}
       src="/icons8-no-beverages.png"
       alt="no-beverages"
+      loading="lazy"
     />
   );
 }
 
 export function SleepIcon({ id }) {
   return (
-    <Image id={id} width={28} height={28} src="/icons8-sleep.png" alt="sleep" />
+    <img
+      id={id}
+      width={28}
+      height={28}
+      src="/icons8-sleep.png"
+      alt="sleep"
+      loading="lazy"
+    />
   );
 }
 
 export function WakeUpIcon({ id }) {
   return (
-    <Image
+    <img
       id={id}
       width={32}
       height={32}
       src="/icons8-wake-up.png"
       alt="wake-up"
+      loading="lazy"
     />
   );
 }
 
 export function AirplaneDepartIcon({ id }) {
   return (
-    <Image
+    <img
       id={id}
       width={30}
       height={30}
       src="/icons8-flight.png"
       alt="airplane-take-off"
+      loading="lazy"
     />
   );
 }
 
 export function AirplaneArrivalIcon({ id }) {
   return (
-    <Image
+    <img
       id={id}
       width={30}
       height={30}
       src="/icons8-landing.png"
       alt="airplane-landing"
+      loading="lazy"
     />
   );
 }
