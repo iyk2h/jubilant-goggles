@@ -118,30 +118,22 @@ export default function Nap(param) {
   const handleDownload = async () => {
     if (!divRef.current) return;
 
-    const card = divRef.current;
-
-    console.log("card :: ", card);
-    // domtoimage
-    //   .toBlob(card)
-    //   .then((blob) => {
-    //     console.log("Blob generated:", blob);
-    //     saveAs(blob, "schedule.png");
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error generating blob:", error);
-    //   });
+    const div = divRef.current;
 
     try {
-      const div = divRef.current;
+      // div 엘리먼트를 캡처하여 canvas에 렌더링합니다.
       const canvas = await html2canvas(div, {
         scale: 1,
       });
-      canvas.toBlob((blob) => {
-        if (blob !== null) {
-          console.log(blob);
-          saveAs(blob, "result.png");
-        }
-      });
+
+      // 캔버스를 이미지로 변환합니다.
+      const imageDataURL = canvas.toDataURL("image/png");
+
+      // 이미지를 클릭하여 다운로드하도록 링크를 생성합니다.
+      const downloadLink = document.createElement("a");
+      downloadLink.href = imageDataURL;
+      downloadLink.download = "image.png";
+      downloadLink.click();
     } catch (error) {
       console.error("Error converting div to image:", error);
     }
