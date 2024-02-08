@@ -31,7 +31,7 @@ export const getDiffTime = (diff) => {
 
 export const getDiffTimeString = (diff, locale) => {
   if (locale !== "ko") {
-    return diff.toFormat("h 'hours' m 'minutes flight'");
+    return diff.toFormat("h'h' m'm flight'");
   }
   return diff.toFormat("h시간 m분 비행");
 };

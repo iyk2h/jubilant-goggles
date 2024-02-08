@@ -3,11 +3,13 @@
 import RecommendNap from "../../../components/RecommendNap";
 import { useRouter } from "next/navigation";
 import domtoimage from "dom-to-image";
+import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import {
+  DownloadIcon,
   HomeIcon,
   LoadingIcon,
   MailIcon,
@@ -115,11 +117,34 @@ export default function Nap(param) {
 
   const handleDownload = async () => {
     if (!divRef.current) return;
+
     const card = divRef.current;
 
-    domtoimage.toBlob(card).then((blob) => {
-      saveAs(blob, "schedule.png");
-    });
+    console.log("card :: ", card);
+    // domtoimage
+    //   .toBlob(card)
+    //   .then((blob) => {
+    //     console.log("Blob generated:", blob);
+    //     saveAs(blob, "schedule.png");
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error generating blob:", error);
+    //   });
+
+    try {
+      const div = divRef.current;
+      const canvas = await html2canvas(div, {
+        scale: 1,
+      });
+      canvas.toBlob((blob) => {
+        if (blob !== null) {
+          console.log(blob);
+          saveAs(blob, "result.png");
+        }
+      });
+    } catch (error) {
+      console.error("Error converting div to image:", error);
+    }
   };
 
   useEffect(() => {
@@ -218,7 +243,7 @@ export default function Nap(param) {
                   )}
                 </div>
                 <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
-                  <MyButton
+                  {/* <MyButton
                     text={
                       <div className="flex justify-center items-center gap-1 p-1">
                         <HomeIcon />
@@ -231,7 +256,7 @@ export default function Nap(param) {
                         behavior: "smooth",
                       });
                     }}
-                  />
+                  /> */}
                   <MyButton
                     id="nap_result_share_button"
                     text={
@@ -255,7 +280,6 @@ export default function Nap(param) {
                         className="flex justify-center items-center gap-1"
                       >
                         <MailIcon id="nap_result_reminders_icon" />
-                        {t("apply_reminder")}
                       </div>
                     }
                     onClick={openEmailForm}
@@ -269,7 +293,15 @@ export default function Nap(param) {
                       retryEmail={retryEmail}
                     />
                   )}
-                  <MyButton text={"Download"} onClick={handleDownload} />
+                  <MyButton
+                    id={"nap_result_download"}
+                    text={
+                      <div id="nap_result_download_div">
+                        <DownloadIcon id={"nap_result_download_icon"} />
+                      </div>
+                    }
+                    onClick={handleDownload}
+                  />
                 </div>
               </div>
             )}

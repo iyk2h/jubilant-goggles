@@ -205,7 +205,7 @@ export function CloseIcon({ id }) {
 
 export function ShareIcon({ id }) {
   return (
-    <Image id={id} width={17} height={17} src="/icons8-share.png" alt="share" />
+    <Image id={id} width={16} height={16} src="/icons8-share.png" alt="share" />
   );
 }
 
@@ -217,6 +217,18 @@ export function HomeIcon({ id }) {
 
 export function MailIcon({ id }) {
   return (
-    <Image id={id} width={19} height={19} src="/icons8-mail.png" alt="mail" />
+    <Image id={id} width={24} height={24} src="/icons8-mail.png" alt="mail" />
+  );
+}
+
+export function DownloadIcon({ id }) {
+  return (
+    <Image
+      id={id}
+      width={24}
+      height={24}
+      src="/icons8-download.png"
+      alt="download"
+    />
   );
 }
