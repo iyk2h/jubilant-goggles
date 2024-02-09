@@ -115,7 +115,13 @@ export default function Nap(param) {
 
   const divRef = useRef(null);
   const handleDownload = async () => {
-    html2canvas(document.getElementById("recomend-nap"), {
+    if (!divRef.current) {
+      console.log("divRef.current 없음");
+      return;
+    }
+    console.log("divRef.current 있음");
+    console.log(divRef.current);
+    html2canvas(divRef.current, {
       allowTaint: true,
       useCORS: true,
     }).then(function (canvas) {
