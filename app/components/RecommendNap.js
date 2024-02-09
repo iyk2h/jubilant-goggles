@@ -287,6 +287,7 @@ const RecommendNap = ({ title, airportInfos }) => {
   return (
     <>
       <div className="mt-2">
+        <p id="cur-url"></p>
         <div className="flex justify-between items-center border-b-2 border-right-bg">
           <div>{title.split("_")[1]}</div>
           <div className="text-sm">

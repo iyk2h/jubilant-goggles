@@ -36,6 +36,7 @@ const RecommendNapLayout = ({ idx, info, recommendItems }) => {
             className={`absolute right-0 ${bg_r} h-full w-1/2 z-0 flex items-center justify-center rounded-r-xl overflow-hidden border-l-2 border-custom-third pl-20`}
           >
             <div
+              id="right-back-ground"
               className={`rotate-90 origin-center relative right-0 text-7xl ${bg_text_r} whitespace-nowrap`}
             >
               {info.arrivalCity}

@@ -121,38 +121,57 @@ export default function Nap(param) {
         img.setAttribute("loading", "eager");
     });
 
-    // html2canvas를 사용하여 요소를 이미지로 변환합니다.
+    // 이미지 저장시 테두리 추가
+    sourceElement.style.padding = "10px";
+    sourceElement.style.marginBottom = "20px";
+
+    // 결과 화면 배경 오늘쪽 글자 위치 수정
+    const rightBG = document.getElementById("right-back-ground");
+    rightBG.style.paddingBottom = "80px";
+
+    // 상단에 url 추가
+    const curUrl = document.getElementById("cur-url");
+    curUrl.appendChild(
+      document.createTextNode(`https://www.lagless.site/nap/${key}`)
+    );
+    curUrl.style.paddingTop = "20px";
+    curUrl.style.paddingBottom = "20px";
+    curUrl.style.textAlign = "center";
+
+    // 제목 옆 홈 아이콘 잠시 가리기
+    const homeIcon = document.getElementById("home-icon");
+    homeIcon.style.display = "none";
+
+    // 이미지를 캡처하고 base64 형식으로 변환합니다.
     const canvas = await html2canvas(sourceElement, {
       useCORS: true,
       allowTaint: true,
       logging: true,
-      height: sourceElement.clientHeight || window.innerHeight,
-      width: sourceElement.clientWidth || window.innerWidth,
       ignoreElements: (el) =>
         el.nodeName.toLowerCase() === "canvas" ||
         el.getAttribute("loading") === "lazy",
     });
+
+    // 이미지 변환 후 기존 스타일로
+    sourceElement.style.padding = "0px";
+    sourceElement.style.marginBottom = "0px";
+    rightBG.style.paddingBottom = "0px";
+    curUrl.textContent = "";
+    homeIcon.style.display = "";
 
     // 캔버스를 base64 형식의 이미지로 변환합니다.
     const base64 = canvas.toDataURL("image/jpeg", 1.0);
 
     // 이미지 엘리먼트를 생성하고 base64 이미지를 설정합니다.
     const image = new Image();
-    image.width = sourceElement.offsetWidth || sourceElement.clientWidth;
-    image.height = sourceElement.offsetHeight || sourceElement.clientHeight;
     image.src = base64;
-
     return image;
   };
 
-  // handleDownload 함수를 수정하여 getElementImage 함수를 사용합니다.
   const handleDownload = async () => {
     if (!divRef.current) {
-      console.log("divRef.current 없음");
       return;
     }
-    console.log("divRef.current 있음");
-    console.log(divRef.current);
 
     try {
       // divRef.current를 이미지로 변환합니다.
@@ -224,18 +243,18 @@ export default function Nap(param) {
 
   return (
     <>
-      <div className="flex justify-between items-center">
-        <div className="text-2xl font-bold">{t("title")}</div>
-        <div className="flex gap-1">
-          <div
-            className="flex p-1 mx-1 border-2 border-left-bg cursor-pointer rounded-full hover:bg-left-bg"
-            onClick={() => router.push("/")}
-          >
-            <HomeIcon />
+      <div id="recomend-nap" ref={divRef} className="bg-custom-third">
+        <div className="flex justify-between items-center">
+          <div className="text-2xl font-bold">{t("title")}</div>
+          <div id="home-icon" className="flex gap-1">
+            <div
+              className="flex p-1 mx-1 border-2 border-left-bg cursor-pointer rounded-full hover:bg-left-bg"
+              onClick={() => router.push("/")}
+            >
+              <HomeIcon />
+            </div>
           </div>
         </div>
-      </div>
-      <section className="">
         {loadings ? (
           <div className="flex justify-center items-center py-5">
             <div className="mr-3 mb-1">
@@ -254,97 +273,85 @@ export default function Nap(param) {
                 </div>
               </>
             ) : (
-              <div className=" mb-20">
-                <div
-                  id="recomend-nap"
-                  ref={divRef}
-                  className=" bg-custom-third"
-                >
+              <div>
+                <div>
                   <RecommendNap title={title} airportInfos={airport} />
-                </div>
-                <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
-                  {isContain ? (
-                    <div className="flex justify-center items-center pl-3">
-                      {isAdded && t("added_my_travels")}
-                    </div>
-                  ) : (
-                    <div className="flex">
-                      <MyButton
-                        text={t("add_my_travels")}
-                        type={"positive"}
-                        onClick={addMyTravel}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
-                  {/* <MyButton
-                    text={
-                      <div className="flex justify-center items-center gap-1 p-1">
-                        <HomeIcon />
-                      </div>
-                    }
-                    onClick={() => {
-                      router.push("/");
-                      window.scrollTo({
-                        top: 0,
-                        behavior: "smooth",
-                      });
-                    }}
-                  /> */}
-                  <MyButton
-                    id="nap_result_share_button"
-                    text={
-                      <div
-                        id="nap_result_share_button_div"
-                        className="flex justify-center items-center gap-1 p-1"
-                      >
-                        <ShareIcon id="nap_result_share_icon" />
-                      </div>
-                    }
-                    onClick={openModal}
-                  />
-                  {isModalOpen && (
-                    <ShareLayout value={key} state={true} close={closeModal} />
-                  )}
-                  <MyButton
-                    id="nap_result_reminders"
-                    text={
-                      <div
-                        id="nap_result_remindersbutton_div"
-                        className="flex justify-center items-center gap-1"
-                      >
-                        <MailIcon id="nap_result_reminders_icon" />
-                      </div>
-                    }
-                    onClick={openEmailForm}
-                  />
-                  {isEmailFormOpen && (
-                    <EmailForm
-                      value={key}
-                      state={true}
-                      close={closeEmailForm}
-                      addEmail={addEmail}
-                      retryEmail={retryEmail}
-                    />
-                  )}
-                  <div id="nap_result_download_img">
-                    <MyButton
-                      id={"nap_result_download"}
-                      text={
-                        <div id="nap_result_download_div">
-                          <DownloadIcon id={"nap_result_download_icon"} />
-                        </div>
-                      }
-                      onClick={handleDownload}
-                    />
-                  </div>
                 </div>
               </div>
             )}
           </>
         )}
-      </section>
+      </div>
+      {airport.length === 0 ? (
+        <></>
+      ) : (
+        <>
+          <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
+            {isContain ? (
+              <div className="flex justify-center items-center pl-3">
+                {isAdded && t("added_my_travels")}
+              </div>
+            ) : (
+              <div className="flex">
+                <MyButton
+                  text={t("add_my_travels")}
+                  type={"positive"}
+                  onClick={addMyTravel}
+                />
+              </div>
+            )}
+          </div>
+          <div className="flex w-full justify-center items-center my-2 mb-20 gap-3 ">
+            <MyButton
+              id="nap_result_share_button"
+              text={
+                <div
+                  id="nap_result_share_button_div"
+                  className="flex justify-center items-center gap-1 p-1"
+                >
+                  <ShareIcon id="nap_result_share_icon" />
+                </div>
+              }
+              onClick={openModal}
+            />
+            {isModalOpen && (
+              <ShareLayout value={key} state={true} close={closeModal} />
+            )}
+            <MyButton
+              id="nap_result_reminders"
+              text={
+                <div
+                  id="nap_result_remindersbutton_div"
+                  className="flex justify-center items-center gap-1"
+                >
+                  <MailIcon id="nap_result_reminders_icon" />
+                </div>
+              }
+              onClick={openEmailForm}
+            />
+            {isEmailFormOpen && (
+              <EmailForm
+                value={key}
+                state={true}
+                close={closeEmailForm}
+                addEmail={addEmail}
+                retryEmail={retryEmail}
+              />
+            )}
+            <div id="nap_result_download_img">
+              <MyButton
+                id={"nap_result_download"}
+                text={
+                  <div id="nap_result_download_div">
+                    <DownloadIcon id={"nap_result_download_icon"} />
+                  </div>
+                }
+                onClick={handleDownload}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }
