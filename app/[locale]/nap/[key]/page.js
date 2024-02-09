@@ -131,9 +131,7 @@ export default function Nap(param) {
 
     // 상단에 url 추가
     const curUrl = document.getElementById("cur-url");
-    curUrl.appendChild(
-      document.createTextNode(`https://www.lagless.site/nap/${key}`)
-    );
+    curUrl.appendChild(document.createTextNode(`lagless.site/nap/${key}`));
     curUrl.style.paddingTop = "20px";
     curUrl.style.paddingBottom = "20px";
     curUrl.style.textAlign = "center";
@@ -191,7 +189,7 @@ export default function Nap(param) {
       });
 
       // 이미지를 저장합니다.
-      saveAs(blob, "test.jpg");
+      saveAs(blob, "LagLessResult.jpg");
     } catch (error) {
       console.error("Error converting div to image:", error);
     }
