@@ -114,6 +114,38 @@ export default function Nap(param) {
   };
 
   const divRef = useRef(null);
+  const getElementImage = async (sourceElement) => {
+    // lazy loading 이미지를 eager loading으로 변경합니다.
+    Array.from(sourceElement.querySelectorAll("img"))?.forEach((img) => {
+      if (img.getAttribute("loading") === "lazy")
+        img.setAttribute("loading", "eager");
+    });
+
+    // html2canvas를 사용하여 요소를 이미지로 변환합니다.
+    const canvas = await html2canvas(sourceElement, {
+      useCORS: true,
+      allowTaint: true,
+      logging: true,
+      height: sourceElement.clientHeight || window.innerHeight,
+      width: sourceElement.clientWidth || window.innerWidth,
+      ignoreElements: (el) =>
+        el.nodeName.toLowerCase() === "canvas" ||
+        el.getAttribute("loading") === "lazy",
+    });
+
+    // 캔버스를 base64 형식의 이미지로 변환합니다.
+    const base64 = canvas.toDataURL("image/jpeg", 1.0);
+
+    // 이미지 엘리먼트를 생성하고 base64 이미지를 설정합니다.
+    const image = new Image();
+    image.width = sourceElement.offsetWidth || sourceElement.clientWidth;
+    image.height = sourceElement.offsetHeight || sourceElement.clientHeight;
+    image.src = base64;
+
+    return image;
+  };
+
+  // handleDownload 함수를 수정하여 getElementImage 함수를 사용합니다.
   const handleDownload = async () => {
     if (!divRef.current) {
       console.log("divRef.current 없음");
@@ -121,16 +153,29 @@ export default function Nap(param) {
     }
     console.log("divRef.current 있음");
     console.log(divRef.current);
-    html2canvas(divRef.current, {
-      allowTaint: true,
-      useCORS: true,
-    }).then(function (canvas) {
-      console.log("canvas: " + canvas);
-      canvas.toBlob((blob) => {
-        saveAs(blob, "test.jpg");
+
+    try {
+      // divRef.current를 이미지로 변환합니다.
+      const imageElement = await getElementImage(divRef.current);
+
+      // 변환된 이미지를 저장합니다.
+      const blob = await new Promise((resolve, reject) => {
+        imageElement.onload = () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = imageElement.width;
+          canvas.height = imageElement.height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(imageElement, 0, 0);
+          canvas.toBlob(resolve, "image/jpeg");
+        };
+        imageElement.onerror = reject;
       });
-      document.getElementById("recomend-nap").appendChild(canvas);
-    });
+
+      // 이미지를 저장합니다.
+      saveAs(blob, "test.jpg");
+    } catch (error) {
+      console.error("Error converting div to image:", error);
+    }
   };
 
   https: useEffect(() => {
