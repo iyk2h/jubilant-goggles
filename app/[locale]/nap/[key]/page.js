@@ -2,11 +2,11 @@
 
 import RecommendNap from "../../../components/RecommendNap";
 import { useRouter } from "next/navigation";
-import domtoimage from "dom-to-image";
+import bodytoimage from "dom-to-image";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import axios from "axios";
 import {
   DownloadIcon,
@@ -123,7 +123,7 @@ export default function Nap(param) {
       canvas.toBlob((blob) => {
         saveAs(blob, "test.jpg");
       });
-      // document.getElementById("recomend-nap").appendChild(canvas);
+      document.getElementById("recomend-nap").appendChild(canvas);
     });
   };
 
