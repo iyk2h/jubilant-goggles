@@ -2,7 +2,6 @@
 
 import RecommendNap from "../../../components/RecommendNap";
 import { useRouter } from "next/navigation";
-import bodytoimage from "dom-to-image";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 
