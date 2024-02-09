@@ -114,32 +114,20 @@ export default function Nap(param) {
   };
 
   const divRef = useRef(null);
-
   const handleDownload = async () => {
-    if (!divRef.current) return;
-
-    const div = divRef.current;
-
-    try {
-      // div 엘리먼트를 캡처하여 canvas에 렌더링합니다.
-      const canvas = await html2canvas(div, {
-        scale: 1,
+    html2canvas(document.getElementById("recomend-nap"), {
+      allowTaint: true,
+      useCORS: true,
+    }).then(function (canvas) {
+      console.log("canvas: " + canvas);
+      canvas.toBlob((blob) => {
+        saveAs(blob, "test.jpg");
       });
-
-      // 캔버스를 이미지로 변환합니다.
-      const imageDataURL = canvas.toDataURL("image/png");
-
-      // 이미지를 클릭하여 다운로드하도록 링크를 생성합니다.
-      const downloadLink = document.createElement("a");
-      downloadLink.href = imageDataURL;
-      downloadLink.download = "image.png";
-      downloadLink.click();
-    } catch (error) {
-      console.error("Error converting div to image:", error);
-    }
+      // document.getElementById("recomend-nap").appendChild(canvas);
+    });
   };
 
-  useEffect(() => {
+  https: useEffect(() => {
     const storedAirports = localStorage.getItem("sleep_tips");
     if (storedAirports) {
       const parsedAirports = JSON.parse(storedAirports);
@@ -216,7 +204,11 @@ export default function Nap(param) {
               </>
             ) : (
               <div className=" mb-20">
-                <div ref={divRef} className=" bg-custom-third">
+                <div
+                  id="recomend-nap"
+                  ref={divRef}
+                  className=" bg-custom-third"
+                >
                   <RecommendNap title={title} airportInfos={airport} />
                 </div>
                 <div className="flex w-full justify-center items-center my-2 mb-4 gap-2">
@@ -285,15 +277,17 @@ export default function Nap(param) {
                       retryEmail={retryEmail}
                     />
                   )}
-                  <MyButton
-                    id={"nap_result_download"}
-                    text={
-                      <div id="nap_result_download_div">
-                        <DownloadIcon id={"nap_result_download_icon"} />
-                      </div>
-                    }
-                    onClick={handleDownload}
-                  />
+                  <div id="nap_result_download_img">
+                    <MyButton
+                      id={"nap_result_download"}
+                      text={
+                        <div id="nap_result_download_div">
+                          <DownloadIcon id={"nap_result_download_icon"} />
+                        </div>
+                      }
+                      onClick={handleDownload}
+                    />
+                  </div>
                 </div>
               </div>
             )}
